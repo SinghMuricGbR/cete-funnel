@@ -781,8 +781,9 @@
     padding:26px;box-shadow:0 0 0 4px rgba(33,199,214,.06)}
   .fit-fields{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0}
   .field label{display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
-  select,input[type=email],input[type=tel]{width:100%;background:var(--bg);color:var(--text);
+  select,input[type=email],input[type=tel],textarea.lead-msg{width:100%;background:var(--bg);color:var(--text);
     border:1px solid var(--border);border-radius:10px;padding:13px 12px;font-family:inherit;font-size:1rem}
+  textarea.lead-msg{min-height:64px;resize:vertical;line-height:1.4}
   select:focus,input:focus{outline:none;border-color:var(--accent)}
   .fit-result{margin-top:16px;border-radius:12px;padding:18px;display:none}
   .fit-result.show{display:block}
@@ -2021,6 +2022,7 @@
               Fahrzeug, dein <b>5 %-Vorteil</b> ist dabei gesichert.</p>
             <input type="email" placeholder="deine@email.de" required>
             <input type="tel" placeholder="Telefon (optional)">
+            <textarea class="lead-msg" rows="2" placeholder="Deine Frage oder Infos zum Fahrzeug (optional)"></textarea>
             <label class="consent"><input type="checkbox" required><span>Ich akzeptiere den <a href="#datenschutz">Datenschutz</a> und möchte mein Angebot per Mail.</span></label>
             <button type="submit" class="btn btn-primary btn-block">Meinen Vorteil jetzt sichern →</button>
           </form>
@@ -2034,6 +2036,7 @@
         <form class="lead-form" data-leadtype="manual">
           <input type="email" placeholder="deine@email.de" required>
           <input type="tel" placeholder="Telefon (optional)">
+          <textarea class="lead-msg" rows="2" placeholder="Deine Frage oder Infos zum Fahrzeug (optional)"></textarea>
           <label class="consent"><input type="checkbox" required><span>Ich bin einverstanden, dass CETE mich zu meiner Anfrage kontaktiert (<a href="#datenschutz">Datenschutz</a>).</span></label>
           <button type="submit" class="btn btn-primary btn-block">Persönlich prüfen lassen →</button>
         </form>
@@ -2490,8 +2493,10 @@ window.CETE_CONFIG = {
     var email=form.querySelector('input[type=email]').value;
     var phoneEl=form.querySelector('input[type=tel]');
     var phone=phoneEl?phoneEl.value:'';
+    var msgEl=form.querySelector('textarea.lead-msg');
+    var message=msgEl?msgEl.value:'';
     var eid=ceteEventId();
-    var payload={ product:CFG.product, type:type, email:email, phone:phone,
+    var payload={ product:CFG.product, type:type, email:email, phone:phone, message:message,
       brand:selMarke.value, model:selModell.value, year:selJahr.value, air:selLuft.value,
       source:'landingpage-asc', src:SRC, ts:new Date().toISOString(),
       event_id:eid, page_url:location.href, fbp:ceteCookie('_fbp'), fbc:ceteCookie('_fbc') };
