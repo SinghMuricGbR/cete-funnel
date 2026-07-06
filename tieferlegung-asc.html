@@ -2155,10 +2155,17 @@ window.CETE_CONFIG = {
   // src-Param (Routen-/Retargeting-Messung: presell, adA/adB, rt1a…rt3c) — in jedes Event + Lead
   var SRC=''; try{ SRC=(new URLSearchParams(location.search)).get('src')||''; }catch(e){}
 
+  // Nur echte Meta-Standard-Events über 'track'; alles Eigene über 'trackCustom' (sonst Pixel-Warnung).
+  var FB_STANDARD = { ViewContent:1, Lead:1, PageView:1 };
   window.ceteTrack = function(event, params, opts){
     params = params || {};
     if(SRC && !params.src){ params.src = SRC; }
-    try{ if(window.fbq && CFG.metaPixelId){ opts ? fbq('track', event, params, opts) : fbq('track', event, params); } }catch(e){}
+    try{
+      if(window.fbq && CFG.metaPixelId){
+        var method = FB_STANDARD[event] ? 'track' : 'trackCustom';
+        opts ? fbq(method, event, params, opts) : fbq(method, event, params);
+      }
+    }catch(e){}
     try{ (window.dataLayer = window.dataLayer || []).push(Object.assign({event:'cete_'+event}, params)); }catch(e){}
     console.log('[CETE track]', event, params);
   };
