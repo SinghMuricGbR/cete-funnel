@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warum sich dein Auto heimlich selbst absenkt — und was das über dein Luftfahrwerk verrät | Ratgeber · CETE Automotive</title>
+<meta name="description" content="In der Betriebsanleitung jedes Airmatic-Fahrers steht ein Fahrzeugniveau, das er nie wählen darf. Was dein Steuergerät längst kann, warum 50-€-Tricks es zerstören — und wie der Erfinder der App-Tieferlegung es freischaltet.">
+
+<!-- ============================================================
+     PRE-SELL v2 — Winkel „Heimliche Absenkung" (Discovery-Story)
+     ERSTE HÄLFTE (Entwurf) — zweite Hälfte folgt nach Freigabe.
+     Gleiches Design-System wie presell-tieferlegung.html (v1).
+     Ehrliche Identität, keine Fake-Elemente. Platzhalter = .ph
+     ============================================================ -->
+
+<style>
+  :root{
+    --bg:#ffffff; --soft:#f4f5f7; --text:#1b1f27; --ink:#11141a; --muted:#5b6573;
+    --line:#e4e7ec; --line2:#eef0f3; --accent:#1668d6; --accent-ink:#fff;
+    --ok:#1a8f5a; --warn:#b6791f;
+    --site:1100px; --read:740px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --serif:Georgia,"Times New Roman",Cambria,"Noto Serif",serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  [id]{scroll-margin-top:70px}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--serif);
+    line-height:1.75;font-size:18px;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent)}
+  .site{max-width:var(--site);margin:0 auto;padding:0 24px}
+  .read{max-width:var(--read);margin:0 auto}
+  .sans{font-family:var(--sans)}
+
+  .topbar{background:var(--ink);color:#c7cedb;font-family:var(--sans);font-size:.76rem}
+  .topbar .site{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-top:7px;padding-bottom:7px}
+  .topbar b{color:#fff;letter-spacing:.05em;font-weight:800}
+  @media(max-width:600px){ .topbar .tb-r{display:none} }
+
+  .masthead{border-bottom:1px solid var(--line);background:#fff}
+  .mast-row{display:flex;justify-content:center;align-items:center;padding-top:16px;padding-bottom:16px}
+  .logo{display:inline-flex;align-items:center;gap:11px;text-decoration:none}
+  .logo-mark{flex:none;display:block}
+  .logo-word{font-family:var(--sans);text-align:left;line-height:1}
+  .logo-word b{display:block;font-weight:800;font-size:1.5rem;letter-spacing:.01em;color:var(--ink)}
+  .logo-word small{display:block;font-size:.58rem;letter-spacing:.18em;color:var(--muted);font-weight:600;margin-top:4px}
+  @media(max-width:600px){ .logo-word b{font-size:1.25rem} .logo-word small{letter-spacing:.1em} }
+
+  .adtag{display:inline-block;font-family:var(--sans);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:700;color:#8a6d1f;background:#fdf6e3;border:1px solid #ecdcba;border-radius:4px;padding:2px 8px;margin-top:18px}
+
+  article .read{padding-top:10px;padding-bottom:24px}
+  .kicker{font-family:var(--sans);text-transform:uppercase;letter-spacing:.1em;font-size:.74rem;
+    font-weight:700;color:var(--accent);margin:14px 0 12px}
+  h1{font-size:clamp(2rem,5.4vw,3rem);line-height:1.16;margin:0 0 .35em;font-weight:700;letter-spacing:-.015em}
+  .standfirst{font-size:1.24rem;color:#39404d;margin:0 0 24px;line-height:1.55}
+
+  .byline{font-family:var(--sans);display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:6px}
+  .byline .ava{width:42px;height:42px;border-radius:50%;background:#dde6f5;color:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-weight:800;flex:none}
+  .byline .who{font-size:.9rem;line-height:1.3}
+  .byline .who b{color:var(--ink)}
+  .byline .who span{color:var(--muted)}
+
+  .body{margin-top:22px}
+  .body p{margin:0 0 1.2em}
+  .body h2{font-size:clamp(1.4rem,3.8vw,1.9rem);line-height:1.25;margin:40px 0 .5em;font-weight:700}
+  .body a{text-decoration:underline;text-underline-offset:2px}
+  .body b,.body strong{font-weight:700;color:var(--ink)}
+
+  /* Betriebsanleitungs-Faksimile — Herzstück des Leads */
+  .manual{background:#fbfbf9;border:1px solid #d9d7cf;border-radius:6px;margin:26px 0;
+    box-shadow:0 2px 10px rgba(0,0,0,.05);overflow:hidden}
+  .manual .m-head{font-family:var(--sans);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+    color:#8a8676;background:#f1efe8;border-bottom:1px solid #d9d7cf;padding:8px 18px;font-weight:700;
+    display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .manual .m-body{padding:20px 22px}
+  .manual .m-body p{font-family:var(--serif);font-size:1.06rem;line-height:1.6;color:#2a2d33;margin:0 0 .6em}
+  .manual .m-body p:last-child{margin:0}
+  .manual .m-body .hl{background:#fff3c4;padding:1px 3px;border-radius:3px}
+  .manual .m-src{font-family:var(--sans);font-size:.76rem;color:var(--muted);padding:10px 22px 14px}
+
+  .pull{border-left:3px solid var(--accent);padding:6px 0 6px 22px;margin:28px 0 18px;
+    font-size:1.35rem;line-height:1.4;color:var(--ink);font-style:italic}
+
+  .callout{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:18px 22px;margin:28px 0}
+  .callout h3{font-family:var(--sans);margin:0 0 .4em;font-size:1.05rem}
+  .callout p{margin:0 0 .6em;color:#39404d;font-size:.98rem}
+  .callout p:last-child{margin-bottom:0}
+
+  /* Zeitgeist-Quote (BMW/Reddit) */
+  .zg-quote{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin:18px 0;
+    font-size:1.05rem;color:#23272f}
+  .zg-quote cite{font-family:var(--sans);display:block;margin-top:8px;color:var(--muted);font-style:normal;font-size:.82rem}
+
+  /* Kosten-Karten im Invalidate */
+  .cheap{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+  @media(max-width:640px){ .cheap{grid-template-columns:1fr} }
+  .cheap .c-card{border:1px solid var(--line);border-radius:10px;padding:16px 18px;background:#fff}
+  .cheap .c-tag{font-family:var(--sans);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+    font-weight:800;color:var(--warn);margin-bottom:6px}
+  .cheap .c-price{font-family:var(--sans);font-size:1.5rem;font-weight:800;color:var(--ink)}
+  .cheap .c-sub{font-family:var(--sans);font-size:.85rem;color:var(--muted);margin-top:2px}
+
+  .lead-media{margin:22px 0 8px}
+  .figure{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#e9edf2;
+    aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .figure .play{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--muted);text-align:center;padding:16px;font-family:var(--sans)}
+  .figure .disc{width:58px;height:58px;border-radius:50%;background:var(--accent);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+  figcaption{font-family:var(--sans);font-size:.8rem;color:var(--muted);margin-top:8px}
+
+  .ph{font-family:var(--sans);display:inline-block;background:#fff5d6;border:1px dashed var(--warn);color:#7a5a12;
+    border-radius:6px;padding:2px 8px;font-size:.78rem;font-weight:600}
+  .ph::before{content:"⟢ CETE einsetzen: ";opacity:.85;font-weight:700}
+
+  .callout.honest{background:#fbf4e7;border-color:#ecdcba}
+  .callout.honest h3{color:var(--warn)}
+
+  /* Erfinder-Beweis */
+  .proof{border:1px solid var(--line);border-radius:10px;background:#fff;padding:18px 20px;margin:22px 0}
+  .proof .p-head{font-family:var(--sans);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--accent);margin-bottom:8px}
+  .proof .p-shot{border:1px solid var(--line);border-radius:8px;background:#e9edf2;aspect-ratio:16/6;display:flex;align-items:center;justify-content:center;color:var(--muted);font-family:var(--sans);font-size:.85rem;margin:10px 0}
+  .proof small{font-family:var(--sans);color:var(--muted);display:block}
+
+  .rating-badge{font-family:var(--sans);display:inline-flex;align-items:center;gap:13px;text-decoration:none;
+    color:var(--text);background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:6px 0 16px;
+    box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .rating-badge:hover{border-color:var(--accent)}
+  .rb-score{font-size:1.45rem;font-weight:800;white-space:nowrap;line-height:1}
+  .rb-score b{color:var(--accent)}
+  .rb-stars{color:#f4a623;font-size:.95rem;letter-spacing:2px;display:block;margin-bottom:2px}
+  .rb-meta{font-size:.82rem;color:var(--muted);line-height:1.35}
+  .rb-meta small{color:var(--accent)}
+  .quotes{display:grid;gap:13px;margin:16px 0}
+  .quote{background:#fff;border:1px solid var(--line);border-radius:10px;padding:15px 18px}
+  .quote .q-head{font-family:var(--sans);font-weight:700;font-size:.92rem;color:var(--ink);margin-bottom:6px}
+  .quote p{margin:0;font-size:1rem;color:#23272f}
+  .quote cite{font-family:var(--sans);display:block;margin-top:7px;color:var(--muted);font-style:normal;font-size:.84rem}
+  .quote a{font-family:var(--sans);color:var(--muted);font-size:.76rem;text-decoration:none}
+  .quote a:hover{color:var(--accent)}
+
+  .cta{font-family:var(--sans);background:#0f1830;color:#fff;border-radius:14px;padding:30px 26px;text-align:center;margin:36px 0}
+  .cta h2{margin:0 0 .3em;font-size:1.55rem;color:#fff;font-family:var(--sans)}
+  .cta p{margin:0 auto 18px;color:#b7c2d4;max-width:48ch;font-size:1rem}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;border:none;cursor:pointer;
+    font-family:var(--sans);font-size:1.05rem;font-weight:700;text-decoration:none;padding:15px 30px;border-radius:10px;
+    background:var(--accent);color:#fff;transition:filter .12s,transform .12s}
+  .btn:hover{filter:brightness(1.08);transform:translateY(-2px)}
+  .cta small{display:block;margin-top:12px;color:#9aa7bd;font-size:.82rem}
+  .cta .alt{display:inline-block;margin-top:14px;color:#b7c2d4;font-size:.9rem;text-decoration:underline;text-underline-offset:2px}
+  .cta .alt:hover{color:#fff}
+
+  .author{font-family:var(--sans);display:flex;gap:14px;align-items:flex-start;background:var(--soft);
+    border:1px solid var(--line);border-radius:10px;padding:18px;margin:30px 0}
+  .author .ava{flex:none;width:48px;height:48px;border-radius:50%;background:#dde6f5;color:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-weight:800}
+  .author b{font-size:.98rem}
+  .author p{margin:4px 0 0;color:var(--muted);font-size:.88rem}
+
+  .disc-note{font-family:var(--sans);font-size:.78rem;color:var(--muted);margin:18px 0 0;
+    border-top:1px solid var(--line);padding-top:16px}
+
+  .cookie{position:fixed;left:14px;right:14px;bottom:14px;z-index:60;background:#fff;font-family:var(--sans);
+    border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;gap:12px;align-items:center;
+    flex-wrap:wrap;justify-content:center;box-shadow:0 14px 40px rgba(0,0,0,.18)}
+  .cookie[hidden]{display:none}
+  .cookie p{margin:0;font-size:.85rem;color:var(--muted);flex:1;min-width:220px}
+  .cookie button{cursor:pointer;font-family:inherit;font-weight:700;border-radius:8px;padding:10px 16px;font-size:.9rem;border:none}
+  .cookie .c-yes{background:var(--accent);color:#fff}
+  .cookie .c-no{background:#fff;color:var(--text);border:1px solid var(--line)}
+
+  footer.site-f{background:var(--ink);color:#9aa6b8;padding:30px 0;font-family:var(--sans);font-size:.84rem;margin-top:24px}
+  footer.site-f a{color:#9aa6b8;text-decoration:none}
+  footer.site-f a:hover{color:#fff}
+  footer.site-f .f-brand{font-size:1.05rem;font-weight:800;color:#fff}
+  .foot-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
+
+  @media (max-width:760px){ body{font-size:17px} .site{padding:0 20px} }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="site">
+    <span><b>ANZEIGE</b> — Ein Ratgeber der CETE Automotive GmbH</span>
+    <span class="tb-r">Stand: Juli 2026</span>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="site mast-row">
+    <span class="logo" aria-label="Ratgeber, präsentiert von CETE Automotive">
+      <svg class="logo-mark" viewBox="0 0 32 32" width="30" height="30" aria-hidden="true">
+        <rect x="1" y="1" width="30" height="30" rx="8" fill="#1668d6"/>
+        <path d="M16 6 L16 26 M10 12 L16 6 L22 12 M10 20 L16 26 L22 20" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="logo-word"><b>RATGEBER</b><small>FAHRWERK &amp; TIEFERLEGUNG · PRÄSENTIERT VON CETE AUTOMOTIVE</small></span>
+    </span>
+  </div>
+</header>
+
+<article>
+  <div class="site read">
+    <div><span class="adtag">Anzeige · Advertorial</span></div>
+
+    <div class="kicker">Ratgeber · Luftfahrwerk &amp; Tieferlegung</div>
+    <h1>Dein Auto senkt sich heimlich selbst ab. <b>Nur du darfst den Knopf nicht drücken.</b></h1>
+    <p class="standfirst">In der Betriebsanleitung jedes Fahrzeugs mit Luftfahrwerk steht ein Niveau, das du
+      nie wählen darfst. Die Tiefe, für die andere ihr Fahrwerk umbauen — oder mit 50-€-Tricks ruinieren —,
+      existiert in deinem Steuergerät <b>längst</b>. Hier steht, warum sie gesperrt ist. Und wie man sie
+      aufschließt, ohne ein einziges Teil umzubauen.</p>
+
+    <div class="byline">
+      <span class="ava">CR</span>
+      <span class="who"><b>CETE Ratgeber-Redaktion</b><br>
+        <span>Hersteller von Active Suspension Control · Juli 2026 · Lesezeit ~4 Min.</span></span>
+    </div>
+
+    <div class="body">
+
+      <!-- §1 Lead: Discovery -->
+      <span class="cp-mark" data-cp="1" data-cp-name="hook-versteckter-knopf" aria-hidden="true" style="display:block;height:1px"></span>
+      <p>Schlag mal deine Betriebsanleitung auf. Kapitel Fahrwerk, Stichwort Fahrzeugniveau.</p>
+      <p>Bei Mercedes mit AIRMATIC stehen dort drei Niveaus: <b>Normal</b>, <b>Erhöht</b> — und ein
+        drittes namens <b>„Abgesenkt"</b>. Und dann dieser Satz, der bei den meisten ein Leben lang
+        überlesen wird:</p>
+
+      <div class="manual" aria-label="Auszug aus der Betriebsanleitung">
+        <div class="m-head"><span>Auszug · Betriebsanleitung</span><span>AIRMATIC · Fahrzeugniveau</span></div>
+        <div class="m-body">
+          <p>„Die Fahrzeugniveaus ‚Normal' und ‚Erhöht' können Sie manuell einstellen."</p>
+          <p>„<span class="hl">Das Fahrzeugniveau ‚Abgesenkt' wird automatisch eingestellt bei
+            Geschwindigkeiten über 140&nbsp;km/h.</span>"</p>
+        </div>
+        <div class="m-src">Quelle: Betriebsanleitung Mercedes-Benz E-Klasse (W212), Abschnitt AIRMATIC — Wortlaut unverändert.</div>
+      </div>
+
+      <p>Manuell wählbar? Nur „Normal" und „Erhöht". <b>Nach unten hat dein Auto keinen Knopf.</b></p>
+      <p>Lies das ruhig zweimal. Dein Luftfahrwerk <b>beherrscht</b> die tiefe Lage. Es fährt sie
+        regelmäßig an — jedes Mal, wenn du auf der Autobahn zügig unterwegs bist, legt sich dein Auto
+        von selbst tiefer. Im selben Handbuch steht sogar: Verriegelst du den Wagen in „Komfortabler
+        Abstimmung", senkt er sich noch einmal um etwa 15&nbsp;mm — <b>fürs Parken.</b> Nicht weil ein
+        Tuner dran war. Ab Werk. Vom Hersteller kalibriert, freigegeben, millionenfach erprobt.</p>
+      <p>Nur einer darf diese Taste nicht drücken: <b>du.</b></p>
+      <p>Und falls du gerade denkst „ich fahre aber kein W212": Die Namen wechseln — AIRMATIC,
+        Adaptive Air Suspension, Air Body Control —, das Prinzip bleibt in jedem Auto mit
+        Luftfahrwerk dasselbe. <b>Dein Steuergerät kennt Höhen, die dein Menü dir nicht anbietet.</b></p>
+
+      <!-- §2 Agitate: Der Spalt -->
+      <span class="cp-mark" data-cp="2" data-cp-name="problem-werkshoehe" aria-hidden="true" style="display:block;height:1px"></span>
+      <p>Dabei bist du derjenige, der es jeden Tag sieht.</p>
+      <p>Der Blick zurück über den Parkplatz. Zwischen Reifen und Kotflügelkante passt eine Faust.
+        Gleiche Klasse, gleiches Geld wie die Autos, die auf Treffen und auf Instagram <b>liegen</b> —
+        aber deins steht da auf Werkshöhe wie bestellt und nicht abgeholt. Und das Absurde daran kennst
+        du jetzt: Die Tiefe, die dir fehlt, ist keine 2.000-€-Nachrüstung. Sie ist <b>schon drin</b>.
+        Kalibriert. Bezahlt. Gesperrt.</p>
+      <p>Warum eigentlich gesperrt? Die ehrliche Antwort ist unspektakulär: Zulassungsvorschriften,
+        Haftung — und ein Setting, das für den Durchschnitt aller Käufer taugen muss, vom Anhängerbetrieb
+        bis zur Bordstein-Rampe. Die Werkshöhe ist kein technisches Limit. Sie ist ein <b>Kompromiss</b> —
+        für alle gemacht, für niemanden perfekt.</p>
+
+      <!-- §3 Zeitgeist-Beat -->
+      <span class="cp-mark" data-cp="3" data-cp-name="paywall-du-hast-bezahlt" aria-hidden="true" style="display:block;height:1px"></span>
+      <p>Dass in modernen Autos mehr steckt, als freigegeben wird, ist übrigens keine Szene-Theorie mehr.
+        2022 versuchte BMW, die <b>Sitzheizung im Abo</b> zu verkaufen — 17&nbsp;€ im Monat für Heizdrähte,
+        die längst im Sitz lagen. Das Netz explodierte:</p>
+
+      <div class="zg-quote">„Du hast schon dafür bezahlt! Die verdammte Hardware ist in deinem Auto und
+        du hast schon bezahlt!"
+        <cite>— Nutzerkommentar zum BMW-Sitzheizungs-Abo, 2022 ·
+          <a href="https://winfuture.de/news,138353.html" target="_blank" rel="noopener">↗ Quelle</a></cite>
+      </div>
+
+      <p>Ein Jahr später ruderte BMW zurück. Der zuständige Vorstand erklärte es so: Die Kunden hatten
+        „das Gefühl, dass sie das Doppelte bezahlt haben" — und, Zitat: <b>„die Wahrnehmung ist die
+        Realität."</b></p>
+      <p>Bei deinem Luftfahrwerk ist es nicht mal eine Wahrnehmung. Die Höhenverstellung ist verbaut,
+        kalibriert und im Kaufpreis enthalten — dein Auto benutzt sie <b>selbst</b>, jeden Tag: beim
+        Beladen, auf der Autobahn, im Sport-Modus. Was fehlt, ist kein Bauteil. <b>Was fehlt, ist der
+        Zugriff.</b></p>
+
+      <!-- §4 Invalidate -->
+      <span class="cp-mark" data-cp="4" data-cp-name="billig-falle" aria-hidden="true" style="display:block;height:1px"></span>
+      <h2>Der 50-Euro-Weg — und was er wirklich kostet</h2>
+      <p>Weil der Knopf fehlt, hat die Szene sich Ersatz gebaut. Zwei Wege liest du in jedem Forum:</p>
+
+      <div class="cheap">
+        <div class="c-card">
+          <div class="c-tag">Der Bastel-Weg</div>
+          <div class="c-price">~50 €</div>
+          <div class="c-sub">Einstellbare Koppelstangen</div>
+        </div>
+        <div class="c-card">
+          <div class="c-tag">Der Werkstatt-Weg</div>
+          <div class="c-price">~200 €</div>
+          <div class="c-sub">Codieren / StarDiagnose</div>
+        </div>
+      </div>
+
+      <p><b>Einstellbare Koppelstangen, ~50&nbsp;€.</b> Kleine Hebel, die den Höhensensor mechanisch
+        belügen: Das Steuergerät glaubt, das Auto stehe zu hoch — und senkt es ab. Dauerhaft. Dein
+        Fahrwerk wird nicht gesteuert, es wird <b>ausgetrickst</b> — und merkt es manchmal: In einem der
+        bekanntesten Foren-Threads steht ein fast neuer W212 nach dem Einbau hinten unten und
+        <b>kommt nicht mehr hoch</b> — <a href="https://www.motor-talk.de/forum/airmatic-w212-e-klasse-tieferlegung-mit-bbm-koppelstangen-nach-montage-ha-geht-kfz-nicht-mehr-hoch-t4972380.html" target="_blank" rel="noopener">Ende
+        vom Lied: zwei Wochen Mercedes-Niederlassung&nbsp;↗</a>. Ein anderer
+        hängt nach dem Umbau <a href="https://www.motor-talk.de/forum/airmatic-tieferlegung-mit-koppelstange-t6720502.html" target="_blank" rel="noopener">„zwischendurch
+        hinten rechts mehr runter […] als hinten links"&nbsp;↗</a>, Fehlermeldung im Kombiinstrument
+        inklusive. Und wenn ein Luftfederbein den Dauer-Tiefstand übelnimmt, reden wir über Reparaturen,
+        die <a href="https://carwiki.de/mercedes-airmatic-probleme" target="_blank" rel="noopener">eine Fachquelle
+        auf <b>2.500 bis 5.000&nbsp;€</b> beziffert&nbsp;↗</a>.</p>
+      <p><b>Codieren, ~200&nbsp;€.</b> Der elegantere Trick: Eine Werkstatt schreibt eine neue Standhöhe
+        ins Steuergerät. Klingt sauber — hat nur denselben Konstruktionsfehler: <b>eine</b> Höhe, fest,
+        für immer. Tiefgaragen-Rampe: aufsetzen, täglich. Beladen, Winter, Leasingrückgabe: Termin machen.
+        Und ausgerechnet bei Mercedes berichten Fahrer, dass per Diagnose oft „so gut wie keine
+        Tieferlegung zu erreichen" ist — mancher Codierer rät gleich selbst ab.</p>
+      <p>Merkst du das Muster? Beide Wege beantworten die falsche Frage. Du wolltest nie ein
+        <b>statisch tiefes</b> Auto — sonst hättest du keins mit Luftfahrwerk gekauft. Du wolltest die
+        Verstellbarkeit, die du bezahlt hast, <b>plus</b> die Tiefe, die dir vorenthalten wird. Die
+        Billig-Wege geben dir die Tiefe und nehmen dir dafür die Verstellbarkeit. Das ist kein Tausch.
+        Das ist Selbstsabotage für 50&nbsp;€.</p>
+
+      <!-- §5 Pull-Quote + Video -->
+      <span class="cp-mark" data-cp="5" data-cp-name="video-beweis" aria-hidden="true" style="display:block;height:1px"></span>
+      <p class="pull">Was, wenn man das Fahrwerk gar nicht überlisten müsste — sondern die Sperre einfach
+        aufschließen könnte? Tief, wenn du willst. Serie, wenn es drauf ankommt.</p>
+
+      <figure class="lead-media">
+        <div class="figure" id="video" role="button" tabindex="0" aria-label="Demo-Video abspielen">
+          <div class="play"><div class="disc">►</div>
+            <span>Demo ansehen · Serienhöhe → tief, per App</span></div>
+        </div>
+        <figcaption>Genau das. Serienhöhe → bis zu 55&nbsp;mm tiefer, in Sekunden, per App.
+          Kein Schnitt, kein Umbau.</figcaption>
+        <!-- BUILD-NOTIZ: Zweiter Demo-Clip (App-POV, NICHT der Ad-Clip) — videoSrc/videoPoster in
+             CETE_CONFIG setzen und Caption an den echten Clip anpassen (Fahrzeug + exakter mm-Wert). -->
+      </figure>
+
+      <!-- §6 Mechanismus: Freischalten statt umbauen -->
+      <span class="cp-mark" data-cp="6" data-cp-name="mechanismus" aria-hidden="true" style="display:block;height:1px"></span>
+      <h2>Der fehlende Knopf: die OEM-Direktsteuerung</h2>
+      <p>Der Clip oben ist <b>Active Suspension Control (ASC)</b> von CETE Automotive — der Firma, die
+        diese Technik erfunden hat. Und jetzt, wo du weißt, was in deinem Steuergerät steckt, verstehst
+        du sofort, was ASC wirklich ist: <b>keine Feder, kein Gewinde, kein Dongle im OBD-Port.</b>
+        Es ist der Knopf, den dir das Werk nicht gegeben hat.</p>
+      <p>ASC ist ein festes, <b>ECE-geprüftes Modul</b>, das direkt mit dem <b>Original-Steuergerät</b>
+        deines Luftfahrwerks spricht — in dessen Sprache, über dessen Original-Fahrprofile. Der
+        Fachbegriff dafür: <b>OEM-Direktsteuerung</b>. Es gibt deinem Auto keine fremden Befehle. Es gibt
+        ihm die eigenen — nur eben dann, wenn <b>du</b> es willst.</p>
+      <p>Und der Knopf selbst? <b>Der liegt ab sofort in deiner Hosentasche.</b> Zum Modul gehört die
+        ASC-App auf deinem Handy: per Bluetooth verbinden, Regler ziehen — bis <b>55&nbsp;mm tiefer</b>,
+        bis <b>30&nbsp;mm höher</b>, mit eigenen Höhen-Profilen pro Fahrmodus, jederzeit änderbar. Kein
+        Werkzeug, kein Werkstatt-Termin, keine Diagnose-Buchse — absenken dauert Sekunden, vom
+        Fahrersitz aus oder während du direkt davorstehst. Und ab eingestelltem Tempo geht es
+        <b>automatisch zurück auf Serienhöhe</b>, genau wie dein Auto es von Werk aus kennt. Tief ist
+        eine Entscheidung, kein Dauerzustand.</p>
+      <p>Ein Detail dabei wird gern übersehen: <b>Ein Knopf ist nur dann ein Knopf, wenn er immer da
+        ist.</b> Es gibt inzwischen auch Steck-Geräte für die Diagnose-Buchse — zum Verstellen jedes Mal
+        einstöpseln, gesteuert über Standard-Diagnosebefehle. So etwas kann eine Höhe setzen. Aber die
+        automatische Rückkehr auf Serienhöhe ab Tempo gibt es nur, wenn das Modul <b>dauerhaft
+        mitfährt</b> — fest verbaut, unsichtbar, über die Original-Fahrprofile. Das ist der Unterschied
+        zwischen einem Trick und einem Feature.</p>
+      <p>Und der Unterschied zu allen 50-€- und 200-€-Wegen aus dem Forum: <b>Nichts wird ausgetrickst,
+        nichts überschrieben, nichts umgebaut.</b> Modul raus — Fahrwerk exakt wie ab Werk. Die
+        Verstellbarkeit, für die du bezahlt hast, bleibt nicht nur erhalten. Sie wird größer.</p>
+
+      <!-- §7 Sicherheits-Callout -->
+      <span class="cp-mark" data-cp="7" data-cp-name="fahrwerk-angst" aria-hidden="true" style="display:block;height:1px"></span>
+      <div class="callout">
+        <h3>„Aber ruiniert das nicht das Luftfahrwerk?"</h3>
+        <p>Die wichtigste Frage — dein Fahrwerk ist mehrere tausend Euro wert. Der Kern: Billig-Lösungen
+          <b>belügen</b> dein Fahrwerk (Sensor-Hebel) oder <b>überschreiben</b> es (Codierung). ASC
+          <b>steuert</b> es — über das Original-Steuergerät, in moderaten Bereichen, mit automatischer
+          Rückkehr auf Serienhöhe. Es gibt nur Befehle, die dein Auto ab Werk kennt — und keinen
+          einzigen darüber hinaus.</p>
+        <p>Ehrlich dazu: Dauerhaft tief bedeutet bei <b>jeder</b> Methode mehr Reifenverschleiß und mehr
+          Last auf den Luftbälgen. Der Unterschied bei ASC: <b>du entscheidest, wann</b> — und bist in
+          Sekunden zurück auf Serie.</p>
+      </div>
+
+      <!-- §8 Erfinder-Beweis -->
+      <span class="cp-mark" data-cp="8" data-cp-name="erfinder-beweis" aria-hidden="true" style="display:block;height:1px"></span>
+      <h2>Das behaupten inzwischen mehrere. Einer kann es beweisen.</h2>
+      <p>Wer nach App-Tieferlegung sucht, findet heute mehrere Anbieter — und auffällig viele nennen
+        sich „die Ersten". Bei CETE Automotive aus Henstedt-Ulzburg bei Hamburg muss man das nicht
+        glauben. Man kann es <b>nachprüfen</b>: Das älteste öffentliche Tieferlegungs-Video des
+        Herstellers stammt vom <b>27. April 2013</b> — und einen <b>YouTube-Datumsstempel kann man
+        nicht fälschen</b>. Den vergibt YouTube, nicht wir.</p>
+
+      <div class="proof">
+        <div class="p-head">Beweis statt Behauptung</div>
+        <span style="display:block;border:1px solid var(--line);border-radius:8px;overflow:hidden;margin:8px 0">
+          <img src="assets/proof-2013.png"
+            alt="YouTube-Ausschnitt: Cete Automotive GmbH — Original-Upload vom 27.04.2013"
+            loading="lazy" decoding="async" style="display:block;width:100%;height:auto"></span>
+        <small style="font-family:var(--sans);color:var(--muted);display:block">
+          ▶ <b style="color:var(--ink)">Original-Upload vom 27.04.2013</b> · diesen Datumsstempel
+          vergibt YouTube, nicht wir ·
+          <a href="https://www.youtube.com/@CeteAutomotiveGmbH" target="_blank" rel="noopener" id="yt-link"
+             style="color:var(--accent);font-weight:700;text-decoration:underline;text-underline-offset:2px">heute in HD ansehen ↗</a></small>
+        <small style="margin-top:8px">Wer will, scrollt sich vor dem ersten Euro durch über ein
+          Jahrzehnt dokumentierter Einbauten — direkt auf dem Kanal des Herstellers.</small>
+      </div>
+
+      <!-- §9 Stimmen -->
+      <span class="cp-mark" data-cp="9" data-cp-name="stimmen" aria-hidden="true" style="display:block;height:1px"></span>
+      <h2>Was Fahrer berichten</h2>
+      <a class="rating-badge" href="https://www.trustami.com/erfahrung/active-sound-eu-bewertung" target="_blank" rel="noopener" id="rating-link">
+        <span class="rb-score"><b>4,89</b>/5</span>
+        <span class="rb-meta"><span class="rb-stars">★★★★★</span>
+          312 Bewertungen · Shop-Bewertung CETE gesamt<br><small>bei Trustami &amp; Google ansehen ↗</small></span>
+      </a>
+      <div class="quotes">
+        <div class="quote"><div class="q-head">„Schont es das Fahrwerk?"</div>
+          <p>„Bisher bin ich sehr zufrieden … ab 120 km/h fährt er aufs Originalniveau rauf. Nicht
+            billig, aber die vernünftige Lösung, um das originale Luftfahrwerk zu optimieren."</p>
+          <cite>— Mr.Miagy, Audi S7</cite>
+          <a href="https://www.motor-talk.de/forum/erfahrungen-mit-cete-activ-suspesion-control-t6960244.html" target="_blank" rel="noopener">↗ Quelle: Motor-Talk-Forum</a></div>
+        <div class="quote"><div class="q-head">„Und wenn ich es loswerden will?"</div>
+          <p>„Es tut genau das, was es soll … war relativ einfach zu verbauen und ist rückstandslos
+            wieder entfernbar."</p>
+          <cite>— m4nii, Audi RS7</cite>
+          <a href="https://www.motor-talk.de/forum/erfahrungen-mit-cete-activ-suspesion-control-t6960244.html" target="_blank" rel="noopener">↗ Quelle: Motor-Talk-Forum</a></div>
+        <div class="quote"><div class="q-head">„Hält das auf Dauer?"</div>
+          <p>„Bei mir ist das Cete-Modul nun seit 3 Jahren in meinem S8 plus im Einsatz … insgesamt
+            würde ich das Modul wieder kaufen."</p>
+          <cite>— phil68, Audi S8 plus</cite>
+          <a href="https://www.motor-talk.de/forum/erfahrungen-mit-cete-activ-suspesion-control-t6960244.html" target="_blank" rel="noopener">↗ Quelle: Motor-Talk-Forum</a></div>
+      </div>
+      <!-- BUILD-NOTIZ: Vierte Quote-Karte „Funktioniert das auch bei Mercedes/Airmatic?" nachrüsten,
+           sobald ein echtes Mercedes-Zitat mit Quelle vorliegt (höchste Proof-Priorität — alle drei
+           Stimmen oben sind Audi). Keine erfundenen Zitate. -->
+
+      <!-- §10 Ehrlich: Show/Events -->
+      <span class="cp-mark" data-cp="10" data-cp-name="tuev-ehrlichkeit" aria-hidden="true" style="display:block;height:1px"></span>
+      <div class="callout honest">
+        <h3>Ehrlich: für Show, Events &amp; Privatgelände</h3>
+        <p>Damit es gesagt ist: ASC wird <b>ohne TÜV-Gutachten</b> geliefert und ist im Bereich der
+          StVZO nicht zugelassen — das gehört in einen ehrlichen Ratgeber, nicht ins Kleingedruckte.
+          Was du dafür behältst, ist Kontrolle: per App abschaltbar, automatische Rückkehr auf
+          Serienhöhe, 100&nbsp;% rückrüstbar.</p>
+        <!-- BUILD-NOTIZ (Pflicht vor Live): Legalitäts-Wording mit CETE/Anwalt freigeben UND
+             Teilegutachten-Frage klären — Forum-Bericht über −30-mm-Teilegutachten mit TÜV-Abnahme
+             widerspricht dieser Aussage. Falls es existiert, wird dieser Block zum Trust-Hebel umgebaut. -->
+      </div>
+
+      <!-- §11 Qualify -->
+      <span class="cp-mark" data-cp="11" data-cp-name="qualify" aria-hidden="true" style="display:block;height:1px"></span>
+      <h2>So findest du heraus, ob dein Auto den Knopf bekommt</h2>
+      <p>ASC funktioniert nur für Fahrzeuge mit <b>serienmäßigem Luftfahrwerk</b> (Airmatic, Adaptive
+        Air Suspension &amp; Co.) — denn genau dessen Steuergerät wird ja freigeschaltet. Die Prüfung
+        läuft direkt beim Hersteller: Marke, Modell, Baujahr — 15 Sekunden, inklusive Preis und
+        passendem Modul für <b>dein</b> Fahrzeug.</p>
+    </div>
+
+    <!-- §12 CTA -->
+    <div class="cta">
+      <h2>Passt ASC an dein Auto?</h2>
+      <p>Kostenloser Fitment-Check beim Hersteller. Bei Treffer bekommst du dein persönliches
+        Fahrzeug-Angebot — und wir <b>reservieren deinen Preis 7 Tage</b> für dein Fahrzeug, mit
+        <b>5&nbsp;% Aktionsvorteil</b>, wenn du in dieser Zeit bestellst.</p>
+      <a href="tieferlegung-asc.html?src=presell2#angebot" class="btn" id="to-offer">Kostenlosen Fitment-Check starten →</a>
+      <small>Kostenlos &amp; unverbindlich · ECE-geprüft · vom Erfinder</small>
+      <a class="alt" href="tieferlegung-asc.html?src=presell2" id="to-offer-secondary">Erst alle Details ansehen — Preise, Einbau, Bewertungen →</a>
+    </div>
+
+    <div class="author">
+      <div class="ava">CE</div>
+      <div>
+        <b>Über diesen Ratgeber</b>
+        <p>Dieser Ratgeber wird von der <b>CETE Automotive GmbH</b> veröffentlicht — dem Hersteller
+          von Active Suspension Control. Wir erklären das Thema so, wie wir es am Telefon erklären:
+          ehrlich, inklusive der Punkte, die uns kritische Nachfragen einbringen.</p>
+      </div>
+    </div>
+
+    <p class="disc-note">Anzeige · Veröffentlicht von der CETE Automotive GmbH.
+      Keine Rechtsberatung; der Betrieb auf öffentlichen Straßen liegt in der Verantwortung des Halters.</p>
+    <!-- BUILD-NOTIZ: Betreiber final klären (CETE GmbH vs. Singh/Muric GbR „in Kooperation mit") —
+         bestimmt auch Impressum/Datenschutz-Links im Footer. -->
+  </div>
+</article>
+
+<footer class="site-f">
+  <div class="site">
+    <span class="f-brand">Ratgeber · präsentiert von CETE Automotive</span>
+    <p style="margin-top:8px">Fahrwerk &amp; Tieferlegung — ehrlich erklärt vom Hersteller.</p>
+    <div class="foot-links">
+      <a href="tieferlegung-asc.html?src=presell2#angebot" id="to-offer-footer">Zum Angebot →</a>
+      <a href="https://www.active-sound.eu/impressum">Impressum</a>
+      <a href="https://www.active-sound.eu/datenschutz">Datenschutz</a>
+    </div>
+    <!-- BUILD-NOTIZ: Impressum/Datenschutz-URLs gegen die echten Betreiber-Seiten prüfen (abhängig
+         von der Betreiber-Entscheidung) — Pflicht vor Live. -->
+  </div>
+</footer>
+
+<div class="cookie" id="cookie" hidden>
+  <p>Wir nutzen Cookies &amp; Marketing-Pixel, um die Seite zu verbessern und Werbung zu messen.</p>
+  <button class="c-no" id="cookie-no">Nur notwendige</button>
+  <button class="c-yes" id="cookie-yes">Akzeptieren</button>
+</div>
+
+<script>
+window.CETE_CONFIG = {
+  page: "presell2-asc",
+  metaPixelId: "1765163127144487",          // TODO: gleiche Meta-Pixel-ID wie Offer-Page & Pre-Sell v1!
+  offerUrl: "tieferlegung-asc.html?src=presell2#angebot",
+  videoSrc: "",             // TODO [PLATZHALTER]: URL zweiter Demo-Clip (Facade laedt erst bei Klick)
+  videoPoster: ""           // TODO [PLATZHALTER]: Poster-Standbild zum Clip
+};
+(function(){
+  "use strict";
+  var CFG=window.CETE_CONFIG;
+
+  // Eingehenden Kampagnen-Parameter lesen (eigene Cold-Ads fuer v2: ?src=adC ..., Retargeting: rt...)
+  var inSrc='';
+  try{ inSrc=new URLSearchParams(location.search).get('src')||''; }catch(e){}
+
+  var FB_STANDARD={ViewContent:1,Lead:1,PageView:1};
+  window.ceteTrack=function(ev,p){ p=p||{};
+    if(inSrc && !p.ad_src) p.ad_src=inSrc;
+    try{ if(window.fbq && CFG.metaPixelId){ fbq(FB_STANDARD[ev]?'track':'trackCustom',ev,p); } }catch(e){}
+    try{ (window.dataLayer=window.dataLayer||[]).push(Object.assign({event:'cete_'+ev},p)); }catch(e){}
+    console.log('[CETE track]',ev,p);
+  };
+  function initPixel(){
+    if(!CFG.metaPixelId) return;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init',CFG.metaPixelId); fbq('track','PageView');
+  }
+  var cookie=document.getElementById('cookie'), consent=null;
+  try{consent=localStorage.getItem('cete_consent');}catch(e){}
+  if(consent==='yes') initPixel(); else if(consent!=='no') cookie.hidden=false;
+  document.getElementById('cookie-yes').onclick=function(){try{localStorage.setItem('cete_consent','yes')}catch(e){}cookie.hidden=true;initPixel();};
+  document.getElementById('cookie-no').onclick=function(){try{localStorage.setItem('cete_consent','no')}catch(e){}cookie.hidden=true;};
+
+  window.ceteTrack('ViewContent',{content_name:'ASC Pre-Sell v2 Heimliche Absenkung'});
+
+  // ScrollDepth 25/50/75/100 — Kern-Metrik (jede Marke feuert genau einmal)
+  var sdMarks=[25,50,75,100], sdFired={};
+  function sdCheck(){
+    var d=document.documentElement;
+    var max=d.scrollHeight-window.innerHeight;
+    var pct=max>0 ? Math.round((window.scrollY||d.scrollTop||0)/max*100) : 100;
+    for(var i=0;i<sdMarks.length;i++){
+      var m=sdMarks[i];
+      if(pct>=m && !sdFired[m]){ sdFired[m]=true; window.ceteTrack('ScrollDepth',{percent:m,page:CFG.page}); }
+    }
+  }
+  window.addEventListener('scroll',sdCheck,{passive:true});
+  window.addEventListener('resize',sdCheck,{passive:true});
+  sdCheck();
+
+  // Checkpoint-Tracking (CP1–CP11) — Lesetiefe je Beat, feuert je genau EINMAL.
+  // Namen 1:1 aus CETE_v2_Checkpoint-Karte.pdf.
+  (function(){
+    if(!('IntersectionObserver' in window)) return;
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var el=e.target;
+          window.ceteTrack('SectionView',{cp:parseInt(el.getAttribute('data-cp'),10),name:el.getAttribute('data-cp-name'),page:CFG.page});
+          io.unobserve(el);
+        }
+      });
+    },{threshold:0});
+    Array.prototype.forEach.call(document.querySelectorAll('.cp-mark'),function(el){ io.observe(el); });
+  })();
+
+  // CTA-Klicks -> Offer-Page, immer mit src:'presell2' (Winkel-Test-Messbarkeit!)
+  function bindOffer(id,from){
+    var el=document.getElementById(id);
+    if(el) el.addEventListener('click',function(){ window.ceteTrack('ClickToOffer',{from:from,src:'presell2'}); });
+  }
+  bindOffer('to-offer','presell2-cta');
+  bindOffer('to-offer-secondary','presell2-cta-secondary');
+  bindOffer('to-offer-footer','presell2-footer');
+
+  // Video-Facade: Poster+Play, Clip laedt erst bei Klick (lazy). VideoPlay = Kern-Metrik.
+  var v=document.getElementById('video');
+  function playVideo(){
+    window.ceteTrack('VideoPlay',{name:'asc-presell2'});
+    if(CFG.videoSrc && !v.dataset.loaded){
+      v.dataset.loaded='1';
+      var vid=document.createElement('video');
+      vid.controls=true; vid.autoplay=true; vid.playsInline=true; vid.preload='none';
+      vid.src=CFG.videoSrc;
+      if(CFG.videoPoster) vid.poster=CFG.videoPoster;
+      vid.style.cssText='width:100%;height:100%;object-fit:cover;display:block';
+      v.innerHTML=''; v.appendChild(vid); v.style.cursor='default';
+    }
+  }
+  if(v){
+    v.addEventListener('click',playVideo);
+    v.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); playVideo(); } });
+  }
+
+  var yt=document.getElementById('yt-link');
+  if(yt) yt.addEventListener('click',function(){ window.ceteTrack('ClickYouTube'); });
+})();
+</script>
+</body>
+</html>

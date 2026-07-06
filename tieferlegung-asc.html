@@ -1,0 +1,2525 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CETE Active Suspension Control (ASC) — Tieferlegen per App</title>
+<meta name="description" content="Tieferlegen per App für Fahrzeuge mit serienmäßigem Luftfahrwerk (Airmatic & Co.) — bis 55 mm tiefer, ab eingestelltem Tempo automatisch zurück auf Serienhöhe. ECE-geprüft. Vom Erfinder.">
+<link rel="preload" as="image" href="assets/hero-car.png" fetchpriority="high">
+
+<!-- ============================================================
+     CETE LANDINGPAGE-TEMPLATE  ·  Instanz: TIEFERLEGUNG / ASC
+     ------------------------------------------------------------
+     Rebuild 02.07.2026 nach FUNNEL_REBUILD_SPEC_ASC.md (Teil 1+2)
+     + FUNNEL_PRESELL_RETARGETING_SPEC.md Teil D.
+     Dramaturgie: erst Begehren (Desire + Mechanismus), dann
+     Beruhigung, dann Angebot + Fitment-Check (= der ASK).
+       Hero → Demo-Video+Fork → Desire "So steht deiner"
+       → Mechanismus "Freischalten statt umbauen" → Reassure
+       → Vergleich statisch vs. dynamisch → Warum CETE + Timeline
+       → Social Proof → Recht & Sicherheit → Einbau → Angebot
+       → Fitment+Lead → FAQ · Sticky-CTA mobil ab Desire.
+     Anker-Konvention (Pre-Sell + Retargeting verlinken darauf):
+       #angebot · #fitment · #mechanismus · #vergleich · #warum · #video
+     Lead-Anreiz = Reservierungs-Story (KEIN Rabatt-Code mehr):
+       Aktionspreis 999 € statt UVP,
+       nach Fitment-Check 7 Tage fürs Fahrzeug reserviert.
+     Adaptierbar: Theme = CSS-Vars in :root · Verhalten = CETE_CONFIG.
+     "CETE einsetzen:"-Platzhalter = .ph (gelb), NICHT erfinden.
+     ============================================================ -->
+
+<style>
+  :root{
+    --bg:        #080c13;
+    --bg-2:      #0b1019;
+    --card:      #111824;
+    --border:    #1e2a3a;
+    --text:      #eaf0f8;
+    --muted:     #93a3b8;
+    --accent:    #21c7d6;   /* Cyan/Türkis — dezent eingesetzt */
+    --accent-2:  #0fb0bf;
+    --accent-ink:#05222a;
+    --warn:      #e09a3e;
+    --warn-bg:   #1e160a;
+    --ok:        #36c692;
+    --maxw:      940px;     /* Lesebreite, ruhig */
+    --maxw-wide: 1040px;
+    --radius:    14px;
+    --font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  [id]{scroll-margin-top:72px}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
+    line-height:1.6;-webkit-font-smoothing:antialiased;font-size:16px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .wrap-wide{max-width:var(--maxw-wide);margin:0 auto;padding:0 20px}
+  section{padding:54px 0}
+  h1,h2,h3{line-height:1.18;margin:0 0 .45em;letter-spacing:-.01em}
+  h1{font-size:clamp(1.85rem,6vw,3rem);font-weight:800;line-height:1.12}
+  h2{font-size:clamp(1.4rem,4vw,2.05rem);font-weight:750;font-weight:700}
+  h3{font-size:1.08rem;font-weight:700}
+  p{margin:0 0 1em}
+  .accent{color:var(--accent)}
+  .muted{color:var(--muted)}
+  .center{text-align:center}
+  .lead{font-size:1.06rem;color:var(--muted)}
+  .eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;font-weight:700;
+    color:var(--accent);margin-bottom:.9em}
+  .sub{color:var(--muted);font-size:.82rem;letter-spacing:.04em}
+
+  /* Buttons — sparsam eingesetzt */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;border:none;
+    cursor:pointer;font-family:inherit;font-size:1rem;font-weight:700;text-decoration:none;
+    padding:14px 24px;border-radius:12px;transition:transform .12s,filter .12s,border-color .12s}
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--accent);color:var(--accent-ink)}
+  .btn-primary:hover{filter:brightness(1.07)}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+  .btn-ghost:hover{border-color:var(--accent)}
+  .btn-secondary{background:rgba(33,199,214,.13);color:var(--accent);border:1.5px solid var(--accent);font-weight:700}
+  .btn-secondary:hover{background:rgba(33,199,214,.22)}
+  .btn-block{width:100%}
+  /* Premium-Variante fuer den Fitment-Submit (Haupt-Conversion) */
+  .fit-submit{position:relative;overflow:hidden;padding:18px 24px;border-radius:14px;
+    font-weight:800;font-size:1.04rem;letter-spacing:.01em;color:var(--accent-ink);
+    background:linear-gradient(180deg,#3ad9e6,var(--accent));
+    box-shadow:0 12px 32px rgba(33,199,214,.34),inset 0 1px 0 rgba(255,255,255,.28)}
+  .fit-submit:hover{filter:brightness(1.04);transform:translateY(-2px);
+    box-shadow:0 18px 44px rgba(33,199,214,.44),inset 0 1px 0 rgba(255,255,255,.28)}
+  .fit-submit:active{transform:translateY(0)}
+  .fit-submit .fs-arrow{display:inline-block;transition:transform .18s ease}
+  .fit-submit:hover .fs-arrow{transform:translateX(4px)}
+  .fit-submit::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:42%;pointer-events:none;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);
+    transform:skewX(-18deg);animation:fsShine 5s ease-in-out infinite}
+  @keyframes fsShine{0%,74%{left:-60%}90%,100%{left:135%}}
+  @media (prefers-reduced-motion:reduce){ .fit-submit::after{content:none;animation:none} .fit-submit:hover{transform:none} }
+
+  /* Header — nur Marke, kein CTA */
+  header.site{position:sticky;top:0;z-index:40;background:rgba(8,12,19,.85);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  /* Feine, mittig aufglimmende Haarlinie ueber der Border — dezenter Premium-Akzent (neutral-silbrig,
+     bewusst kein Cyan, damit nichts gegen das Logo-Blau knallt) */
+  header.site::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;pointer-events:none;
+    background:linear-gradient(90deg,transparent 10%,rgba(196,220,238,.32) 50%,transparent 90%)}
+  .brandbar{display:flex;align-items:center;justify-content:center;
+    padding:11px 20px;max-width:var(--maxw-wide);margin:0 auto}
+  /* Brand-Lockup: Emblem | Haarlinie | Wortmarke */
+  .hd-lockup{display:flex;align-items:center;gap:14px}
+  .hd-logo{position:relative;flex:none;display:flex}
+  .hd-logo img{display:block;width:46px;height:46px;object-fit:contain;border-radius:50%;position:relative;z-index:1}
+  /* sehr subtiler Schein hinter dem Emblem — neutral-kuehl, kaum sichtbar */
+  .hd-logo::before{content:"";position:absolute;inset:-12px;border-radius:50%;pointer-events:none;
+    background:radial-gradient(circle,rgba(130,175,225,.16),transparent 68%)}
+  .hd-rule{flex:none;width:1px;height:32px;
+    background:linear-gradient(180deg,transparent,rgba(196,220,238,.30),transparent)}
+  .hd-word{font-weight:800;letter-spacing:.12em;font-size:.98rem;color:var(--text);
+    text-align:left;line-height:1.15;white-space:nowrap}
+  .hd-word small{display:block;font-size:.56rem;letter-spacing:.34em;color:var(--muted);
+    font-weight:600;margin-top:3px}
+  @media (max-width:420px){
+    .brandbar{padding:10px 16px}
+    .hd-lockup{gap:11px}
+    .hd-logo img{width:40px;height:40px}
+    .hd-rule{height:28px}
+    .hd-word{font-size:.86rem;letter-spacing:.10em}
+    .hd-word small{letter-spacing:.28em}
+  }
+  /* Footer nutzt weiterhin .brand */
+  .brand{font-weight:800;letter-spacing:.05em;font-size:1.02rem;text-align:center}
+  .brand small{display:block;font-size:.58rem;letter-spacing:.22em;color:var(--muted);font-weight:600;margin-top:2px}
+
+  /* Hero — ruhig, mit Bild-Hintergrund */
+  /* Gemeinsamer Bild-Hintergrund über Hero + nächste Section, läuft ins Dunkle aus */
+  .hero-bg{position:relative;
+    background:
+      linear-gradient(180deg,
+        rgba(5,8,13,.56) 0%,
+        rgba(5,8,13,.72) 26%,
+        rgba(5,8,13,.6) 46%,
+        rgba(5,8,13,.66) 66%,
+        rgba(5,8,13,.85) 86%,
+        var(--bg) 100%),
+      url("assets/hero-car.png") center 42% / cover no-repeat,
+      var(--bg)}
+  .hero{position:relative;text-align:center;padding:30px 0 18px;background:transparent}
+  .hero .wrap{position:relative;z-index:1;width:100%}
+  .hero h1,.hero .lead{text-shadow:0 1px 3px rgba(0,0,0,.9), 0 2px 22px rgba(0,0,0,.85)}
+  @media (max-width:760px){
+    .hero{padding:22px 0 14px}
+    .hero-bg{background-position:center 46%}
+  }
+  .hero .eyebrow{display:block}
+  .hero h1 span.kw{color:var(--accent)}
+  /* Subline etwas kräftiger */
+  .hero .lead{max-width:58ch;margin:0 auto;color:#cdd8e6;font-size:1.12rem;font-weight:500}
+  .hero .lead b{color:var(--text);font-weight:700}
+  /* Punkte mit Glanz-/Shimmer-Effekt */
+  .hero .sub{font-weight:700;font-size:.86rem;letter-spacing:.05em;
+    background:linear-gradient(100deg,var(--muted) 30%,#eafcff 48%,var(--accent) 55%,var(--muted) 72%);
+    background-size:220% 100%;-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    animation:shine 4.5s linear infinite}
+  @keyframes shine{0%{background-position:140% 0}100%{background-position:-40% 0}}
+  .scroll-cue{display:inline-flex;align-items:center;gap:.45em;color:var(--muted);
+    font-size:.92rem;margin-top:26px;text-decoration:none}
+  .scroll-cue:hover{color:var(--accent)}
+  .cue-arrow{display:inline-block;color:var(--accent);font-weight:700;animation:cueBob 1.6s ease-in-out infinite}
+  @keyframes cueBob{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+  /* Funnel-Pfeil am Ende jeder Section */
+  .fnext{display:flex;justify-content:center;align-items:center;width:46px;height:46px;
+    margin:34px auto 0;border-radius:50%;text-decoration:none;color:var(--accent);
+    font-size:1.5rem;line-height:1;border:1px solid var(--border);background:var(--card);
+    transition:border-color .12s,transform .12s}
+  .fnext span{display:inline-block;animation:cueBob 1.6s ease-in-out infinite}
+  .fnext:hover{border-color:var(--accent);transform:translateY(2px)}
+  @media (prefers-reduced-motion:reduce){ .hero .sub,.cue-arrow,.fnext span,.bridge-arrow{animation:none} }
+
+  /* Trust-Video */
+  .video-block{margin-top:8px}
+  .video{position:relative;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;
+    background:linear-gradient(135deg,#0a1320,#0e1a2a);aspect-ratio:16/9;
+    display:flex;align-items:center;justify-content:center;cursor:pointer}
+  .video .play-disc{width:62px;height:62px;border-radius:50%;background:var(--accent);color:var(--accent-ink);
+    display:flex;align-items:center;justify-content:center;font-size:1.5rem;
+    box-shadow:0 8px 30px rgba(33,199,214,.35)}
+  .video .vcap{position:absolute;left:14px;bottom:12px;font-size:.82rem;color:var(--muted)}
+  .video-note{font-size:.84rem;color:var(--muted);text-align:center;margin-top:12px}
+
+  /* Weiche nach dem Video — zwei symmetrische Auswahl-Buttons (vertikale Karten) */
+  .fork{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;align-items:stretch}
+  .fork-btn{display:flex;flex-direction:column;align-items:center;text-align:center;
+    text-decoration:none;cursor:pointer;color:var(--text);position:relative;overflow:hidden;
+    border-radius:16px;padding:20px 16px 16px;
+    border:1px solid var(--border);background:var(--card);
+    box-shadow:0 2px 10px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.05);
+    transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease,background .18s ease}
+  .fork-btn::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:radial-gradient(120% 80% at 50% -20%,rgba(33,199,214,.10),transparent 60%);
+    opacity:0;transition:opacity .18s ease}
+  .fork-btn:hover{transform:translateY(-3px)}
+  .fork-btn:hover::after{opacity:1}
+  .fork-btn:active{transform:translateY(-1px)}
+  .fork-btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+  .fork-ico{flex:none;width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+    margin-bottom:12px;background:rgba(33,199,214,.08);border:1px solid rgba(33,199,214,.22);
+    transition:box-shadow .18s ease}
+  .fork-ico svg{width:22px;height:22px;color:var(--accent);display:block}
+  .fork-txt{display:flex;flex-direction:column;align-items:center;line-height:1.3;min-width:0;margin-bottom:14px}
+  .fork-txt b{font-size:1.02rem;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+  .fork-txt small{font-size:.8rem;color:var(--muted);margin-top:4px;text-wrap:balance}
+  .fork-go{display:inline-flex;align-items:center;gap:7px;margin-top:auto;padding:7px 14px;
+    border-radius:999px;font-size:.78rem;font-weight:700;letter-spacing:.02em;white-space:nowrap;
+    border:1px solid rgba(33,199,214,.35);color:var(--accent);background:rgba(33,199,214,.07);
+    transition:background .18s ease,border-color .18s ease}
+  .fork-go svg{width:13px;height:13px;display:block;transition:transform .18s ease}
+  /* Primär: Fitment-Check — cyan getönt, gefüllte Icon-Kachel, Chip gefüllt */
+  .fork-primary{border-color:rgba(33,199,214,.55);
+    background:linear-gradient(180deg,rgba(33,199,214,.11),rgba(33,199,214,.03))}
+  .fork-primary:hover{border-color:var(--accent);box-shadow:0 14px 34px rgba(33,199,214,.22)}
+  .fork-primary .fork-ico{background:var(--accent);border-color:var(--accent);
+    box-shadow:0 6px 18px rgba(33,199,214,.30)}
+  .fork-primary .fork-ico svg{color:#04222a}
+  .fork-primary .fork-go{background:rgba(33,199,214,.16);border-color:rgba(33,199,214,.55)}
+  .fork-primary:hover .fork-go{background:rgba(33,199,214,.24);border-color:var(--accent)}
+  .fork-primary:hover .fork-go svg{transform:translateX(3px)}
+  /* Sekundär: ruhiger, aber klar klickbar */
+  .fork-ghost{background:rgba(255,255,255,.02)}
+  .fork-ghost:hover{border-color:rgba(33,199,214,.4);box-shadow:0 10px 26px rgba(0,0,0,.30)}
+  .fork-ghost .fork-go{color:var(--muted);border-color:var(--border);background:rgba(255,255,255,.03)}
+  .fork-ghost:hover .fork-go{color:var(--accent);border-color:rgba(33,199,214,.45)}
+  .fork-ghost:hover .fork-go svg{transform:translateY(3px)}
+  @media (max-width:760px){
+    .fork{gap:10px}
+    .fork-btn{padding:16px 10px 12px;border-radius:14px}
+    .fork-ico{width:40px;height:40px;border-radius:11px;margin-bottom:10px}
+    .fork-ico svg{width:19px;height:19px}
+    .fork-txt{margin-bottom:11px}
+    .fork-txt b{font-size:.92rem}
+    .fork-txt small{font-size:.74rem}
+    .fork-go{padding:6px 11px;font-size:.7rem}
+    .fork-go svg{width:11px;height:11px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .fork-btn,.fork-btn::after,.fork-ico,.fork-go,.fork-go svg{transition:none}
+    .fork-btn:hover,.fork-btn:active{transform:none}
+    .fork-primary:hover .fork-go svg,.fork-ghost:hover .fork-go svg{transform:none}
+  }
+
+  /* Cards & grids */
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px}
+  .card .ico{font-size:1.4rem;margin-bottom:8px}
+  .card h3{margin-bottom:.35em}
+  .card p{color:var(--muted);margin-bottom:0;font-size:.95rem}
+
+  .honest{background:var(--bg-2)}
+  .honest .eyebrow{color:var(--ok)}
+
+  /* Beruhigungs-Liste (Luftfahrwerk-Sorge) */
+  .reassure{max-width:760px}
+  .rlist{list-style:none;padding:0;margin:24px 0 0}
+  .rlist li{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--border)}
+  .rlist li:last-child{border-bottom:none}
+  .rcheck{flex:none;width:34px;height:34px;border-radius:50%;background:rgba(54,198,146,.14);
+    color:var(--ok);border:1px solid var(--ok);display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:1rem;margin-top:2px}
+  .rlist h3{margin:0 0 .3em;font-size:1.1rem}
+  .rlist p{color:var(--muted);font-size:.98rem;margin:0 0 .5em;line-height:1.6}
+  .rlist p:last-child{margin-bottom:0}
+  .rcheck.rinfo{background:rgba(224,154,62,.14);color:var(--warn);border-color:var(--warn)}
+  /* ===== #vergleich: Duell-Karten (statische Wege vs. ASC · OBD-Dongle vs. ASC) ===== */
+  #vergleich .lead{color:#cdd8e6}
+  .vsx{margin-top:26px;border:1px solid var(--border);border-radius:16px;overflow:hidden;
+    background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0)),var(--card);
+    box-shadow:0 18px 44px rgba(0,0,0,.28)}
+  .vsx-head{position:relative;display:grid;grid-template-columns:1fr 1fr}
+  .vsx-side{padding:18px 24px 16px 16px;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+  .vsx-side small{font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    line-height:1.3;min-height:2.6em;display:flex;align-items:flex-start}
+  .vsx-side b{font-size:1.06rem;font-weight:800;line-height:1.25;color:#b9c6d6;letter-spacing:-.01em}
+  .vsx-price{font-size:.8rem;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+  .vsx-side--asc{padding:18px 16px 16px 24px;
+    background:linear-gradient(180deg,rgba(33,199,214,.13),rgba(33,199,214,.05));
+    box-shadow:inset 0 2px 0 rgba(33,199,214,.55)}
+  .vsx-side--asc small{color:var(--accent)}
+  .vsx-side--asc b{color:var(--text)}
+  .vsx-side--asc .vsx-price{color:var(--accent);font-weight:800}
+  .vsx-tag{margin-top:7px;font-size:.58rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent);background:rgba(33,199,214,.1);border:1px solid rgba(33,199,214,.45);
+    border-radius:999px;padding:3px 10px;white-space:nowrap}
+  .vsx-vs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:36px;height:36px;
+    border-radius:50%;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;
+    justify-content:center;font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+    color:var(--muted);box-shadow:0 4px 14px rgba(0,0,0,.4);z-index:2}
+  .vsx-row{position:relative;display:grid;grid-template-columns:1fr 1fr}
+  /* EINE durchgehende Mittel-Linie: identisches Pseudo-Element bei exakt left:50% auf Head + jeder
+     Row (alle gleich breit) → fluchtet ohne Versatz; der Footer (.vsx-foot) bekommt keine Linie */
+  .vsx-head::before,.vsx-row::before{content:"";position:absolute;left:50%;top:0;bottom:0;
+    width:1px;margin-left:-.5px;background:rgba(33,199,214,.3);pointer-events:none}
+  .vsx-lbl{grid-column:1/-1;position:relative;padding:13px 16px 5px;border-top:1px solid var(--border);
+    text-align:center}
+  .vsx-lbl span{position:relative;z-index:1;display:inline-block;padding:3px 12px;border-radius:999px;
+    background:var(--card);border:1px solid var(--border);font-size:.63rem;font-weight:800;
+    letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+  .vsx-lbl::after{content:"";position:absolute;top:0;right:0;bottom:0;width:50%;
+    background:rgba(33,199,214,.05)}
+  .vsx-cell{display:flex;gap:10px;align-items:flex-start;padding:9px 14px 15px 16px}
+  .vsx-cell p{margin:0;font-size:.85rem;line-height:1.55;color:#9db0c5}
+  .vsx-cell p b{color:#c6d2e0;font-weight:700}
+  .vsx-cell--asc{background:rgba(33,199,214,.05);padding:9px 16px 15px 14px}
+  .vsx-cell--asc p{color:var(--text);font-weight:700}
+  .vsx-cell--asc p b{color:var(--text)}
+  .vsx-ic{flex:none;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-size:.6rem;font-weight:800;margin-top:1px}
+  .vsx-ic--x{color:#e0837f;background:rgba(224,90,90,.12);border:1px solid rgba(224,90,90,.35)}
+  .vsx-ic--c{color:var(--ok);background:rgba(54,198,146,.13);border:1px solid rgba(54,198,146,.42)}
+  .vsx-foot{border-top:1px solid var(--border);background:rgba(33,199,214,.045);
+    padding:15px 16px;font-size:.88rem;line-height:1.6;color:#cdd8e6}
+  .vsx-foot b{color:var(--text)}
+  .vsx-sub{margin-top:38px}
+  .vsx-sub h3{font-size:1.18rem;margin:0 0 .4em}
+  .vsx-sub p{margin:0;color:#cdd8e6;font-size:.95rem;max-width:60ch}
+  /* Reveal (JS setzt .will-reveal + Stagger-Delays; ohne JS alles sofort sichtbar) */
+  .vsx.will-reveal .vsx-head,.vsx.will-reveal .vsx-row,.vsx.will-reveal .vsx-foot{
+    opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+  .vsx.will-reveal.in .vsx-head,.vsx.will-reveal.in .vsx-row,.vsx.will-reveal.in .vsx-foot{
+    opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .vsx.will-reveal .vsx-head,.vsx.will-reveal .vsx-row,.vsx.will-reveal .vsx-foot{
+      opacity:1;transform:none;transition:none}
+  }
+  @media (min-width:761px){
+    .vsx-side{padding:22px 30px 20px 24px}
+    .vsx-side--asc{padding:22px 24px 20px 30px}
+    .vsx-side b{font-size:1.2rem}
+    .vsx-side small{font-size:.64rem}
+    .vsx-lbl{padding:16px 24px 5px}
+    .vsx-cell{padding:10px 22px 18px 24px}
+    .vsx-cell--asc{padding:10px 24px 18px 22px}
+    .vsx-cell p{font-size:.95rem}
+    .vsx-foot{padding:17px 24px;font-size:.95rem}
+  }
+  /* Autoritäts-Stats (Warum CETE) */
+  .cete-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 22px}
+  .cete-stat{background:var(--card);border:1px solid var(--border);border-radius:12px;
+    padding:16px 12px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:5px}
+  .cete-stat b{display:block;font-size:1.5rem;font-weight:800;color:var(--accent);line-height:1.1;
+    white-space:nowrap;font-variant-numeric:tabular-nums}
+  .cete-stat small{display:flex;align-items:center;justify-content:center;color:var(--muted);
+    font-size:.76rem;line-height:1.25;min-height:2.5em}
+  @media (max-width:760px){ .versus{grid-template-columns:1fr} .cete-stat b{font-size:1.3rem} }
+  .yt-link{color:var(--accent);text-decoration:none;font-weight:600;white-space:nowrap}
+  .yt-link:hover{text-decoration:underline}
+  .reassure-foot{margin-top:24px;padding:16px 18px;border-left:3px solid var(--accent);
+    background:rgba(33,199,214,.06);border-radius:0 10px 10px 0;color:var(--text);font-weight:500}
+  .reassure-foot.fine-foot{border-left-color:var(--warn);background:rgba(224,154,62,.07);
+    font-weight:400;font-size:.88rem;color:var(--muted)}
+  @media (max-width:760px){ .rlist li{gap:13px;padding:17px 0} .rcheck{width:30px;height:30px} }
+
+  /* ===== Nur #fahrwerk: Premium-Treatment der Reassure-Section (lokal, andere .rlist unberührt) ===== */
+  #fahrwerk .lead{color:#cdd8e6;max-width:60ch}
+  #fahrwerk .rlist{margin-top:26px;display:flex;flex-direction:column;gap:14px}
+  #fahrwerk .rlist li{position:relative;gap:16px;padding:20px 20px 20px 22px;border-bottom:none;
+    background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,0)),var(--card);
+    border:1px solid var(--border);border-radius:var(--radius);
+    transition:border-color .25s ease}
+  #fahrwerk .rlist li::before{content:"";position:absolute;left:-1px;top:-1px;bottom:-1px;width:3px;
+    border-radius:var(--radius) 0 0 var(--radius);
+    background:linear-gradient(180deg,rgba(54,198,146,.8),rgba(54,198,146,.06))}
+  @media (hover:hover){ #fahrwerk .rlist li:hover{border-color:rgba(33,199,214,.4)} }
+  #fahrwerk .rlist li[data-n]::after{content:attr(data-n);position:absolute;top:16px;right:16px;
+    font-size:.7rem;font-weight:700;letter-spacing:.16em;color:rgba(33,199,214,.55);
+    font-variant-numeric:tabular-nums;pointer-events:none}
+  #fahrwerk .rcheck{width:38px;height:38px;font-size:1.05rem;margin-top:1px;
+    background:radial-gradient(circle at 35% 30%,rgba(54,198,146,.28),rgba(54,198,146,.08));
+    border-color:rgba(54,198,146,.55);
+    box-shadow:0 0 0 4px rgba(54,198,146,.05),0 0 22px rgba(54,198,146,.10)}
+  #fahrwerk .rcheck.rinfo{background:radial-gradient(circle at 35% 30%,rgba(224,154,62,.28),rgba(224,154,62,.08));
+    border-color:rgba(224,154,62,.6);
+    box-shadow:0 0 0 4px rgba(224,154,62,.05),0 0 22px rgba(224,154,62,.10)}
+  #fahrwerk .rlist h3{color:var(--text);font-size:1.1rem;margin:6px 0 .4em}
+  #fahrwerk .rlist p{color:#cdd8e6;font-size:.97rem;line-height:1.7;max-width:56ch}
+  #fahrwerk .rlist li.r-honest{background:linear-gradient(180deg,rgba(224,154,62,.08),rgba(224,154,62,.02)),var(--card);
+    border-color:rgba(224,154,62,.35)}
+  #fahrwerk .rlist li.r-honest::before{background:linear-gradient(180deg,rgba(224,154,62,.85),rgba(224,154,62,.08))}
+  #fahrwerk .rlist li.r-honest h3{color:var(--warn)}
+  #fahrwerk .reassure-foot{margin-top:22px;padding:18px 20px;border-radius:12px;
+    border-left:3px solid var(--accent);
+    background:linear-gradient(90deg,rgba(33,199,214,.10),rgba(33,199,214,.02));color:#e9f2fb}
+  /* Reveal-Stagger (JS setzt .rl-armed + .in; ohne JS/mit reduced-motion bleibt alles sichtbar) */
+  #fahrwerk .rlist.rl-armed li{opacity:0;transform:translateY(16px);
+    transition:opacity .55s ease,transform .55s cubic-bezier(.22,.7,.3,1),border-color .25s ease}
+  #fahrwerk .rlist.rl-armed.in li{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    #fahrwerk .rlist.rl-armed li{opacity:1;transform:none;transition:none}
+  }
+  @media (max-width:760px){
+    #fahrwerk .rlist{gap:12px}
+    #fahrwerk .rlist li{gap:13px;padding:16px 14px 16px 17px}
+    #fahrwerk .rcheck{width:32px;height:32px;font-size:.95rem}
+    #fahrwerk .rlist li[data-n]::after{top:13px;right:13px}
+    #fahrwerk .reassure-foot{padding:15px 16px}
+  }
+
+  /* ===== Nur #tuev: "Ruhige Hand" — Klartext-Editorial + Kontroll-Panel (lokal, ersetzt hier rlist/rcheck) ===== */
+  #tuev{--tv-gold:#e6b877;
+    background:radial-gradient(640px 340px at 50% 0%,rgba(224,154,62,.07),transparent 70%),var(--bg)}
+  #tuev .eyebrow{color:var(--tv-gold)}
+  #tuev .lead{color:#c9d5e3;max-width:56ch}
+  /* Punkt 1 · das offene Wort — editorial, ohne Kasten, warmer Marker statt Warnschild */
+  .tv-word{margin-top:34px;max-width:60ch}
+  .tv-kicker{display:flex;align-items:center;gap:12px;margin-bottom:12px;
+    font-size:.66rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--tv-gold)}
+  .tv-kicker::after{content:"";flex:none;width:72px;height:1px;
+    background:linear-gradient(90deg,rgba(230,184,119,.55),transparent)}
+  .tv-word h3{font-size:1.22rem;margin:0 0 .55em;color:var(--text)}
+  .tv-word p{color:#cdd8e6;font-size:1.02rem;line-height:1.75;margin:0 0 .9em}
+  .tv-word p:last-child{margin-bottom:0}
+  .tv-word p b{color:var(--text)}
+  .tv-hl{background:linear-gradient(180deg,transparent 58%,rgba(230,184,119,.26) 58%);
+    border-radius:3px;padding:0 2px;color:#f3e2c4;font-weight:600}
+  /* Punkt 2 · ECE-Band — ruhiger grüner "geprüft"-Ton mit E-Prüfzeichen-Motiv */
+  .tv-ece{display:flex;gap:16px;align-items:flex-start;margin-top:30px;padding:20px;
+    border:1px solid rgba(54,198,146,.24);border-radius:var(--radius);
+    background:linear-gradient(180deg,rgba(54,198,146,.055),rgba(54,198,146,.012))}
+  .tv-ece-mark{flex:none;width:46px;height:46px;border-radius:50%;
+    border:1.5px solid rgba(54,198,146,.6);color:var(--ok);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;
+    box-shadow:0 0 0 5px rgba(54,198,146,.05),0 0 22px rgba(54,198,146,.09)}
+  .tv-ece h3{margin:2px 0 .35em;font-size:1.06rem}
+  .tv-ece p{margin:0;color:#c3cfdd;font-size:.95rem;line-height:1.65}
+  .tv-ece p b{color:var(--text)}
+  /* Punkt 3 · Kontroll-Panel — App-Settings-Anmutung, drei Schalter in deiner Hand */
+  .tv-ctl{margin-top:16px;border:1px solid rgba(54,198,146,.2);border-radius:16px;overflow:hidden;
+    background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,0)),var(--card);
+    box-shadow:0 18px 44px rgba(0,0,0,.3)}
+  .tv-ctl-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+    flex-wrap:wrap;padding:20px 20px 14px}
+  .tv-ctl-head h3{margin:0;font-size:1.15rem}
+  .tv-chip{flex:none;display:inline-flex;align-items:center;gap:7px;margin-top:2px;
+    font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ok);
+    border:1px solid rgba(54,198,146,.4);background:rgba(54,198,146,.08);
+    border-radius:999px;padding:4px 11px;white-space:nowrap}
+  .tv-chip i{width:7px;height:7px;border-radius:50%;background:var(--ok);
+    box-shadow:0 0 8px rgba(54,198,146,.8);animation:tvPulse 2.8s ease-in-out infinite}
+  @keyframes tvPulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .tv-toggles{list-style:none;margin:0;padding:0}
+  .tv-toggles li{display:flex;align-items:center;gap:14px;padding:15px 20px;
+    border-top:1px solid rgba(255,255,255,.055)}
+  .tv-tgl-txt{flex:1;min-width:0}
+  .tv-tgl-txt b{display:block;font-size:.97rem;color:var(--text);line-height:1.35}
+  .tv-tgl-txt small{display:block;margin-top:2px;color:var(--muted);font-size:.84rem;line-height:1.45}
+  .tv-tgl{flex:none;position:relative;width:46px;height:26px;border-radius:999px;
+    background:rgba(54,198,146,.2);border:1px solid rgba(54,198,146,.55);
+    box-shadow:inset 0 1px 3px rgba(0,0,0,.35)}
+  .tv-tgl i{position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;
+    background:var(--ok);transform:translateX(20px);
+    box-shadow:0 1px 4px rgba(0,0,0,.45),0 0 10px rgba(54,198,146,.45)}
+  .tv-ctl-foot{margin:0;padding:16px 20px 20px;border-top:1px solid rgba(255,255,255,.055);
+    color:#dbe6f2;font-size:.98rem}
+  .tv-ctl-foot b{color:var(--text)}
+  /* Kleingedrucktes — ruhig zentriert statt Warn-Kasten */
+  .tv-fine{margin-top:28px;padding-top:16px;border-top:1px solid var(--border);
+    color:var(--muted);font-size:.82rem;line-height:1.65;text-align:center}
+  /* Choreografie: sanftes Aufblenden, danach legen sich die Schalter nacheinander um.
+     JS setzt .tv-armed + .tv-in; ohne JS oder mit reduced-motion ist alles sofort "an". */
+  #tuev.tv-armed .tv-reveal{opacity:0;transform:translateY(14px);
+    transition:opacity .6s ease,transform .6s cubic-bezier(.22,.7,.3,1)}
+  #tuev.tv-armed .tv-reveal.tv-d2{transition-delay:.12s}
+  #tuev.tv-armed .tv-reveal.tv-d3{transition-delay:.24s}
+  #tuev.tv-armed.tv-in .tv-reveal{opacity:1;transform:none}
+  #tuev.tv-armed .tv-tgl{background:rgba(147,163,184,.14);border-color:#2a3648;
+    transition:background-color .5s ease,border-color .5s ease}
+  #tuev.tv-armed .tv-tgl i{transform:none;background:#76879b;
+    box-shadow:0 1px 4px rgba(0,0,0,.45);
+    transition:transform .5s cubic-bezier(.3,.8,.3,1),background-color .5s ease,box-shadow .5s ease}
+  #tuev.tv-armed.tv-in .tv-tgl{background:rgba(54,198,146,.2);border-color:rgba(54,198,146,.55)}
+  #tuev.tv-armed.tv-in .tv-tgl i{transform:translateX(20px);background:var(--ok);
+    box-shadow:0 1px 4px rgba(0,0,0,.45),0 0 10px rgba(54,198,146,.45)}
+  #tuev.tv-armed.tv-in .tv-toggles li:nth-child(1) .tv-tgl,
+  #tuev.tv-armed.tv-in .tv-toggles li:nth-child(1) .tv-tgl i{transition-delay:.55s}
+  #tuev.tv-armed.tv-in .tv-toggles li:nth-child(2) .tv-tgl,
+  #tuev.tv-armed.tv-in .tv-toggles li:nth-child(2) .tv-tgl i{transition-delay:.85s}
+  #tuev.tv-armed.tv-in .tv-toggles li:nth-child(3) .tv-tgl,
+  #tuev.tv-armed.tv-in .tv-toggles li:nth-child(3) .tv-tgl i{transition-delay:1.15s}
+  @media (prefers-reduced-motion:reduce){
+    #tuev.tv-armed .tv-reveal{opacity:1;transform:none;transition:none}
+    #tuev.tv-armed .tv-tgl{background:rgba(54,198,146,.2);border-color:rgba(54,198,146,.55);transition:none}
+    #tuev.tv-armed .tv-tgl i{transform:translateX(20px);background:var(--ok);
+      box-shadow:0 1px 4px rgba(0,0,0,.45),0 0 10px rgba(54,198,146,.45);transition:none}
+    #tuev .tv-chip i{animation:none}
+  }
+  @media (max-width:760px){
+    .tv-word{margin-top:28px}
+    .tv-word p{font-size:.99rem;line-height:1.7}
+    .tv-ece{gap:13px;padding:16px}
+    .tv-ece-mark{width:40px;height:40px;font-size:1.05rem}
+    .tv-ctl-head{padding:18px 16px 12px}
+    .tv-toggles li{gap:12px;padding:14px 16px}
+    .tv-ctl-foot{padding:14px 16px 18px}
+  }
+
+  /* Warn / legal */
+  .warn{background:var(--warn-bg);border:1px solid var(--warn);border-radius:var(--radius);padding:24px}
+  .warn h2{color:var(--warn);font-size:1.3rem}
+  .warn .fine{font-size:.82rem;color:var(--muted);margin-top:1em;margin-bottom:0}
+
+  /* Platzhalter */
+  .ph{display:inline-block;background:#241d0b;border:1px dashed var(--warn);color:#ffd98a;
+    border-radius:7px;padding:2px 9px;font-size:.8rem;font-weight:600;line-height:1.4}
+  .ph::before{content:"⟢ CETE einsetzen: ";opacity:.85;font-weight:700}
+  .ph-block{display:block;margin:.5em 0}
+
+  /* Höhen-Range + Modi */
+  .range{display:flex;justify-content:space-between;gap:8px;font-size:.84rem;color:var(--muted);
+    margin:16px 0 0;border-top:1px solid var(--border);padding-top:16px;flex-wrap:wrap}
+  .range b{color:var(--accent)}
+
+  /* Steps — hochwertiger */
+  .steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:22px}
+  .step{position:relative;border-radius:14px;padding:16px 16px 15px;overflow:hidden;
+    background:linear-gradient(165deg,#172230,#0e1622);border:1px solid var(--border);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 10px 22px rgba(0,0,0,.22);
+    transition:transform .16s,border-color .16s,box-shadow .16s}
+  .step::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,var(--accent),transparent)}
+  .step::before{counter-increment:s;content:"0" counter(s);position:absolute;top:11px;right:14px;
+    font-size:1.3rem;font-weight:800;letter-spacing:-.02em;color:rgba(33,199,214,.20)}
+  .step:hover{transform:translateY(-4px);border-color:var(--accent);
+    box-shadow:0 18px 40px rgba(33,199,214,.18)}
+  .step-ico{display:flex;align-items:center;justify-content:center;width:38px;height:38px;
+    border-radius:10px;background:rgba(33,199,214,.12);border:1px solid rgba(33,199,214,.35);
+    font-size:1.1rem;margin-bottom:11px}
+  .step h3{font-size:.97rem;margin:0 0 .25em}
+  .step p{font-size:.84rem;color:var(--muted);margin:0;line-height:1.45}
+  /* Einbau-Wahl: Partner vs. Selbst */
+  .choice-intro{margin:26px 0 0;font-weight:600}
+  .einbau-choice{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+  .choice-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;position:relative}
+  .choice-card.is-rec{border-color:var(--accent);background:linear-gradient(180deg,rgba(33,199,214,.08),var(--card))}
+  .choice-ico{font-size:1.4rem;margin-bottom:9px}
+  .choice-tag{display:inline-block;font-size:.7rem;font-weight:700;color:var(--accent);
+    background:rgba(33,199,214,.12);border:1px solid rgba(33,199,214,.3);border-radius:999px;
+    padding:2px 9px;margin-bottom:10px}
+  .choice-card h3{font-size:1.02rem;margin:0 0 .35em}
+  .choice-card p{color:var(--muted);font-size:.9rem;margin:0;line-height:1.5}
+  .partner-box{margin-top:16px;background:var(--card);border:1px solid var(--border);
+    border-radius:12px;padding:16px}
+  .partner-box b{font-size:.95rem}
+  @media (max-width:760px){ .einbau-choice{grid-template-columns:1fr} }
+
+  /* ===== Nur #einbau: Journey/Route — geführter Weg 01→04 (jn- Prefix) =====
+     Mobil: vertikaler Ablauf mit Fahrbahn-Markierung (gestrichelt) + Fortschritts-Füllung.
+     Desktop: horizontaler Stepper, Strecke füllt sich Station für Station (Start → Ziel).
+     Ohne JS / mit reduced-motion: alles sofort im Endzustand sichtbar (jn-armed wird nie gesetzt). */
+  .jn-route{margin-top:30px}
+  .jn-stops{list-style:none;margin:0;padding:0}
+  .jn-stop{position:relative;display:grid;grid-template-columns:40px 1fr;gap:14px;padding:0 0 28px}
+  .jn-stop:last-child{padding-bottom:0}
+  /* Wegstrecke: gestrichelte "Mittellinie" (::before) + leuchtende Fortschritts-Füllung (::after) */
+  .jn-stop:not(:last-child)::before,
+  .jn-stop:not(:last-child)::after{content:"";position:absolute;left:19px;top:48px;bottom:8px;
+    width:2px;border-radius:1px}
+  .jn-stop:not(:last-child)::before{
+    background:repeating-linear-gradient(180deg,rgba(148,163,184,.32) 0 5px,transparent 5px 12px)}
+  .jn-stop:not(:last-child)::after{
+    background:linear-gradient(180deg,var(--accent),rgba(33,199,214,.4));
+    box-shadow:0 0 8px rgba(33,199,214,.28);transform-origin:top left;
+    transition:transform .55s cubic-bezier(.22,.7,.3,1)}
+  .jn-node{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;
+    width:40px;height:40px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);
+    color:var(--accent);font-size:.8rem;font-weight:800;font-variant-numeric:tabular-nums;
+    box-shadow:0 0 0 4px rgba(33,199,214,.07),0 0 14px rgba(33,199,214,.22);
+    transition:border-color .45s,color .45s,box-shadow .45s}
+  .jn-stop:last-child .jn-node{border-color:var(--ok);color:var(--ok);
+    box-shadow:0 0 0 4px rgba(54,198,146,.07),0 0 14px rgba(54,198,146,.26)}
+  .jn-card{background:linear-gradient(165deg,#172230,#0e1622);border:1px solid var(--border);
+    border-radius:14px;padding:15px 16px 14px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 10px 22px rgba(0,0,0,.22);
+    transition:border-color .16s,box-shadow .16s}
+  .jn-card:hover{border-color:rgba(33,199,214,.55);box-shadow:0 14px 30px rgba(33,199,214,.12)}
+  .jn-card-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .jn-ico{flex:none;display:flex;align-items:center;justify-content:center;width:34px;height:34px;
+    border-radius:10px;background:rgba(33,199,214,.12);border:1px solid rgba(33,199,214,.32);
+    font-size:1.05rem}
+  .jn-card h3{font-size:.97rem;margin:0}
+  .jn-card p{font-size:.86rem;color:var(--muted);margin:0;line-height:1.5}
+  .jn-tag{display:inline-block;font-size:.64rem;font-weight:800;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--accent);background:rgba(33,199,214,.1);
+    border:1px solid rgba(33,199,214,.35);border-radius:999px;padding:2px 9px;margin:0 0 9px}
+  .jn-tag-ok{color:var(--ok);background:rgba(54,198,146,.1);border-color:rgba(54,198,146,.35)}
+  .jn-choice{border-color:rgba(33,199,214,.4);
+    background:linear-gradient(180deg,rgba(33,199,214,.07),#0e1622)}
+  /* Partner-Box: nur in #einbau leicht aufgewertet */
+  #einbau .jn-partner{display:flex;gap:14px;align-items:flex-start;margin-top:26px;
+    border-color:rgba(33,199,214,.22);
+    background:linear-gradient(180deg,rgba(33,199,214,.05),var(--card))}
+  .jn-partner-ico{flex:none;display:flex;align-items:center;justify-content:center;
+    width:38px;height:38px;border-radius:10px;background:rgba(33,199,214,.1);
+    border:1px solid rgba(33,199,214,.3);font-size:1.05rem}
+  .jn-partner-sub{margin:5px 0 0;color:var(--muted);font-size:.88rem;line-height:1.55}
+  /* Scroll-Choreografie: JS setzt jn-armed (nur mit IO + ohne reduced-motion), jn-in beim Reinscrollen */
+  #einbau.jn-armed .jn-stop::after{transform:scale(0)}
+  #einbau.jn-armed .jn-node{border-color:var(--border);color:var(--muted);box-shadow:none}
+  #einbau.jn-armed .jn-card{opacity:0;transform:translateY(10px);
+    transition:opacity .5s ease,transform .5s ease,border-color .16s,box-shadow .16s}
+  #einbau.jn-armed.jn-in .jn-stop::after{transform:scale(1)}
+  #einbau.jn-armed.jn-in .jn-node{border-color:var(--accent);color:var(--accent);
+    box-shadow:0 0 0 4px rgba(33,199,214,.07),0 0 14px rgba(33,199,214,.22)}
+  #einbau.jn-armed.jn-in .jn-stop:last-child .jn-node{border-color:var(--ok);color:var(--ok);
+    box-shadow:0 0 0 4px rgba(54,198,146,.07),0 0 14px rgba(54,198,146,.26)}
+  #einbau.jn-armed.jn-in .jn-card{opacity:1;transform:none}
+  /* Stagger: Station leuchtet auf → Strecke füllt sich → nächste Station (mobil: Füllung am Vorgänger) */
+  #einbau.jn-armed .jn-stop:nth-child(1)::after{transition-delay:.15s}
+  #einbau.jn-armed .jn-stop:nth-child(2)::after{transition-delay:.7s}
+  #einbau.jn-armed .jn-stop:nth-child(3)::after{transition-delay:1.25s}
+  #einbau.jn-armed .jn-stop:nth-child(2) .jn-node{transition-delay:.55s}
+  #einbau.jn-armed .jn-stop:nth-child(3) .jn-node{transition-delay:1.1s}
+  #einbau.jn-armed .jn-stop:nth-child(4) .jn-node{transition-delay:1.65s}
+  #einbau.jn-armed .jn-stop:nth-child(2) .jn-card{transition-delay:.55s,.55s,0s,0s}
+  #einbau.jn-armed .jn-stop:nth-child(3) .jn-card{transition-delay:1.1s,1.1s,0s,0s}
+  #einbau.jn-armed .jn-stop:nth-child(4) .jn-card{transition-delay:1.65s,1.65s,0s,0s}
+  @media (min-width:761px){
+    .jn-stops{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .jn-stop{display:flex;flex-direction:column;align-items:flex-start;padding:0}
+    .jn-node{margin:0 0 12px}
+    .jn-card{flex:1;width:100%}
+    /* Strecke horizontal: Segment kommt vom vorherigen Halt (daher am Nachfolger verankert) */
+    .jn-stop:not(:last-child)::before,
+    .jn-stop:not(:last-child)::after{content:none}
+    .jn-stop:not(:first-child)::before,
+    .jn-stop:not(:first-child)::after{content:"";position:absolute;top:19px;left:auto;bottom:auto;
+      right:calc(100% + 8px);width:calc(100% - 38px);height:2px;border-radius:1px}
+    .jn-stop:not(:first-child)::before{
+      background:repeating-linear-gradient(90deg,rgba(148,163,184,.32) 0 6px,transparent 6px 13px)}
+    .jn-stop:not(:first-child)::after{
+      background:linear-gradient(90deg,rgba(33,199,214,.4),var(--accent));
+      box-shadow:0 0 8px rgba(33,199,214,.28);transform-origin:top left;
+      transition:transform .55s cubic-bezier(.22,.7,.3,1)}
+    #einbau.jn-armed .jn-stop:nth-child(1)::after{transition-delay:0s}
+    #einbau.jn-armed .jn-stop:nth-child(2)::after{transition-delay:.15s}
+    #einbau.jn-armed .jn-stop:nth-child(3)::after{transition-delay:.7s}
+    #einbau.jn-armed .jn-stop:nth-child(4)::after{transition-delay:1.25s}
+  }
+  @media (prefers-reduced-motion:reduce){
+    #einbau.jn-armed .jn-stop::after{transform:none;transition:none}
+    #einbau.jn-armed .jn-node{transition:none;border-color:var(--accent);color:var(--accent);
+      box-shadow:0 0 0 4px rgba(33,199,214,.07),0 0 14px rgba(33,199,214,.22)}
+    #einbau.jn-armed .jn-stop:last-child .jn-node{border-color:var(--ok);color:var(--ok);
+      box-shadow:0 0 0 4px rgba(54,198,146,.07),0 0 14px rgba(54,198,146,.26)}
+    #einbau.jn-armed .jn-card{opacity:1;transform:none;transition:none}
+  }
+
+  /* Reviews */
+  .review .stars{color:var(--accent);letter-spacing:2px;margin-bottom:8px;font-size:.9rem}
+  .review p{color:var(--text);font-size:.95rem}
+  .review cite{display:block;margin-top:10px;color:var(--text);font-style:normal;font-size:.88rem;font-weight:600}
+  .rev-src{display:inline-block;margin-top:6px;font-size:.76rem;color:var(--muted);text-decoration:none}
+  .rev-src:hover{color:var(--accent)}
+  /* Echtes Rating-Badge (verlinkt) */
+  .rating-badge{display:inline-flex;align-items:center;gap:14px;text-decoration:none;color:var(--text);
+    background:var(--card);border:1px solid var(--border);border-radius:14px;padding:13px 18px;
+    margin:2px 0 22px;transition:border-color .12s,transform .12s}
+  .rating-badge:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .rb-score{font-size:1.55rem;font-weight:800;white-space:nowrap;line-height:1}
+  .rb-score b{color:var(--accent)}
+  .rb-stars{color:var(--accent);font-size:.95rem;letter-spacing:2px;display:block;margin-bottom:3px}
+  .rb-meta{font-size:.82rem;color:var(--muted);line-height:1.35}
+  .rb-meta small{font-size:.95em;color:var(--accent)}
+  @media (max-width:760px){ .rating-badge{gap:12px;padding:12px 14px} .rb-score{font-size:1.35rem} }
+
+  /* FAQ */
+  details{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
+  summary{cursor:pointer;padding:16px 20px;font-weight:650;font-weight:600;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:1rem}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--accent);font-size:1.35rem;font-weight:700;flex:none}
+  details[open] summary::after{content:"–"}
+  details .ans{padding:0 20px 18px;color:var(--muted);font-size:.95rem}
+
+  /* Premium-Angebotskarte — kompakt */
+  .offer-card{position:relative;border-radius:18px;padding:1.5px;margin-bottom:24px;
+    background:linear-gradient(160deg,rgba(33,199,214,.6),rgba(33,199,214,.04) 42%,rgba(255,255,255,.05));
+    box-shadow:0 24px 56px rgba(0,0,0,.5)}
+  .offer-inner{position:relative;border-radius:17px;padding:24px;overflow:hidden;
+    background:
+      radial-gradient(120% 85% at 0% 0%,rgba(33,199,214,.16),transparent 52%),
+      radial-gradient(120% 90% at 100% 100%,rgba(54,198,146,.10),transparent 55%),
+      linear-gradient(180deg,#111c2c,#0a1220)}
+  .offer-inner::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.7}
+  .offer-badge{display:inline-flex;align-items:center;gap:8px;font-size:.66rem;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+    border:1px solid rgba(33,199,214,.4);border-radius:999px;padding:5px 11px;margin-bottom:12px}
+  /* Offer-Kopf: kurzes Label links, rotierendes Erfinder-Siegel oben rechts (of- Prefix) */
+  .of-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+  .of-head-main{min-width:0}
+  .of-tag{display:inline-flex;align-items:center;gap:8px;font-size:.66rem;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+    border:1px solid rgba(33,199,214,.4);border-radius:999px;padding:5px 11px;margin-bottom:12px}
+  .of-seal{flex:none;width:70px;height:70px;margin-top:-2px}
+  .of-seal-spin{transform-origin:60px 60px;animation:woSpin 48s linear infinite}
+  @media (min-width:761px){ .of-seal{width:84px;height:84px} }
+  @media (prefers-reduced-motion:reduce){ .of-seal-spin{animation:none} }
+  /* Included-Liste: feste runde Icon-Spalte, ruhige symmetrische Zeilen (of- Prefix) */
+  .of-incl{list-style:none;padding:0;margin:0;display:grid;gap:13px}
+  .of-incl li{display:grid;grid-template-columns:38px 1fr;gap:13px;align-items:center}
+  .of-ico{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;background:rgba(33,199,214,.1);border:1px solid rgba(33,199,214,.3);
+    font-size:1rem;line-height:1}
+  .of-incl b{display:block;font-size:.92rem;line-height:1.25}
+  .of-incl small{display:block;margin-top:2px;color:var(--muted);font-size:.78rem;line-height:1.4}
+  .offer-title{font-size:clamp(1.35rem,4vw,1.85rem);margin:0 0 .25em;letter-spacing:-.01em}
+  .offer-sub{color:var(--muted);max-width:54ch;margin:0 0 18px;font-size:.95rem}
+  .offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:stretch}
+  .offer-label{display:block;font-size:.66rem;text-transform:uppercase;letter-spacing:.13em;
+    color:var(--muted);margin-bottom:10px}
+  .incl-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+  .incl-list li{display:flex;gap:11px;align-items:center}
+  .incl-ico{flex:none;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;
+    justify-content:center;background:rgba(33,199,214,.1);border:1px solid rgba(33,199,214,.3);font-size:1rem}
+  .incl-list b{display:block;font-size:.92rem;line-height:1.2}
+  .incl-list small{color:var(--muted);font-size:.78rem}
+  .offer-price{background:linear-gradient(180deg,rgba(33,199,214,.07),rgba(255,255,255,.015));
+    border:1px solid rgba(33,199,214,.28);border-radius:12px;padding:18px;display:flex;flex-direction:column}
+  .price-big{font-size:1.7rem;font-weight:800;margin-bottom:2px}
+  .price-rrp{font-size:.9rem;font-weight:600;color:var(--muted);text-decoration:line-through;margin-left:6px;vertical-align:middle}
+  .price-save{display:inline-block;background:rgba(54,198,146,.16);color:var(--ok);
+    border:1px solid rgba(54,198,146,.45);border-radius:6px;padding:1px 7px;font-size:.76rem;
+    font-weight:800;margin-left:8px;vertical-align:middle}
+  .offer-trust{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;color:var(--muted);
+    text-decoration:none;margin:2px 0 14px}
+  .offer-trust:hover{color:var(--accent)}
+  .offer-trust b{color:var(--text)}
+  .offer-trust .ot-stars{color:var(--accent);letter-spacing:1px}
+  .price-note{color:var(--muted);font-size:.78rem;margin:0 0 12px}
+  .price-anchor{font-size:.84rem;color:#cdd8e6;border-left:2px solid var(--accent);
+    padding-left:11px;margin:0 0 14px;line-height:1.4}
+  .offer-price .btn{margin-top:auto;padding:13px 20px}
+  .cross{font-size:.8rem;color:var(--muted);text-align:center;margin:10px 0 0}
+  .bonus-tag{display:inline-block;background:rgba(54,198,146,.16);color:var(--ok);
+    border:1px solid rgba(54,198,146,.45);border-radius:5px;padding:0 6px;font-size:.6rem;
+    font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-left:6px;vertical-align:middle}
+  .incl-bonus{background:rgba(54,198,146,.06);border:1px solid rgba(54,198,146,.28);
+    border-radius:10px;padding:8px 8px 8px 6px;margin-top:2px}
+  .price-anchor>b{display:block;font-size:.8rem;margin-bottom:1px;color:var(--text)}
+  .anchor-row{display:flex;gap:9px;align-items:baseline;font-size:.82rem;color:#cdd8e6;
+    line-height:1.35;margin-top:7px}
+  .anchor-row .ar-price{flex:none;min-width:66px;font-weight:800;color:var(--muted);
+    font-variant-numeric:tabular-nums}
+  .anchor-row.ar-win{color:var(--text)}
+  .anchor-row.ar-win .ar-price{color:var(--accent)}
+  .guarantee{display:flex;gap:13px;align-items:flex-start;margin-top:20px;padding:15px 16px;
+    border:1px solid rgba(33,199,214,.3);border-radius:12px;
+    background:linear-gradient(180deg,rgba(33,199,214,.08),rgba(255,255,255,.015))}
+  .guar-ico{flex:none;font-size:1.35rem;line-height:1.1}
+  .guarantee b{display:block;font-size:.98rem;margin-bottom:3px}
+  .guarantee p{margin:0;color:var(--muted);font-size:.85rem;line-height:1.45}
+  /* Übergang Angebot -> Fitment (eine Einheit) */
+  .offer-bridge{text-align:center;margin-top:22px;padding-top:22px;border-top:1px solid var(--border)}
+  .bridge-arrow{display:inline-block;color:var(--accent);font-size:1.45rem;line-height:1;
+    animation:cueBob 1.6s ease-in-out infinite}
+  .bridge-title{font-size:1.18rem;margin:8px 0 4px}
+  .bridge-title b{color:var(--accent)}
+  .bridge-sub{color:var(--muted);font-size:.85rem;margin:0 0 18px}
+  .fitment-embed{margin-top:2px}
+  @media (max-width:760px){
+    .offer-inner{padding:20px}
+    .offer-grid{grid-template-columns:1fr;gap:16px}
+  }
+  .setlist li:last-child{border:none}
+  .price{font-size:1.7rem;font-weight:800;margin-top:6px}
+
+  /* Offer / Fitment */
+  .offer{background:linear-gradient(180deg,var(--bg-2),var(--bg))}
+  .fitment{background:var(--card);border:1px solid var(--accent);border-radius:var(--radius);
+    padding:26px;box-shadow:0 0 0 4px rgba(33,199,214,.06)}
+  .fit-fields{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0}
+  .field label{display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:6px}
+  select,input[type=email],input[type=tel]{width:100%;background:var(--bg);color:var(--text);
+    border:1px solid var(--border);border-radius:10px;padding:13px 12px;font-family:inherit;font-size:1rem}
+  select:focus,input:focus{outline:none;border-color:var(--accent)}
+  .fit-result{margin-top:16px;border-radius:12px;padding:18px;display:none}
+  .fit-result.show{display:block}
+  .fit-result.match{background:rgba(54,198,146,.1);border:1px solid var(--ok)}
+  .fit-result.manual{background:rgba(33,199,214,.08);border:1px solid var(--accent)}
+  .fit-result h3{margin-top:0}
+  /* Treffer-Moment: Glücks-Animation + zwei Wege */
+  .match-celebrate{text-align:center;padding:2px 0 0}
+  .match-check{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;
+    border-radius:50%;background:var(--ok);color:#04231a;font-size:1.35rem;font-weight:800;
+    margin-bottom:7px;animation:matchPop .55s cubic-bezier(.2,.8,.2,1);
+    box-shadow:0 0 0 0 rgba(54,198,146,.5);}
+  .fit-result.show .match-check{animation:matchPop .55s cubic-bezier(.2,.8,.2,1), matchPulse 1.8s ease-out .5s 2}
+  @keyframes matchPop{0%{transform:scale(0);opacity:0}60%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+  @keyframes matchPulse{0%{box-shadow:0 0 0 0 rgba(54,198,146,.5)}100%{box-shadow:0 0 0 18px rgba(54,198,146,0)}}
+  .match-celebrate h3{font-size:1.12rem;margin:0 0 .15em}
+  .match-celebrate p{color:var(--muted);margin:0;font-size:.9rem}
+  .match-paths{margin-top:12px;display:grid;gap:4px}
+  .match-paths .lead-form{gap:8px;margin-top:0}
+  .match-paths input{padding:11px 12px}
+  .match-paths .btn{padding:12px 16px}
+  .match-paths .consent{font-size:.76rem}
+  .or-divider{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:.78rem;margin:7px 0}
+  .or-divider::before,.or-divider::after{content:"";flex:1;height:1px;background:var(--border)}
+  .lead-hook{font-size:.84rem;color:var(--text);margin:0 0 2px}
+  .lead-hook b{color:var(--accent)}
+  .offer-flag{display:flex;gap:10px;align-items:center;background:rgba(33,199,214,.08);
+    border:1px dashed var(--accent);border-radius:10px;padding:9px 11px;margin-bottom:8px}
+  .flag-gift{font-size:1.25rem;flex:none}
+  .offer-flag b{font-size:.92rem}
+  .offer-flag small{display:block;color:var(--muted);font-size:.78rem;margin-top:1px}
+  .offer-flag small b{color:var(--accent)}
+  .path-note{font-size:.74rem;color:var(--muted);text-align:center;margin:5px 0 0}
+  /* Exklusiver Vorteil + schlichte Verknappung */
+  .offer-excl{flex-direction:column;align-items:stretch;gap:8px}
+  .excl-top{display:flex;gap:10px;align-items:center}
+  .excl-note{margin:0;font-size:.82rem;color:var(--muted);text-align:center;font-style:italic;
+    border-top:1px solid var(--border);padding-top:8px}
+  @media (prefers-reduced-motion:reduce){ .match-check,.fit-result.show .match-check{animation:none} }
+  .lead-form{display:grid;gap:10px;margin-top:14px}
+  .consent{display:flex;gap:9px;align-items:flex-start;font-size:.82rem;color:var(--muted)}
+  .consent input{margin-top:3px;flex:none}
+  .consent a{color:var(--text);text-decoration:underline;text-underline-offset:2px}
+  .consent a:hover{color:var(--accent)}
+  .lead-done{display:none;margin-top:6px;color:var(--ok);font-weight:600}
+
+  /* Footer */
+  footer.site{background:var(--bg-2);border-top:1px solid var(--border);padding:36px 0;color:var(--muted);font-size:.88rem}
+  footer.site a{color:var(--muted)}
+  .foot-links{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px}
+
+  /* Consent */
+  .cookie{position:fixed;left:14px;right:14px;bottom:14px;z-index:60;background:var(--card);
+    border:1px solid var(--border);border-radius:14px;padding:15px 16px;display:flex;gap:12px;
+    align-items:center;flex-wrap:wrap;justify-content:center;box-shadow:0 18px 50px rgba(0,0,0,.55)}
+  .cookie p{margin:0;font-size:.85rem;color:var(--muted);flex:1;min-width:220px}
+  .cookie[hidden]{display:none}
+  .cookie .btn{padding:11px 18px;font-size:.92rem}
+
+  .final{text-align:center}
+
+  /* Hero-CTA-Reihe (primärer Weg zum Ask + sekundär "erst ansehen") */
+  .hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  .hero-cta .btn-ghost{background:rgba(8,12,19,.45)}
+
+  /* Hero-Trust (Social Proof) */
+  .hero-trust{margin:20px auto 0;max-width:440px;display:flex;flex-direction:column;align-items:center;gap:12px;
+    padding:14px 18px;border:1px solid var(--border);border-radius:16px;background:rgba(8,12,19,.55);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+  .ht-row{display:flex;align-items:center;justify-content:center;gap:22px}
+  .ht-stat{text-align:center;line-height:1.05}
+  .ht-stat b{display:block;font-size:1.5rem;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
+  .ht-stat small{display:block;color:var(--muted);font-size:.72rem;margin-top:3px}
+  .ht-div{width:1px;height:34px;background:var(--border);flex:none}
+  .ht-socials{display:flex;align-items:center;justify-content:center;gap:11px;flex-wrap:wrap;
+    border-top:1px solid var(--border);padding-top:11px;width:100%}
+  .ht-socials svg{width:19px;height:19px;color:var(--muted);flex:none;transition:color .2s,transform .2s}
+  .ht-socials svg:hover{color:var(--accent);transform:translateY(-1px)}
+  .ht-soc-txt{color:var(--muted);font-size:.72rem;margin-left:2px}
+  @media (max-width:420px){ .ht-row{gap:16px} .ht-stat b{font-size:1.3rem} .ht-soc-txt{width:100%;text-align:center;margin:0} }
+
+  /* Desire "So steht deiner" — interaktiver Höhen-Slider (Karosserie bewegt sich, Räder fix) */
+  .lower{max-width:460px;margin:22px auto 0;border:1px solid var(--border);border-radius:18px;
+    overflow:hidden;background:var(--card);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+  .lower-stage{position:relative;aspect-ratio:16/10;overflow:hidden;background:#181818}
+  .lower-body,.lower-scene{position:absolute;inset:0}
+  .lower-scene{pointer-events:none}
+  .lower-body img,.lower-scene img{width:100%;height:100%;object-fit:cover;display:block}
+  .lower-body img{transition:transform .12s ease-out;will-change:transform}
+  .lower-badge{position:absolute;top:12px;right:14px;z-index:3;display:inline-flex;justify-content:center;
+    min-width:92px;background:rgba(8,12,19,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+    border:1px solid rgba(33,199,214,.6);color:var(--accent);border-radius:999px;padding:5px 12px;
+    font-weight:800;font-size:.92rem;font-variant-numeric:tabular-nums;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+  .lower-state{position:absolute;left:14px;top:14px;z-index:3;display:flex;align-items:center;gap:8px;
+    font-size:.78rem;color:#cdd8e6;background:rgba(8,12,19,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:6px 11px;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+  .lower-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none;
+    box-shadow:0 0 7px rgba(33,199,214,.7)}
+  .lower-state-txt{transition:opacity .18s ease}
+  .lower-state-txt b{display:block;font-size:.8rem;font-weight:700;color:#fff;line-height:1.15}
+  .lower-state-txt small{display:block;font-size:.66rem;color:var(--muted);line-height:1.25}
+  .lower-control{display:flex;align-items:center;gap:12px;padding:16px 18px 6px}
+  .lower-lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);flex:none}
+  .lower-range{flex:1;-webkit-appearance:none;appearance:none;height:6px;border-radius:999px;
+    background:linear-gradient(90deg,rgba(33,199,214,.3),var(--accent));outline:none;cursor:pointer}
+  .lower-range::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;
+    background:var(--accent);border:3px solid #06121a;box-shadow:0 2px 8px rgba(0,0,0,.5);cursor:pointer}
+  .lower-range::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--accent);
+    border:3px solid #06121a;cursor:pointer}
+  .lower-hint{text-align:center;font-size:.74rem;color:var(--muted);padding:2px 18px 16px;margin:0}
+  @media (prefers-reduced-motion:reduce){ .lower-body img{transition:none} .lower-state-txt{transition:none} }
+  .future-pace{margin-top:24px;padding:18px 20px;border-left:3px solid var(--accent);
+    background:rgba(33,199,214,.06);border-radius:0 10px 10px 0}
+  .future-pace p{margin:0;color:#cdd8e6}
+  .desire-cta{text-align:center;margin-top:24px}
+
+  /* Mechanismus — OEM-Signalkette: App → ASC-Modul → Original-Steuergerät → Luftfahrwerk.
+     Basiszustand (ohne Motion/JS) = statisch komplett sichtbar bei −55 mm.
+     JS setzt .mech-armed (Stagger-Reveal vorbereiten) und .in (abspielen).
+     Loop-Animationen laufen rein per CSS, nur bei prefers-reduced-motion:no-preference. */
+  .mech-fig{margin:30px auto 0;max-width:520px}
+  .mech-panel{position:relative;border:1px solid var(--border);border-radius:var(--radius);
+    padding:8px 6px 2px;overflow:hidden;
+    background:
+      radial-gradient(130% 60% at 50% 0%,rgba(33,199,214,.09),transparent 55%),
+      linear-gradient(180deg,#0e1622,#0a111c);
+    box-shadow:0 24px 60px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.04)}
+  .mech-panel::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.6}
+  .mech-diagram{display:block;width:100%;height:auto}
+  .mech-cap{margin:12px 4px 0;text-align:center;color:var(--muted);font-size:.82rem;line-height:1.5}
+  .mech-cap b{color:var(--text)}
+  /* Scroll-Reveal: Kette baut sich von oben nach unten auf */
+  .mech-armed .m-seq{opacity:0;transform:translateY(14px);
+    transition:opacity .6s ease var(--d,0ms),transform .6s ease var(--d,0ms)}
+  .mech-armed.in .m-seq{opacity:1;transform:none}
+  /* Statischer Basiszustand (auch Reduced-Motion / ohne JS): Auto steht auf −55 mm */
+  .mech-pkt{opacity:0;filter:drop-shadow(0 0 4px rgba(33,199,214,.8))}
+  .mech-carbody{transform:translateY(10px)}
+  .mech-marker{transform:translateY(44px);filter:drop-shadow(0 0 4px rgba(33,199,214,.55))}
+  .mech-glowcar{opacity:.17}
+  .mech-t-serie,.mech-t-high{opacity:0}
+  @media (prefers-reduced-motion:no-preference){
+    .mech-flow{animation:mechDash 1.1s linear infinite}
+    .mech-pkt{animation:mechPkt 3.6s linear infinite}
+    .mech-pkt2{animation-delay:1.2s}
+    .mech-pkt3{animation-delay:2.4s}
+    .mech-carbody{animation:mechRide 12s ease-in-out infinite}
+    .mech-marker{animation:mechMark 12s ease-in-out infinite}
+    .mech-glowcar{animation:mechGlowCar 12s ease-in-out infinite}
+    .mech-t-low{animation:mechTxtLow 12s linear infinite}
+    .mech-t-serie{animation:mechTxtSerie 12s linear infinite}
+    .mech-t-high{animation:mechTxtHigh 12s linear infinite}
+    .mech-ascbox{animation:mechPulse 3.6s ease-in-out infinite}
+    .mech-dot{transform-box:fill-box;transform-origin:center;animation:mechDot 2.4s ease-in-out infinite}
+  }
+  @keyframes mechDash{to{stroke-dashoffset:-12}}
+  @keyframes mechPkt{0%{transform:translateY(0);opacity:0}4%{opacity:1}26%{opacity:1}
+    33%{transform:translateY(40px);opacity:0}100%{transform:translateY(40px);opacity:0}}
+  /* Ride-Loop: Serie → −55 (Show) → automatisch zurück (Tempo) → +30 (Rampe) → Serie */
+  @keyframes mechRide{0%,8%{transform:translateY(0)}16%,42%{transform:translateY(10px)}
+    52%,70%{transform:translateY(0)}78%,92%{transform:translateY(-5px)}100%{transform:translateY(0)}}
+  @keyframes mechMark{0%,8%{transform:translateY(0)}16%,42%{transform:translateY(44px)}
+    52%,70%{transform:translateY(0)}78%,92%{transform:translateY(-24px)}100%{transform:translateY(0)}}
+  @keyframes mechGlowCar{0%,8%{opacity:.06}16%,42%{opacity:.17}52%,70%{opacity:.06}
+    78%,92%{opacity:.04}100%{opacity:.06}}
+  @keyframes mechTxtLow{0%,14%{opacity:0}20%,42%{opacity:1}50%,100%{opacity:0}}
+  @keyframes mechTxtSerie{0%,8%{opacity:1}14%,50%{opacity:0}56%,72%{opacity:1}78%,94%{opacity:0}100%{opacity:1}}
+  @keyframes mechTxtHigh{0%,76%{opacity:0}82%,90%{opacity:1}96%,100%{opacity:0}}
+  @keyframes mechPulse{0%,100%{filter:drop-shadow(0 0 3px rgba(33,199,214,.25))}
+    50%{filter:drop-shadow(0 0 9px rgba(33,199,214,.5))}}
+  @keyframes mechDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.5}}
+  .pull-quote{margin:26px 0 0;padding:18px 22px;border-left:3px solid var(--accent);
+    background:rgba(33,199,214,.06);border-radius:0 10px 10px 0;font-size:1.08rem;
+    font-style:italic;color:var(--text)}
+
+  /* Timeline "Beweis statt Behauptung" — Linie füllt sich beim Reveal */
+  /* ===== Nur #warum: "Das Original" — Herkunfts-Siegel + leuchtende Ursprungs-Timeline (wo- Prefix) ===== */
+  #warum{position:relative;overflow:hidden;
+    background:radial-gradient(560px 340px at 14% 72%,rgba(33,199,214,.05),transparent 70%),
+               linear-gradient(180deg,#0a1322 0%,var(--bg) 48%)}
+  #warum::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(33,199,214,.45),transparent)}
+  .wo-wrap{max-width:760px;position:relative;z-index:1}
+  .wo-head::after{content:"";display:table;clear:both}
+  .wo-head .lead{max-width:56ch}
+  .wo-kw{font-style:normal;color:var(--accent)}
+  .wo-seal{float:right;width:84px;height:84px;margin:0 0 10px 14px;shape-outside:circle(50%)}
+  .wo-seal-spin{transform-origin:60px 60px;animation:woSpin 48s linear infinite}
+  @keyframes woSpin{to{transform:rotate(360deg)}}
+  /* Kennzahlen als ruhige "Ledger"-Zeile (bewusst keine Karten) */
+  .wo-stats{display:grid;grid-template-columns:repeat(3,1fr);margin:26px 0 6px;padding:18px 0;
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .wo-stat{text-align:center;padding:0 6px}
+  .wo-stat+.wo-stat{border-left:1px solid var(--border)}
+  .wo-stat b{display:block;font-size:clamp(1.4rem,4.6vw,2.1rem);font-weight:800;color:var(--text);
+    line-height:1.15;font-variant-numeric:tabular-nums}
+  .wo-stat:nth-child(2) b{color:var(--accent)}
+  .wo-stat small{display:block;margin-top:5px;color:var(--muted);font-size:.68rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:.11em;line-height:1.45}
+  /* Drei Punkte als editoriale Nummern-Liste (01/02/03), keine Checks, keine Karten */
+  .wo-claims{margin:30px 0 0;display:grid;gap:24px}
+  .wo-claim{display:grid;grid-template-columns:38px 1fr;gap:13px;align-items:start}
+  .wo-claim-n{position:relative;padding-top:5px;font-size:.76rem;font-weight:800;color:var(--accent);
+    letter-spacing:.13em;font-variant-numeric:tabular-nums}
+  .wo-claim-n::after{content:"";position:absolute;left:1px;top:27px;width:24px;height:1px;
+    background:linear-gradient(90deg,var(--accent),transparent)}
+  .wo-claim h3{margin:0 0 .3em;font-size:1.08rem}
+  .wo-claim p{margin:0;color:var(--muted);font-size:.96rem;line-height:1.65}
+  /* Beweis-Block "Beweis statt Behauptung" — mobil-first neu gebaut (Ziel 390px, kein Overflow) */
+  .wo-proof{margin-top:44px}
+  .wo-proof-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 8px}
+  .wo-proof-title{font-size:clamp(1.28rem,3.4vw,1.55rem);margin:0}
+  .wo-proof-badge{flex:none;font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--accent);background:rgba(33,199,214,.08);border:1px solid rgba(33,199,214,.4);
+    border-radius:999px;padding:4px 11px;white-space:nowrap}
+  .wo-proof-lead{color:var(--muted);margin:0 0 26px;font-size:.97rem}
+  /* Timeline: schmale Schiene links (Einrückung --wo-ind), alles bleibt in der Viewport-Breite */
+  .wo-tl{--wo-ind:30px;list-style:none;margin:0;padding:0;position:relative}
+  .wo-tl::before{content:"";position:absolute;left:8px;top:8px;bottom:8px;width:2px;border-radius:1px;
+    background:var(--border)}
+  .wo-tl::after{content:"";position:absolute;left:8px;top:8px;width:2px;height:0;border-radius:1px;
+    background:linear-gradient(180deg,var(--accent) 0%,rgba(33,199,214,.25) 100%);
+    box-shadow:0 0 10px rgba(33,199,214,.35);
+    transition:height 1.6s cubic-bezier(.22,.7,.3,1) .25s}
+  .wo-tl.in::after{height:calc(100% - 16px)}
+  .wo-tl li{position:relative;padding:0 0 32px var(--wo-ind)}
+  .wo-tl li:last-child{padding-bottom:0}
+  .wo-tl li::before{content:"";position:absolute;left:3px;top:7px;width:8px;height:8px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--accent);z-index:1}
+  .wo-tl-origin::before{left:0;top:3px;width:12px;height:12px;border:3px solid rgba(33,199,214,.9);
+    background:var(--accent);box-shadow:0 0 16px rgba(33,199,214,.55)}
+  .wo-tl-origin::after{content:"";position:absolute;left:0;top:3px;width:18px;height:18px;border-radius:50%;
+    animation:woPulse 2.8s ease-out infinite;pointer-events:none}
+  @keyframes woPulse{0%{box-shadow:0 0 0 0 rgba(33,199,214,.3)}70%{box-shadow:0 0 0 13px rgba(33,199,214,0)}100%{box-shadow:0 0 0 0 rgba(33,199,214,0)}}
+  .wo-tl-now::before{background:rgba(33,199,214,.2)}
+  .wo-tl-tag{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);background:rgba(33,199,214,.08);border:1px solid rgba(33,199,214,.4);
+    border-radius:999px;padding:3px 10px;margin:0 0 8px}
+  .wo-tl-year{display:block;font-family:Georgia,'Times New Roman',serif;font-weight:700;color:var(--text);
+    font-size:1.28rem;line-height:1.25}
+  .wo-tl-origin .wo-tl-year{font-size:clamp(1.5rem,4.6vw,1.85rem);color:var(--accent)}
+  .wo-tl li p{margin:6px 0 0;color:var(--muted);font-size:.94rem;line-height:1.65;max-width:52ch;
+    overflow-wrap:break-word}
+  /* Beweis-Karte: echter YouTube-Ausschnitt (Datumsstempel 27.04.2013), klickt zum Kanal.
+     Mobil bricht die Karte aus der Einrückung aus (volle Textbreite); dank z-index + opakem
+     Hintergrund läuft die Schiene sauber dahinter weiter. */
+  .wo-shot{display:block;position:relative;z-index:2;margin:16px 0 0 calc(-1*var(--wo-ind));
+    border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;
+    background:linear-gradient(180deg,#0e1826,#0b1320);box-shadow:0 12px 32px rgba(0,0,0,.35);
+    transition:border-color .18s ease,transform .18s ease}
+  .wo-shot:hover{border-color:rgba(33,199,214,.45);transform:translateY(-1px)}
+  .wo-shot-top{display:flex;align-items:center;gap:9px;padding:10px 12px;
+    border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
+  .wo-shot-yt{flex:none;display:flex;align-items:center;justify-content:center;width:24px;height:17px;
+    border-radius:4px;background:#f00;color:#fff;font-size:.5rem;line-height:1}
+  .wo-shot-top b{font-size:.6rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--text)}
+  .wo-shot-img{display:block;padding:10px 10px 4px}
+  .wo-shot-img img{display:block;width:100%;height:auto;border-radius:7px;
+    border:1px solid rgba(255,255,255,.06)}
+  .wo-shot-cap{display:block;padding:8px 12px 11px;font-size:.78rem;line-height:1.55;color:var(--muted)}
+  .wo-shot-cap b{color:var(--accent);font-weight:800;font-variant-numeric:tabular-nums}
+  /* Reveal-Hooks (kompatibel zum globalen Script): ohne JS/IO oder reduced-motion sofort sichtbar */
+  .wo-tl.wo-armed li{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .wo-tl.wo-armed li:nth-child(2){transition-delay:.35s}
+  .wo-tl.wo-armed li:nth-child(3){transition-delay:.7s}
+  .wo-tl.wo-armed.in li{opacity:1;transform:none}
+  .wo-sig{margin:32px auto 0;max-width:46ch;text-align:center;
+    font-family:Georgia,'Times New Roman',serif;font-size:1.04rem;line-height:1.75;color:#cdd8e6}
+  .wo-sig::before{content:"";display:block;width:46px;height:2px;margin:0 auto 15px;
+    background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+  @media (min-width:680px){
+    .wo-seal{width:118px;height:118px;margin:2px 0 14px 22px}
+    .wo-stats{margin-top:30px;padding:22px 0}
+    .wo-claims{gap:26px;margin-top:34px}
+    .wo-tl{--wo-ind:56px}
+    .wo-tl li{padding-bottom:36px}
+    .wo-shot{margin-left:0;max-width:480px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .wo-seal-spin,.wo-tl-origin::after{animation:none}
+    .wo-tl::after{transition:none}
+    .wo-tl.in::after{height:calc(100% - 16px)}
+    .wo-tl.wo-armed li{opacity:1;transform:none;transition:none}
+  }
+
+  /* Einwand-Überschrift über jedem Review (embedded objection handling) */
+  .rev-obj{font-size:.86rem;font-weight:700;color:var(--accent);margin:0 0 8px;line-height:1.3}
+
+  /* Mini-Beweis in der Offer-Bridge (Route-A-Direkteinsteiger) */
+  .mini-demo{display:inline-flex;align-items:center;gap:10px;margin:0 0 14px;padding:9px 15px;
+    border:1px solid var(--border);border-radius:10px;color:var(--text);text-decoration:none;
+    font-size:.86rem;background:var(--card);transition:border-color .12s}
+  .mini-demo:hover{border-color:var(--accent)}
+  .mini-demo .md-play{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);
+    color:var(--accent-ink);display:flex;align-items:center;justify-content:center;font-size:.7rem}
+
+  /* Sticky-CTA mobil: schwebende Glas-Pille, sichtbar von #desire bis #angebot, ausblendbar */
+  .sticky-cta{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom,0px));
+    z-index:50;display:none;align-items:center;gap:6px;padding:6px;
+    background:rgba(9,14,22,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+    border:1px solid rgba(33,199,214,.38);border-radius:16px;
+    box-shadow:0 -10px 30px rgba(0,0,0,.45),0 4px 18px rgba(0,0,0,.35),0 0 22px rgba(33,199,214,.10);
+    transform:translateY(140%);opacity:0;
+    transition:transform .32s cubic-bezier(.22,.9,.3,1),opacity .32s ease}
+  .sticky-cta.show{transform:none;opacity:1}
+  .sticky-cta .sc-btn{position:relative;overflow:hidden;flex:1;min-width:0;display:flex;align-items:center;
+    gap:10px;padding:7px 8px 7px 7px;border-radius:11px;text-decoration:none;color:var(--text);
+    -webkit-tap-highlight-color:transparent;transition:background .12s,transform .12s}
+  .sticky-cta .sc-btn:hover{background:rgba(33,199,214,.08)}
+  .sticky-cta .sc-btn:active{transform:translateY(1px)}
+  .sticky-cta .sc-ico{flex:none;width:32px;height:32px;border-radius:50%;background:var(--accent);
+    color:var(--accent-ink);display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 12px rgba(33,199,214,.38)}
+  .sticky-cta .sc-ico svg{width:15px;height:15px}
+  .sticky-cta .sc-txt{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.28}
+  .sticky-cta .sc-txt strong{font-size:.9rem;font-weight:700;letter-spacing:.01em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sticky-cta .sc-txt small{font-size:.7rem;color:var(--muted);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sticky-cta .sc-arrow{flex:none;color:var(--accent);font-weight:700;font-size:1.05rem;padding-right:3px}
+  .sticky-cta .sc-btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:45%;
+    background:linear-gradient(105deg,transparent,rgba(234,252,255,.07),transparent);
+    transform:skewX(-18deg);animation:sc-shine 5s ease-in-out infinite;pointer-events:none}
+  @keyframes sc-shine{0%,58%{left:-60%}80%,100%{left:135%}}
+  .sticky-cta .sc-close{flex:none;width:30px;height:30px;margin-right:3px;border-radius:50%;
+    border:1px solid var(--border);background:rgba(17,24,36,.6);color:var(--muted);font-size:.78rem;
+    cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;
+    transition:color .12s,border-color .12s}
+  .sticky-cta .sc-close:hover{color:var(--text);border-color:var(--accent)}
+  @media (max-width:760px){ .sticky-cta{display:flex} }
+  @media (prefers-reduced-motion:reduce){
+    .sticky-cta{transition:none}
+    .sticky-cta .sc-btn::after{content:none;animation:none}
+  }
+
+  /* ---------- MOBILE: enger, sauberer, richtig skaliert ---------- */
+  @media (max-width:760px){
+    body{font-size:15.5px}
+    section{padding:38px 0}
+    .wrap,.wrap-wide{padding:0 18px}
+    .g3,.g4{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr;gap:14px}
+    .fit-fields{grid-template-columns:1fr}
+    .card{padding:18px}
+    .range{font-size:.8rem}
+    .cookie .btn{flex:1}
+    .lower{max-width:none}
+    .hero-cta .btn{flex:1;min-width:0;padding:13px 14px;font-size:.94rem}
+  }
+  @media (max-width:420px){
+    .steps{grid-template-columns:1fr 1fr;gap:12px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER (nur Marke) ===================== -->
+<header class="site">
+  <div class="brandbar">
+    <div class="hd-lockup">
+      <span class="hd-logo"><img src="assets/cete-logo.png" alt="CETE Automotive Logo" width="46" height="46"></span>
+      <span class="hd-rule" aria-hidden="true"></span>
+      <div class="hd-word">CETE.AUTOMOTIVE<small>DAS ORIGINAL</small></div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO + Bild-Hintergrund (läuft in die nächste Section) ===================== -->
+<div class="hero-bg">
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Active Suspension Control · Das Original vom Erfinder</span>
+    <h1>Tief, wenn du willst.<br><span class="kw">Hoch, wenn du musst.</span></h1>
+    <p class="lead">
+      Dein Luftfahrwerk kann bis zu <b>55&nbsp;mm tiefer</b> — ab Werk. ASC schaltet es frei:
+      absenken per App, ab eingestelltem Tempo <b>automatisch zurück auf Serienhöhe</b>.
+      Kein Umbau. Jederzeit rückrüstbar.
+    </p>
+    <p class="sub">Vom Erfinder · ECE-geprüft · 100 % rückrüstbar</p>
+    <div class="hero-trust">
+      <div class="ht-row">
+        <div class="ht-stat"><b class="count" data-to="10000" data-suffix="+">10.000+</b><small>Fahrzeuge ausgestattet</small></div>
+        <span class="ht-div" aria-hidden="true"></span>
+        <div class="ht-stat"><b class="count" data-to="65000" data-suffix="+">65.000+</b><small>Fans &amp; Follower</small></div>
+      </div>
+      <div class="ht-socials">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12s0-3.8-.5-5.6a2.9 2.9 0 0 0-2-2C18.7 4 12 4 12 4s-6.7 0-8.5.4a2.9 2.9 0 0 0-2 2C1 8.2 1 12 1 12s0 3.8.5 5.6a2.9 2.9 0 0 0 2 2C5.3 20 12 20 12 20s6.7 0 8.5-.4a2.9 2.9 0 0 0 2-2C23 15.8 23 12 23 12Z"/><path d="M9.8 15.5V8.5l6 3.5-6 3.5Z" fill="var(--bg)"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.85c0-2.47 1.47-3.83 3.72-3.83 1.08 0 2.2.19 2.2.19v2.42h-1.24c-1.22 0-1.6.76-1.6 1.54V12h2.72l-.44 2.9h-2.28v7A10 10 0 0 0 22 12Z"/></svg>
+        <span class="ht-soc-txt">über 65.000 Autofans auf YouTube, Instagram &amp; Facebook</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== 2 · DEMO-VIDEO + FORK (Beweis #1: zeigen) ===================== -->
+<!-- Video als Facade: Poster + Play, lädt erst bei Klick. Für Presell-Traffic (?src=presell)
+     idealerweise DRITTER Clip — Caption muss neue Info tragen, nie dieselbe Zeile wie Pre-Sell. -->
+<section id="video" style="padding-top:10px">
+  <div class="wrap video-block">
+    <div class="video" id="hero-video" role="button" tabindex="0" aria-label="Video abspielen">
+      <div class="play-disc">►</div>
+      <span class="vcap">Serienhöhe → 55 mm tief · kein Schnitt, kein Trick</span>
+    </div>
+
+    <!-- Weiche: direkt prüfen ODER erst den Mechanismus (löst Angst an der Wurzel) -->
+    <div class="fork">
+      <a href="#fitment" class="fork-btn fork-primary" data-fork="check">
+        <span class="fork-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="20.5" y1="20.5" x2="16.7" y2="16.7"/></svg></span>
+        <span class="fork-txt"><b>Passt es an mein Auto?</b><small>In 15 Sekunden prüfen</small></span>
+        <span class="fork-go">Fitment-Check<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a href="#desire" class="fork-btn fork-ghost" data-fork="learn">
+        <span class="fork-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h1.5c.55 0 1-.45 1-1v-2.7c0-.8-.55-1.5-1.33-1.72L16.5 10l-1.7-2.2c-.38-.5-.97-.8-1.6-.8H5.7c-.62 0-1.18.38-1.4.96L3.15 10.9c-.1.24-.15.5-.15.76V16c0 .55.45 1 1 1H5"/><circle cx="7.2" cy="17" r="2"/><circle cx="16.8" cy="17" r="2"/><path d="M9.2 17h5.6"/></svg></span>
+        <span class="fork-txt"><b>Zeig mir mehr</b><small>Am Ende: keine Bedenken mehr</small></span>
+        <span class="fork-go">Weiter<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15"/><path d="M6 13l6 6 6-6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+</div><!-- /.hero-bg -->
+
+<!-- ===================== 3 · NEU: DESIRE "So steht deiner." ===================== -->
+<section id="desire">
+  <div class="wrap">
+    <div class="eyebrow">Ein Auto, drei Haltungen</div>
+    <h2>So steht deiner.</h2>
+
+    <!-- Interaktiver Höhen-Slider: Karosserie (.lower-body) bewegt sich, Bühne (.lower-scene) bleibt fix.
+         .lower-scene = Original-Studiofoto mit Rädern + dunklen Radhäusern (Karosseriebereich retuschiert),
+         .lower-body = freigestellte Karosserie OHNE Räder, exakt gleicher Bildrahmen (896x560). -->
+    <div class="lower" id="lower">
+      <div class="lower-stage">
+        <div class="lower-state" id="lower-state" aria-live="polite">
+          <span class="lower-dot" aria-hidden="true"></span>
+          <span class="lower-state-txt"><b>Show-Modus</b><small>für Treffen &amp; Fotos</small></span>
+        </div>
+        <div class="lower-badge" id="lower-mm" aria-live="polite">−55 mm</div>
+        <div class="lower-scene" aria-hidden="true"><img src="assets/bmw-stage.webp" alt="" loading="lazy" decoding="async"></div>
+        <div class="lower-body" id="lower-body"><img src="assets/bmw-body2.webp" alt="Weisser BMW 5er in Seitenansicht" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="lower-control">
+        <span class="lower-lbl">Tief</span>
+        <input type="range" class="lower-range" id="lower-range" min="0" max="100" value="0" step="1" aria-label="Höhe deines Fahrwerks einstellen">
+        <span class="lower-lbl">Hoch</span>
+      </div>
+      <p class="lower-hint">Zieh den Regler — genau so steuerst du die Höhe später per App.</p>
+    </div>
+
+    <div class="future-pace">
+      <p>Stell dir das nächste Treffen vor: Du rollst rein auf Serienhöhe, ziehst das Handy raus —
+        und er legt sich vor allen ab. Kein Schraubenschlüssel, kein Kompromiss am Montag.
+        <b>Genau dieses Gefühl ist der Grund, warum es ASC gibt.</b></p>
+    </div>
+    <a class="fnext" href="#mechanismus" aria-label="Weiter zu: Der Mechanismus"><span>↓</span></a>
+  </div>
+</section>
+
+<!-- ===================== 4 · NEU: MECHANISMUS "Freischalten statt umbauen" ===================== -->
+<section class="honest" id="mechanismus">
+  <div class="wrap reassure">
+    <div class="eyebrow">Der Mechanismus</div>
+    <h2>Dein Fahrwerk kann das längst. Es ist nur gesperrt.</h2>
+    <p>Dein Luftfahrwerk hebt und senkt dein Auto jeden Tag — beim Beladen, auf der Autobahn,
+      im Sport-Modus. Diese Höhen beherrscht dein <b>Original-Steuergerät ab Werk</b>.
+      Die Werkshöhe ist kein technisches Limit — sie ist ein <b>Kompromiss-Setting</b>,
+      für den Durchschnitt, nicht für dich.</p>
+    <p><b>ASC ist die OEM-Direktsteuerung:</b> ein Modul vom Erfinder, das mit deinem
+      Original-Steuergerät spricht — in seiner Sprache, über seine Fahrprofile.
+      Kein Fremd-Dongle im OBD-Port. Kein Umbau. Kein Roheingriff.</p>
+
+    <!-- Die Signalkette: App → ASC-Modul → Original-Steuergerät → Luftfahrwerk (mit Höhen-Skala).
+         Loop-Animation zeigt den Zyklus Serie → −55 mm → automatische Rückkehr → +30 mm. -->
+    <figure class="mech-fig">
+      <div class="mech-panel">
+        <svg class="mech-diagram" viewBox="0 0 400 560" xmlns="http://www.w3.org/2000/svg" role="img"
+             aria-label="Diagramm der Signalkette: Deine App sendet Höhen-Profile per Bluetooth an das ASC-Modul. Das ASC-Modul spricht über die Original-Fahrprofile mit deinem Original-Steuergerät — kein OBD-Dongle, kein Roheingriff. Das Steuergerät hebt und senkt die Luftfedern: bis 55 mm tiefer, bis 30 mm höher, ab eingestelltem Tempo automatisch zurück auf Serienhöhe.">
+          <defs>
+            <linearGradient id="mechBody" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#1c2b3d"/>
+              <stop offset="1" stop-color="#0d1521"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Kopfzeile -->
+          <circle class="mech-dot" cx="24" cy="21" r="3" fill="var(--accent)"/>
+          <text x="34" y="24.5" font-size="9" font-weight="700" letter-spacing="2" fill="var(--muted)">OEM-DIREKTSTEUERUNG · DIE SIGNALKETTE</text>
+
+          <!-- Node 1: Deine App -->
+          <g class="m-seq" style="--d:0ms">
+            <rect x="16" y="38" width="368" height="64" rx="12" fill="rgba(17,24,36,.6)" stroke="var(--border)" stroke-width="1.25"/>
+            <rect x="28" y="48" width="44" height="44" rx="10" fill="rgba(33,199,214,.08)" stroke="rgba(33,199,214,.3)"/>
+            <rect x="42.5" y="54" width="15" height="31" rx="3.5" fill="none" stroke="#8fa2b8" stroke-width="1.4"/>
+            <line x1="46.5" y1="58.5" x2="53.5" y2="58.5" stroke="#8fa2b8" stroke-width="1.2"/>
+            <rect x="45.6" y="74" width="2.4" height="6" rx="1" fill="var(--accent)" opacity=".5"/>
+            <rect x="48.9" y="70" width="2.4" height="10" rx="1" fill="var(--accent)" opacity=".75"/>
+            <rect x="52.2" y="66" width="2.4" height="14" rx="1" fill="var(--accent)"/>
+            <text x="88" y="66" font-size="14" font-weight="700" fill="var(--text)">Deine App</text>
+            <text x="88" y="84" font-size="10.5" fill="var(--muted)">Höhen-Profile per Bluetooth (BLE)</text>
+          </g>
+
+          <!-- Verbindung App ⇄ ASC -->
+          <g class="m-seq" style="--d:120ms">
+            <line x1="200" y1="106" x2="200" y2="140" stroke="rgba(33,199,214,.18)" stroke-width="1.5"/>
+            <line class="mech-flow" x1="200" y1="106" x2="200" y2="140" stroke="var(--accent)" stroke-opacity=".9" stroke-width="1.6" stroke-dasharray="3 9" stroke-linecap="round"/>
+            <path d="M195.5 111l4.5 -5 4.5 5" fill="none" stroke="var(--accent)" stroke-opacity=".65" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M195.5 135l4.5 5 4.5 -5" fill="none" stroke="var(--accent)" stroke-opacity=".65" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="210" y="119" font-size="9" font-weight="700" letter-spacing="1.5" fill="var(--accent)">BLUETOOTH (BLE)</text>
+            <text x="210" y="132" font-size="8.5" fill="var(--muted)">Befehl hin · Status zurück</text>
+            <circle class="mech-pkt" cx="200" cy="104" r="3.2" fill="var(--accent)"/>
+          </g>
+
+          <!-- Node 2: ASC-Modul (Herzstück) -->
+          <g class="m-seq" style="--d:240ms">
+            <rect class="mech-ascbox" x="16" y="144" width="368" height="72" rx="12" fill="rgba(33,199,214,.07)" stroke="var(--accent)" stroke-width="1.5"/>
+            <rect x="28" y="158" width="44" height="44" rx="10" fill="rgba(33,199,214,.1)" stroke="rgba(33,199,214,.35)"/>
+            <rect x="39" y="169" width="22" height="22" rx="3" fill="rgba(33,199,214,.12)" stroke="var(--accent)" stroke-width="1.4"/>
+            <path d="M34 174h5M34 180h5M34 186h5M61 174h5M61 180h5M61 186h5" stroke="var(--accent)" stroke-opacity=".6" stroke-width="1.2"/>
+            <text x="50" y="183.5" text-anchor="middle" font-size="7.5" font-weight="800" letter-spacing=".5" fill="var(--accent)">ASC</text>
+            <text x="88" y="172" font-size="15" font-weight="700" fill="var(--accent)">ASC-Modul</text>
+            <text x="88" y="190" font-size="10.5" fill="var(--muted)">Das Original vom Erfinder · ECE-geprüft</text>
+            <text x="88" y="205" font-size="9.5" fill="rgba(147,163,184,.8)">übersetzt deine Eingabe in Original-Fahrprofile</text>
+          </g>
+
+          <!-- Verbindung ASC ⇄ Steuergerät -->
+          <g class="m-seq" style="--d:360ms">
+            <line x1="200" y1="220" x2="200" y2="254" stroke="rgba(33,199,214,.18)" stroke-width="1.5"/>
+            <line class="mech-flow" x1="200" y1="220" x2="200" y2="254" stroke="var(--accent)" stroke-opacity=".9" stroke-width="1.6" stroke-dasharray="3 9" stroke-linecap="round"/>
+            <path d="M195.5 225l4.5 -5 4.5 5" fill="none" stroke="var(--accent)" stroke-opacity=".65" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M195.5 249l4.5 5 4.5 -5" fill="none" stroke="var(--accent)" stroke-opacity=".65" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="210" y="233" font-size="9" font-weight="700" letter-spacing="1.5" fill="var(--accent)">ORIGINAL-FAHRPROFILE</text>
+            <text x="210" y="246" font-size="8.5" fill="var(--muted)">kein OBD-Dongle · kein Roheingriff</text>
+            <circle class="mech-pkt mech-pkt2" cx="200" cy="218" r="3.2" fill="var(--accent)"/>
+          </g>
+
+          <!-- Node 3: Original-Steuergerät -->
+          <g class="m-seq" style="--d:480ms">
+            <rect x="16" y="258" width="368" height="64" rx="12" fill="rgba(17,24,36,.6)" stroke="var(--border)" stroke-width="1.25"/>
+            <rect x="28" y="268" width="44" height="44" rx="10" fill="rgba(33,199,214,.08)" stroke="rgba(33,199,214,.3)"/>
+            <rect x="37" y="279" width="26" height="18" rx="2.5" fill="none" stroke="#8fa2b8" stroke-width="1.4"/>
+            <path d="M43 283v10M48 283v10M53 283v10" fill="none" stroke="#8fa2b8" stroke-width="1.2"/>
+            <path d="M41 297v4M46 297v4M51 297v4M56 297v4" fill="none" stroke="#8fa2b8" stroke-width="1.2"/>
+            <rect x="31.5" y="284" width="5.5" height="8" rx="1" fill="none" stroke="#8fa2b8" stroke-width="1.2"/>
+            <text x="88" y="286" font-size="14" font-weight="700" fill="var(--text)">Original-Steuergerät</text>
+            <text x="88" y="304" font-size="10.5" fill="var(--muted)">bleibt 100 % original — steuert wie ab Werk</text>
+          </g>
+
+          <!-- Verbindung Steuergerät → Fahrwerk -->
+          <g class="m-seq" style="--d:600ms">
+            <line x1="200" y1="326" x2="200" y2="352" stroke="rgba(33,199,214,.18)" stroke-width="1.5"/>
+            <line class="mech-flow" x1="200" y1="326" x2="200" y2="352" stroke="var(--accent)" stroke-opacity=".9" stroke-width="1.6" stroke-dasharray="3 9" stroke-linecap="round"/>
+            <path d="M195.5 331l4.5 -5 4.5 5" fill="none" stroke="var(--accent)" stroke-opacity=".65" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M195.5 347l4.5 5 4.5 -5" fill="none" stroke="var(--accent)" stroke-opacity=".65" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="210" y="342" font-size="8.5" font-weight="700" letter-spacing="1" fill="var(--accent)">HEBT &amp; SENKT DIE LUFTFEDERN</text>
+            <circle class="mech-pkt mech-pkt3" cx="200" cy="324" r="3.2" fill="var(--accent)"/>
+          </g>
+
+          <!-- Bühne: Fahrzeug mit Höhen-Skala -->
+          <g class="m-seq" style="--d:720ms">
+            <rect x="16" y="356" width="368" height="196" rx="12" fill="rgba(255,255,255,.015)" stroke="var(--border)"/>
+            <!-- Status-Zeile: mm-Wert + Modus (überblendet im Takt der Karosserie) -->
+            <rect x="28" y="368" width="80" height="26" rx="13" fill="rgba(33,199,214,.08)" stroke="var(--accent)" stroke-opacity=".5"/>
+            <text class="mech-t-low" x="68" y="385" text-anchor="middle" font-size="12.5" font-weight="800" fill="var(--accent)">−55 mm</text>
+            <text class="mech-t-serie" x="68" y="385" text-anchor="middle" font-size="12.5" font-weight="800" fill="var(--text)">0 mm</text>
+            <text class="mech-t-high" x="68" y="385" text-anchor="middle" font-size="12.5" font-weight="800" fill="var(--text)">+30 mm</text>
+            <text class="mech-t-low" x="118" y="384" font-size="9.5" fill="#cdd8e6">Show-Mode — tief, wenn du willst</text>
+            <text class="mech-t-serie" x="118" y="384" font-size="9.5" fill="#cdd8e6">ab eingestelltem Tempo: automatisch zurück</text>
+            <text class="mech-t-high" x="118" y="384" font-size="9.5" fill="#cdd8e6">Bordstein &amp; Rampe: kurz anheben</text>
+            <!-- Boden -->
+            <line x1="36" y1="536.5" x2="320" y2="536.5" stroke="var(--border)" stroke-width="2"/>
+            <path d="M56 539l-7 6M108 539l-7 6M160 539l-7 6M212 539l-7 6M264 539l-7 6M316 539l-7 6" stroke="var(--border)" stroke-opacity=".55" stroke-width="1.2"/>
+            <!-- Unterboden-Glow (wird satter, je tiefer) -->
+            <ellipse class="mech-glowcar" cx="172" cy="534" rx="104" ry="5" fill="var(--accent)"/>
+            <!-- Räder (stehen fest — nur die Karosserie bewegt sich) -->
+            <g>
+              <circle cx="104" cy="515" r="21" fill="#0b1119" stroke="#3d5068" stroke-width="1.6"/>
+              <circle cx="104" cy="515" r="10.5" fill="#0f1926" stroke="rgba(33,199,214,.5)" stroke-width="1.3"/>
+              <circle cx="104" cy="515" r="5" fill="none" stroke="rgba(33,199,214,.22)" stroke-width="1"/>
+              <circle cx="104" cy="515" r="1.8" fill="rgba(33,199,214,.75)"/>
+              <circle cx="248" cy="515" r="21" fill="#0b1119" stroke="#3d5068" stroke-width="1.6"/>
+              <circle cx="248" cy="515" r="10.5" fill="#0f1926" stroke="rgba(33,199,214,.5)" stroke-width="1.3"/>
+              <circle cx="248" cy="515" r="5" fill="none" stroke="rgba(33,199,214,.22)" stroke-width="1"/>
+              <circle cx="248" cy="515" r="1.8" fill="rgba(33,199,214,.75)"/>
+            </g>
+            <!-- Karosserie (hebt & senkt sich über den Rädern) -->
+            <g class="mech-carbody">
+              <path d="M52 507 L72 507 A33 33 0 0 1 136 507 L216 507 A33 33 0 0 1 280 507 L292 507 C300 504 303 492 298 482 C293 474 278 469 256 465 L234 461 L210 439 C194 428 172 426 156 429 C132 433 114 443 98 461 C88 471 74 477 64 484 C57 490 55 499 52 507 Z" fill="url(#mechBody)" stroke="#4d647e" stroke-width="1.6" stroke-linejoin="round"/>
+              <path d="M100 461 C136 454 206 454 234 461" fill="none" stroke="#33465c" stroke-width="1.3"/>
+              <line x1="164" y1="430" x2="168" y2="459" stroke="#33465c" stroke-width="1.3"/>
+              <line x1="289" y1="483" x2="298" y2="481" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+              <line x1="53" y1="489" x2="59" y2="488" stroke="rgba(224,90,90,.75)" stroke-width="2" stroke-linecap="round"/>
+            </g>
+            <!-- Höhen-Skala rechts -->
+            <line x1="346" y1="444" x2="346" y2="532" stroke="var(--border)" stroke-width="1.5"/>
+            <line x1="342" y1="454" x2="350" y2="454" stroke="var(--border)" stroke-width="1.5"/>
+            <line x1="342" y1="478" x2="350" y2="478" stroke="var(--border)" stroke-width="1.5"/>
+            <line x1="342" y1="522" x2="350" y2="522" stroke="var(--border)" stroke-width="1.5"/>
+            <text x="338" y="457" text-anchor="end" font-size="9" fill="var(--muted)">+30 mm</text>
+            <text x="338" y="481" text-anchor="end" font-size="9" fill="var(--muted)">Serie</text>
+            <text x="338" y="525" text-anchor="end" font-size="9" font-weight="700" fill="var(--accent)">−55 mm</text>
+            <path class="mech-marker" d="M350 478l10 -6v12z" fill="var(--accent)"/>
+          </g>
+        </svg>
+      </div>
+      <figcaption class="mech-cap">Das ASC-Modul spricht dein Original-Steuergerät in seiner eigenen Sprache —
+        über die <b>Original-Fahrprofile</b>. Kein OBD-Dongle, kein Umbau, kein Roheingriff.</figcaption>
+    </figure>
+
+    <p class="pull-quote">Wir bauen dein Fahrwerk nicht um. Wir schalten frei, was es ab Werk beherrscht.</p>
+    <a class="fnext" href="#fahrwerk" aria-label="Weiter zu: Schadet das meinem Luftfahrwerk?"><span>↓</span></a>
+  </div>
+</section>
+
+<!-- ===================== 5 · REASSURE "Schadet das meinem Luftfahrwerk?" ===================== -->
+<section id="fahrwerk">
+  <div class="wrap reassure">
+    <div class="eyebrow">Ehrlich zuerst</div>
+    <h2>Schadet das meinem Luftfahrwerk?</h2>
+    <p class="lead">Die wichtigste Frage — dein Fahrwerk ist mehrere tausend Euro wert.
+      Deshalb beantworten wir sie zuerst und vollständig. Kurz gesagt: ASC steuert dein Fahrwerk so,
+      wie dein Auto es selbst tut — nicht dagegen. Warum es dein Luftfahrwerk schont, in drei Punkten:</p>
+
+    <ul class="rlist">
+      <li data-n="01">
+        <span class="rcheck">✓</span>
+        <div>
+          <h3>Es arbeitet über dein Original-Steuergerät</h3>
+          <p>Keine rohen Signale, kein Eingriff in die Hardware — ASC steuert dein Fahrwerk über
+            die werkseigene Steuerung und ihre Original-Fahrprofile. <b>Das heißt: Es gibt nur Befehle,
+            die dein Auto ohnehin kennt und ab Werk erlaubt.</b> Luftbälge, Ventile und Kompressor arbeiten
+            weiter in ihrem vorgesehenen Bereich — nicht darüber hinaus. Genau deshalb entsteht keine
+            Belastung über die Werksvorgaben hinaus.</p>
+        </div>
+      </li>
+      <li data-n="02">
+        <span class="rcheck">✓</span>
+        <div>
+          <h3>Du fährst nicht dauerhaft tief</h3>
+          <p>Ab eingestelltem Tempo automatisch zurück auf Serie, für Bordstein und Langstrecke per App
+            anheben. Tief ist eine <b>Entscheidung, kein Dauerzustand</b> — das hält die Belastung moderat.</p>
+        </div>
+      </li>
+      <li data-n="03">
+        <span class="rcheck">✓</span>
+        <div>
+          <h3>Alles ist zu 100 % rückholbar</h3>
+          <p>Nichts wird geschnitten, gebohrt oder dauerhaft umprogrammiert — <b>die Fahrwerks-Hardware
+            bleibt unangetastet.</b> Modul raus, Fahrwerk wie ab Werk, auch für Verkauf oder Leasing.
+            Was sich spurlos rückgängig machen lässt, kann dein Fahrwerk auch nicht dauerhaft verändern.</p>
+        </div>
+      </li>
+      <li class="r-honest">
+        <span class="rcheck rinfo">!</span>
+        <div>
+          <h3>Ehrlich dazu</h3>
+          <p>Jede Tieferlegung — Koppelstangen, Codieren oder Modul — bedeutet bei Dauer-Tiefstand
+            mehr Reifenverschleiß und Balg-Last. Der Unterschied: Bei ASC entscheidest <b>du, wann</b>
+            dein Auto tief steht. Genau das macht sie zur schonenden.</p>
+        </div>
+      </li>
+    </ul>
+
+    <p class="reassure-foot">Dein Luftfahrwerk bleibt dein Luftfahrwerk — du bekommst die
+      <b>Kontrolle über die Höhe</b> dazu.</p>
+    <a class="fnext" href="#vergleich" aria-label="Weiter zu: Der ehrliche Vergleich"><span>↓</span></a>
+  </div>
+</section>
+
+<!-- ===================== 6 · NEU: VERGLEICH statisch vs. dynamisch ===================== -->
+<section class="honest" id="vergleich">
+  <div class="wrap">
+    <div class="eyebrow">Der ehrliche Vergleich</div>
+    <h2>„Warum nicht einfach Koppelstangen für 50 €?"</h2>
+    <p class="lead">Es gibt drei Wege, ein Luftfahrwerk tiefer zu legen. Zwei sind billiger.
+      Beide kosten dich das, wofür du das Luftfahrwerk bezahlt hast: die <b>Verstellbarkeit</b>.</p>
+
+    <!-- Duell 1: Die statischen Wege vs. ASC -->
+    <div class="vsx" aria-label="Vergleich: statische Tieferlegung gegen ASC">
+      <div class="vsx-head">
+        <div class="vsx-side vsx-side--old">
+          <small>Die statischen Wege</small>
+          <b>Koppelstangen &amp; Codieren</b>
+          <span class="vsx-price">50–200 €</span>
+        </div>
+        <div class="vsx-vs" aria-hidden="true">vs</div>
+        <div class="vsx-side vsx-side--asc">
+          <small>Der dynamische Weg</small>
+          <b>ASC</b>
+          <span class="vsx-tag">Vom Erfinder</span>
+          <span class="vsx-price">ab 999 €</span>
+        </div>
+      </div>
+      <div class="vsx-row">
+        <div class="vsx-lbl"><span>Prinzip</span></div>
+        <div class="vsx-cell"><span class="vsx-ic vsx-ic--x" aria-hidden="true">✕</span>
+          <p>Auto ausgetrickst oder fest codiert</p></div>
+        <div class="vsx-cell vsx-cell--asc"><span class="vsx-ic vsx-ic--c" aria-hidden="true">✓</span>
+          <p><b>Original-Steuergerät</b></p></div>
+      </div>
+      <div class="vsx-row">
+        <div class="vsx-lbl"><span>Höhe nach dem Einbau</span></div>
+        <div class="vsx-cell"><span class="vsx-ic vsx-ic--x" aria-hidden="true">✕</span>
+          <p>Dauerhaft tief (statisch)</p></div>
+        <div class="vsx-cell vsx-cell--asc"><span class="vsx-ic vsx-ic--c" aria-hidden="true">✓</span>
+          <p><b>Dynamisch</b> — per App</p></div>
+      </div>
+      <div class="vsx-row">
+        <div class="vsx-lbl"><span>Zurück auf Serie</span></div>
+        <div class="vsx-cell"><span class="vsx-ic vsx-ic--x" aria-hidden="true">✕</span>
+          <p>Nur per Werkstatt</p></div>
+        <div class="vsx-cell vsx-cell--asc"><span class="vsx-ic vsx-ic--c" aria-hidden="true">✓</span>
+          <p><b>Automatisch ab Tempo</b></p></div>
+      </div>
+      <div class="vsx-row">
+        <div class="vsx-lbl"><span>Tiefgarage &amp; Bordstein</span></div>
+        <div class="vsx-cell"><span class="vsx-ic vsx-ic--x" aria-hidden="true">✕</span>
+          <p>Aufsetzen, täglich</p></div>
+        <div class="vsx-cell vsx-cell--asc"><span class="vsx-ic vsx-ic--c" aria-hidden="true">✓</span>
+          <p><b>+30&nbsp;mm</b> per Tap</p></div>
+      </div>
+      <div class="vsx-row">
+        <div class="vsx-lbl"><span>Risiko</span></div>
+        <div class="vsx-cell"><span class="vsx-ic vsx-ic--x" aria-hidden="true">✕</span>
+          <p>Fehler, Neu-Kalibrierung</p></div>
+        <div class="vsx-cell vsx-cell--asc"><span class="vsx-ic vsx-ic--c" aria-hidden="true">✓</span>
+          <p>Bleibt in <b>Werksprofilen</b></p></div>
+      </div>
+      <div class="vsx-row">
+        <div class="vsx-lbl"><span>Rückrüstbar</span></div>
+        <div class="vsx-cell"><span class="vsx-ic vsx-ic--x" aria-hidden="true">✕</span>
+          <p>Nur mit Aufwand</p></div>
+        <div class="vsx-cell vsx-cell--asc"><span class="vsx-ic vsx-ic--c" aria-hidden="true">✓</span>
+          <p><b>100&nbsp;%</b> — wie ab Werk</p></div>
+      </div>
+    </div>
+
+    <p class="reassure-foot">Die 50-€-Lösung macht aus deinem <b>dynamischen</b> Luftfahrwerk ein
+      <b>statisches</b> — dauerhaft tief, alle Nachteile, kein Vorteil. Du hast tausende Euro für ein
+      Fahrwerk bezahlt, das sich verstellen kann. <b>ASC ist der einzige Weg, der dir diese Fähigkeit
+      lässt — und sie erweitert.</b></p>
+
+    <!-- Duell 2: OBD-Dongle (~239 €) vs. ASC — der direkte Preis-Einwand -->
+    <div class="vsx-sub">
+      <h3>„Und der OBD-Dongle für ~239 €?"</h3>
+      <p>Berechtigter Einwand — es gibt ein deutlich günstigeres App-Modul zum Einstecken.
+        Der Preisunterschied liegt nicht in der App. Er liegt darunter:</p>
+    </div>
+    <div class="vsx" aria-label="Vergleich: OBD-Dongle gegen ASC">
+      <div class="vsx-head">
+        <div class="vsx-side vsx-side--old">
+          <small>Der günstigere Weg</small>
+          <b>OBD-Dongle</b>
+          <span class="vsx-price">~239 €</span>
+        </div>
+        <div class="vsx-vs" aria-hidden="true">vs</div>
+        <div class="vsx-side vsx-side--asc">
+          <small>Der richtige Weg</small>
+          <b>ASC</b>
+          <span class="vsx-tag">Das Original</span>
+          <span class="vsx-price">ab 999 €</span>
+        </div>
+      </div>
+      <div class="vsx-row">
+        <div class="vsx-lbl"><span>Verbau</span></div>
+        <div class="vsx-cell"><span class="vsx-ic vsx-ic--x" aria-hidden="true">✕</span>
+          <p>Einsteck-Gerät (jedes Mal in OBD)</p></div>
+        <div class="vsx-cell vsx-cell--asc"><span class="vsx-ic vsx-ic--c" aria-hidden="true">✓</span>
+          <p><b>Fest &amp; unsichtbar</b> verbaut</p></div>
+      </div>
+      <div class="vsx-row">
+        <div class="vsx-lbl"><span>Ansteuerung</span></div>
+        <div class="vsx-cell"><span class="vsx-ic vsx-ic--x" aria-hidden="true">✕</span>
+          <p>Standard-Diagnose-Befehle</p></div>
+        <div class="vsx-cell vsx-cell--asc"><span class="vsx-ic vsx-ic--c" aria-hidden="true">✓</span>
+          <p><b>OEM-Direktsteuerung</b></p></div>
+      </div>
+      <div class="vsx-row">
+        <div class="vsx-lbl"><span>Fahrgefühl</span></div>
+        <div class="vsx-cell"><span class="vsx-ic vsx-ic--x" aria-hidden="true">✕</span>
+          <p>Härter &amp; unruhig</p></div>
+        <div class="vsx-cell vsx-cell--asc"><span class="vsx-ic vsx-ic--c" aria-hidden="true">✓</span>
+          <p>Serien-Komfort bleibt</p></div>
+      </div>
+      <div class="vsx-row">
+        <div class="vsx-lbl"><span>Prüfung</span></div>
+        <div class="vsx-cell"><span class="vsx-ic vsx-ic--x" aria-hidden="true">✕</span>
+          <p>Keine echte Prüfung fürs Tieferlegen</p></div>
+        <div class="vsx-cell vsx-cell--asc"><span class="vsx-ic vsx-ic--c" aria-hidden="true">✓</span>
+          <p><b>Offiziell geprüft &amp; zugelassen</b></p></div>
+      </div>
+      <div class="vsx-row">
+        <div class="vsx-lbl"><span>Zurück auf Serie</span></div>
+        <div class="vsx-cell"><span class="vsx-ic vsx-ic--x" aria-hidden="true">✕</span>
+          <p>Bleibt, wie eingestellt</p></div>
+        <div class="vsx-cell vsx-cell--asc"><span class="vsx-ic vsx-ic--c" aria-hidden="true">✓</span>
+          <p><b>Automatisch ab Tempo</b></p></div>
+      </div>
+      <div class="vsx-row">
+        <div class="vsx-lbl"><span>Fahrzeuge</span></div>
+        <div class="vsx-cell"><span class="vsx-ic vsx-ic--x" aria-hidden="true">✕</span>
+          <p>Nur Mercedes</p></div>
+        <div class="vsx-cell vsx-cell--asc"><span class="vsx-ic vsx-ic--c" aria-hidden="true">✓</span>
+          <p><b>Airmatic &amp; Co.</b></p></div>
+      </div>
+      <div class="vsx-foot">
+        Der Dongle ist billiger — aber du kaufst ein <b>temporäres Einsteck-Gerät</b> mit
+        Standard-Befehlen, ohne echte Prüfung der Tieferlegung. ASC ist das
+        <b>fest verbaute Original vom Erfinder</b> — offiziell geprüft, immer aktiv.
+        Und: Wir haben diese Technik nicht nachgebaut.
+        <b>Wir haben sie erfunden — und können es beweisen</b> (unten).
+      </div>
+    </div>
+    <a class="fnext" href="#warum" aria-label="Weiter zu: Warum CETE"><span>↓</span></a>
+  </div>
+</section>
+
+<!-- ===================== 7 · WARUM CETE / DAS ORIGINAL + Timeline ===================== -->
+<section id="warum">
+  <div class="wrap wo-wrap">
+    <header class="wo-head">
+      <svg class="wo-seal" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <defs>
+          <path id="wo-seal-arc" d="M60,60 m-43,0 a43,43 0 1,1 86,0 a43,43 0 1,1 -86,0"/>
+        </defs>
+        <circle cx="60" cy="60" r="57.5" fill="none" stroke="var(--accent)" stroke-opacity=".4" stroke-width="1.5"/>
+        <circle cx="60" cy="60" r="30" fill="none" stroke="var(--accent)" stroke-opacity=".35" stroke-width="1"/>
+        <g class="wo-seal-spin">
+          <text font-size="10" font-weight="700" letter-spacing="2.6" fill="var(--accent)" fill-opacity=".85">
+            <textPath href="#wo-seal-arc">DAS ORIGINAL · CETE AUTOMOTIVE · DAS ORIGINAL · CETE AUTOMOTIVE ·</textPath>
+          </text>
+        </g>
+        <text x="60" y="58" text-anchor="middle" font-size="15" font-weight="800" letter-spacing="2" fill="var(--text)">ASC</text>
+        <text x="60" y="71" text-anchor="middle" font-size="6" font-weight="700" letter-spacing="1.6" fill="var(--accent)">VOM ERFINDER</text>
+      </svg>
+      <div class="eyebrow">Warum CETE</div>
+      <h2>Fahrwerks-Steuerung vom <em class="wo-kw">Erfinder</em>. Nicht vom Nachbauer.</h2>
+      <p class="lead">Als Hersteller entwickeln wir die Steuerung selbst — präzise, app-gesteuert (BLE)
+        und ECE-geprüft. Was hinter dem Modul steht:</p>
+    </header>
+
+    <div class="wo-stats" role="group" aria-label="CETE in Zahlen">
+      <div class="wo-stat"><b class="count" data-to="10000" data-suffix="+">10.000+</b><small>Fahrzeuge ausgestattet</small></div>
+      <div class="wo-stat"><b class="count" data-to="13" data-suffix="">13</b><small>Jahre Entwicklung als Hersteller</small></div>
+      <div class="wo-stat"><b class="count" data-to="65000" data-suffix="+">65.000+</b><small>Fans &amp; Follower</small></div>
+    </div>
+
+    <div class="wo-claims">
+      <article class="wo-claim">
+        <span class="wo-claim-n" aria-hidden="true">01</span>
+        <div>
+          <h3>Das Original</h3>
+          <p>Wir haben die App-Tieferlegung nicht kopiert — wir haben sie entwickelt.
+            Du bekommst die <b>Quelle, nicht den Nachbau</b>.</p>
+        </div>
+      </article>
+      <article class="wo-claim">
+        <span class="wo-claim-n" aria-hidden="true">02</span>
+        <div>
+          <h3>Hersteller, kein Händler</h3>
+          <p>Entwicklung, Produktion und Support aus einer Hand in <b>Henstedt-Ulzburg</b>.
+            Bei Fragen sprichst du mit den Leuten, die das Modul gebaut haben — nicht mit einem Zwischenhändler.</p>
+        </div>
+      </article>
+      <article class="wo-claim">
+        <span class="wo-claim-n" aria-hidden="true">03</span>
+        <div>
+          <h3>Original-Fahrprofile</h3>
+          <p>Die Steuerung nutzt die Werks-Fahrprofile deines Autos, statt sie zu übergehen —
+            das hält den Eingriff schonend und präzise.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="wo-proof">
+      <div class="wo-proof-head">
+        <h3 class="wo-proof-title">Beweis statt Behauptung</h3>
+        <span class="wo-proof-badge">13 Jahre Vorsprung</span>
+      </div>
+      <p class="wo-proof-lead">Mehrere behaupten, „die Ersten" zu sein. Wir zeigen es:</p>
+      <ol class="wo-tl" id="timeline">
+        <li class="wo-tl-origin">
+          <span class="wo-tl-tag">Ursprung</span>
+          <b class="wo-tl-year">2013</b>
+          <p>Erstes öffentliches Video — vor 13 Jahren wurde hier schon per App tiefergelegt.</p>
+          <a class="wo-shot" href="https://www.youtube.com/@CeteAutomotiveGmbH" target="_blank" rel="noopener"
+             aria-label="Echter YouTube-Beweis: Original-Upload vom 27.04.2013 — CETE Automotive Kanal ansehen">
+            <span class="wo-shot-top"><span class="wo-shot-yt" aria-hidden="true">▶</span><b>Echter YouTube-Beweis · unbearbeitet</b></span>
+            <span class="wo-shot-img"><img src="assets/proof-2013.png"
+              alt="YouTube-Ausschnitt: Cete Automotive GmbH, 26.300 Abonnenten — 70.687 Aufrufe, 27.04.2013"
+              loading="lazy" decoding="async"></span>
+            <span class="wo-shot-cap">Original-Upload vom <b>27.04.2013</b> · diesen Datumsstempel vergibt
+              YouTube, nicht wir · <b>heute in HD ansehen ↗</b></span>
+          </a>
+        </li>
+        <li>
+          <b class="wo-tl-year">2017</b>
+          <p>ASC-Gen 2 — komplett neue App, Verbindung per Bluetooth (BLE) statt WLAN.</p>
+        </li>
+        <li class="wo-tl-now">
+          <b class="wo-tl-year">Heute</b>
+          <p>ASC für zahlreiche Modelle mit Luftfahrwerk — Audi, Mercedes, BMW, Porsche u. v. m. — der ganze Weg öffentlich dokumentiert:
+            <a href="https://www.youtube.com/@CeteAutomotiveGmbH" target="_blank" rel="noopener" class="yt-link">Zum YouTube-Kanal ↗</a></p>
+        </li>
+      </ol>
+      <p class="wo-sig"><i>Einen YouTube-Datumsstempel kann man
+        nicht fälschen. Das ist der Unterschied zwischen „Original" sagen und Original sein.</i></p>
+    </div>
+    <a class="fnext" href="#stimmen" aria-label="Weiter zu: Echte Bewertungen"><span>↓</span></a>
+  </div>
+  <script>
+  /* #warum: Timeline-Stationen nur "scharf schalten" (ausblenden), wenn JS + IO + Motion verfügbar.
+     Ohne JS/IO oder mit reduced-motion bleibt alles sofort sichtbar. Das globale Script unten
+     setzt beim Reinscrollen die Klasse "in" auf #timeline (Linie füllt sich, Stationen erscheinen). */
+  (function(){
+    var t=document.getElementById('timeline');
+    var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if(t&&('IntersectionObserver' in window)&&!reduce){ t.classList.add('wo-armed'); }
+  })();
+  </script>
+</section>
+
+<!-- ===================== 8 · SOCIAL PROOF ===================== -->
+<section class="honest" id="stimmen">
+  <div class="wrap">
+    <div class="eyebrow">Echte Bewertungen</div>
+    <h2>Was CETE-Kunden sagen.</h2>
+
+    <a class="rating-badge" href="https://www.trustami.com/erfahrung/active-sound-eu-bewertung" target="_blank" rel="noopener">
+      <span class="rb-score"><b>4,89</b>/5</span>
+      <span class="rb-meta"><span class="rb-stars">★★★★★</span>
+        312 Bewertungen · Shop-Bewertung CETE Automotive gesamt<br><small>bei Trustami &amp; Google ansehen ↗</small></span>
+    </a>
+
+    <div class="grid g3" style="margin-top:6px">
+      <div class="card review">
+        <p class="rev-obj">„Schont es das Original-Fahrwerk?"</p>
+        <div class="stars">★★★★★</div>
+        <p>„Bisher bin ich sehr zufrieden … ab 120 km/h fährt er aufs Originalniveau rauf. Nicht billig,
+          aber meines Erachtens die vernünftige Lösung, um das originale Luftfahrwerk zu optimieren."</p>
+        <cite>— Mr.Miagy, Audi S7</cite>
+        <a class="rev-src" href="https://www.motor-talk.de/forum/erfahrungen-mit-cete-activ-suspesion-control-t6960244.html" target="_blank" rel="noopener">↗ Quelle: Motor-Talk-Forum</a></div>
+      <div class="card review">
+        <p class="rev-obj">„Wie aufwendig — und komme ich zurück?"</p>
+        <div class="stars">★★★★★</div>
+        <p>„Es tut genau das, was es soll … war relativ einfach zu verbauen und ist rückstandslos wieder
+          entfernbar. Die App warnt sogar vor Einstellungen, die den Fahrmodus beeinflussen können."</p>
+        <cite>— m4nii, Audi RS7</cite>
+        <a class="rev-src" href="https://www.motor-talk.de/forum/erfahrungen-mit-cete-activ-suspesion-control-t6960244.html" target="_blank" rel="noopener">↗ Quelle: Motor-Talk-Forum</a></div>
+      <div class="card review">
+        <p class="rev-obj">„Hält das auf Dauer?"</p>
+        <div class="stars">★★★★★</div>
+        <p>„Bei mir ist das Cete-Modul nun seit 3 Jahren in meinem S8 plus im Einsatz …
+          insgesamt würde ich das Modul wieder kaufen."</p>
+        <cite>— phil68, Audi S8 plus</cite>
+        <a class="rev-src" href="https://www.motor-talk.de/forum/erfahrungen-mit-cete-activ-suspesion-control-t6960244.html" target="_blank" rel="noopener">↗ Quelle: Motor-Talk-Forum</a></div>
+    </div>
+    <p style="margin-top:14px"><span class="ph">Mercedes-Testimonial (Airmatic) — höchste Proof-Priorität, alle 3 bisherigen Stimmen sind Audi</span></p>
+    <a class="fnext" href="#tuev" aria-label="Weiter zu: Recht & Sicherheit"><span>↓</span></a>
+  </div>
+</section>
+
+<!-- ===================== 9 · RECHT & SICHERHEIT (nach hinten verschoben) ===================== -->
+<section id="tuev">
+  <div class="wrap reassure">
+    <div class="eyebrow">Recht &amp; Sicherheit</div>
+    <h2>Wie sieht es mit dem TÜV aus?</h2>
+    <p class="lead">Hier reden wir Klartext — keine Versprechen, die wir nicht halten können.
+      Das Wichtigste in drei Punkten:</p>
+
+    <!-- Punkt 1 · Das offene Wort — Ehrlichkeit als Vertrauensbeweis, bewusst ohne Warn-Optik -->
+    <div class="tv-word tv-reveal">
+      <div class="tv-kicker">Offen gesagt</div>
+      <h3>Ehrlich: für Show, Events &amp; Privatgelände</h3>
+      <p>ASC wird <b>ohne TÜV-Gutachten</b> geliefert und ist im Bereich der StVZO nicht
+        zugelassen — <span class="tv-hl">das sagen wir dir vor dem Kauf, nicht im
+        Kleingedruckten</span>. Der Betrieb auf öffentlichen Straßen liegt in
+        Halter-Verantwortung.</p>
+      <p>Was dir dabei Ruhe gibt: per App abschaltbar, automatische Rückkehr,
+        100&nbsp;% rückrüstbar — die Kontrolle bleibt jederzeit bei dir.</p>
+    </div>
+
+    <!-- Punkt 2 · ECE-Prüfzeichen — geprüfte Hardware, ruhiger grüner Ton -->
+    <div class="tv-ece tv-reveal tv-d2">
+      <span class="tv-ece-mark" aria-hidden="true">E</span>
+      <div>
+        <h3>ECE-geprüft</h3>
+        <p>Die Hardware selbst trägt ein <b>ECE-Prüfzeichen</b> — ein anerkannter, internationaler
+          Standard für Qualität und Sicherheit. Du baust dir nichts Unkontrolliertes ein.</p>
+      </div>
+    </div>
+
+    <!-- Punkt 3 · Kontroll-Panel — drei Hebel, alle in deiner Hand -->
+    <div class="tv-ctl tv-reveal tv-d3">
+      <div class="tv-ctl-head">
+        <h3>Du behältst die Kontrolle</h3>
+        <span class="tv-chip"><i aria-hidden="true"></i>In deiner Hand</span>
+      </div>
+      <ul class="tv-toggles">
+        <li>
+          <div class="tv-tgl-txt"><b>Per App jederzeit abschaltbar</b>
+            <small>Ein Tipp in der App — und ASC ist aus.</small></div>
+          <span class="tv-tgl" aria-hidden="true"><i></i></span>
+        </li>
+        <li>
+          <div class="tv-tgl-txt"><b>Automatische Rückkehr auf Serienhöhe</b>
+            <small>Ab deinem eingestellten Tempo — ganz von selbst.</small></div>
+          <span class="tv-tgl" aria-hidden="true"><i></i></span>
+        </li>
+        <li>
+          <div class="tv-tgl-txt"><b>Vollständig rückrüstbar</b>
+            <small>Ausgebaut ist wieder alles exakt Serie.</small></div>
+          <span class="tv-tgl" aria-hidden="true"><i></i></span>
+        </li>
+      </ul>
+      <p class="tv-ctl-foot"><b>Du entscheidest</b>, wie und wann du unterwegs bist.</p>
+    </div>
+
+    <p class="tv-fine">* Keine Rechtsberatung. Der Betrieb auf öffentlichen Straßen liegt
+      in der Verantwortung des Halters. <span class="ph">Legalitäts-Wording vor Live mit CETE/Anwalt final freigeben</span></p>
+    <a class="fnext" href="#einbau" aria-label="Weiter zu: Einbau"><span>↓</span></a>
+  </div>
+  <script>
+  (function(){
+    var s=document.getElementById('tuev');
+    if(!s||!('IntersectionObserver' in window))return;
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    s.classList.add('tv-armed');
+    var target=s.querySelector('.tv-word')||s;
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){s.classList.add('tv-in');io.disconnect();}
+      });
+    },{threshold:.18});
+    io.observe(target);
+  })();
+  </script>
+</section>
+
+<!-- ===================== 10 · EINBAU (Friction-Abbau) ===================== -->
+<section class="honest" id="einbau">
+  <div class="wrap">
+    <div class="eyebrow">So läuft's ab</div>
+    <h2>Von der Anfrage zur perfekten Höhe — in 2–3 Stunden verbaut.</h2>
+    <p class="lead">Vier Schritte bis zur perfekten Höhe — und beim Einbau hast du die Wahl.</p>
+
+    <div class="jn-route">
+      <ol class="jn-stops" aria-label="Dein Weg in vier Schritten">
+        <li class="jn-stop">
+          <span class="jn-node" aria-hidden="true">01</span>
+          <div class="jn-card">
+            <div class="jn-card-head"><span class="jn-ico" aria-hidden="true">🔎</span><h3>Fitment-Check</h3></div>
+            <p>15 Sekunden: Marke, Modell, Baujahr — und du weißt sofort, ob dein Auto unterstützt wird.</p>
+          </div>
+        </li>
+        <li class="jn-stop">
+          <span class="jn-node" aria-hidden="true">02</span>
+          <div class="jn-card jn-choice">
+            <span class="jn-tag">Du hast die Wahl</span>
+            <div class="jn-card-head"><span class="jn-ico" aria-hidden="true">🔧</span><h3>Einbau — deine Wahl</h3></div>
+            <p>Ganz entspannt beim Partner in deiner Nähe — oder du machst es selbst mit unserem Schritt-für-Schritt-Tutorial, das du beim Kauf direkt per Mail bekommst.</p>
+          </div>
+        </li>
+        <li class="jn-stop">
+          <span class="jn-node" aria-hidden="true">03</span>
+          <div class="jn-card">
+            <div class="jn-card-head"><span class="jn-ico" aria-hidden="true">📱</span><h3>App koppeln</h3></div>
+            <p>Einmal per BLE verbinden — und deine persönlichen Höhen-Profile anlegen.</p>
+          </div>
+        </li>
+        <li class="jn-stop">
+          <span class="jn-node" aria-hidden="true">04</span>
+          <div class="jn-card">
+            <span class="jn-tag jn-tag-ok">Ziel erreicht</span>
+            <div class="jn-card-head"><span class="jn-ico" aria-hidden="true">✨</span><h3>Deine Höhe. Dein Auto.</h3></div>
+            <p>Fertig — ab jetzt bestimmst du, wie er steht.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <!-- HINWEIS (Spec §10): ohne echte Partner-Namen vor Launch diese Box ersatzlos entfernen —
+         "Einbaupartner-Vermittlung inklusive" im Angebot reicht. -->
+    <div class="partner-box jn-partner">
+      <span class="jn-partner-ico" aria-hidden="true">📍</span>
+      <div>
+        <b>Installationspartner in deiner Nähe</b>
+        <p class="jn-partner-sub">Du willst nicht selbst schrauben? Kein Problem — wir vermitteln dir einen Einbaupartner in deiner Nähe. Termin ausmachen, Auto hinbringen, tiefer wieder abholen.</p>
+        <p style="margin:6px 0 0"><span class="ph">Partnerliste / Karte einsetzen — ohne echte Namen vor Launch diese Box komplett entfernen</span></p>
+      </div>
+    </div>
+    <a class="fnext" href="#angebot" aria-label="Weiter zu: Angebot & Auto prüfen"><span>↓</span></a>
+  </div>
+  <script>
+  (function(){
+    var s=document.getElementById('einbau');
+    if(!s||!('IntersectionObserver' in window))return;
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    s.classList.add('jn-armed');
+    var target=s.querySelector('.jn-stops')||s;
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){s.classList.add('jn-in');io.disconnect();}
+      });
+    },{threshold:.15});
+    io.observe(target);
+  })();
+  </script>
+</section>
+
+<!-- ===================== 11 · ANGEBOT (Value-Stack + Anker + Risk-Reversal) =====================
+     Landing-Section für Route A (Pre-Sell verlinkt auf #angebot) — daher Mini-Beweis in der Bridge. -->
+<section class="offer" id="angebot">
+  <div class="wrap">
+    <div class="offer-card">
+      <div class="offer-inner">
+        <div class="of-head">
+          <div class="of-head-main">
+            <span class="of-tag">◆ Komplett-Set</span>
+            <h2 class="offer-title">Active Suspension Control — dein Fahrwerk, freigeschaltet.</h2>
+          </div>
+          <svg class="of-seal" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <defs>
+              <path id="of-seal-arc" d="M60,60 m-43,0 a43,43 0 1,1 86,0 a43,43 0 1,1 -86,0"/>
+            </defs>
+            <circle cx="60" cy="60" r="57.5" fill="none" stroke="var(--accent)" stroke-opacity=".4" stroke-width="1.5"/>
+            <circle cx="60" cy="60" r="30" fill="none" stroke="var(--accent)" stroke-opacity=".35" stroke-width="1"/>
+            <g class="of-seal-spin">
+              <text font-size="10" font-weight="700" letter-spacing="2.6" fill="var(--accent)" fill-opacity=".85">
+                <textPath href="#of-seal-arc">DAS ORIGINAL · CETE AUTOMOTIVE · DAS ORIGINAL · CETE AUTOMOTIVE ·</textPath>
+              </text>
+            </g>
+            <text x="60" y="58" text-anchor="middle" font-size="15" font-weight="800" letter-spacing="2" fill="var(--text)">ASC</text>
+            <text x="60" y="71" text-anchor="middle" font-size="6" font-weight="700" letter-spacing="1.6" fill="var(--accent)">VOM ERFINDER</text>
+          </svg>
+        </div>
+        <p class="offer-sub">Show-Tiefe und Alltag in einem Auto. Möglich durch die
+          <b>OEM-Direktsteuerung</b> — über dein Original-Steuergerät, kein Umbau, kein Fremd-Dongle,
+          jederzeit rückrüstbar.</p>
+
+        <div class="offer-grid">
+          <div>
+            <span class="offer-label">Dein Komplett-Set</span>
+            <ul class="of-incl">
+              <li><span class="of-ico" aria-hidden="true">🧩</span>
+                <div><b>ASC-Modul</b><small>unsichtbar verbaut · ECE-geprüft</small></div></li>
+              <li><span class="of-ico" aria-hidden="true">📱</span>
+                <div><b>App-Steuerung</b><small>eigene Höhen-Profile · BLE</small></div></li>
+              <li><span class="of-ico" aria-hidden="true">🛠️</span>
+                <div><b>Einbaupartner-Vermittlung</b><small>Werkstatt in deiner Nähe · 2–3 Std.</small></div></li>
+              <li><span class="of-ico" aria-hidden="true">🎓</span>
+                <div><b>Einbau-Tutorial + Hersteller-Support</b><small>direkter Draht zu den Entwicklern</small></div></li>
+            </ul>
+          </div>
+
+          <div class="offer-price">
+            <span class="offer-label">Dein Preis</span>
+            <div class="price-big">ab 999&nbsp;€</div>
+            <p class="price-note">je nach Fahrzeug · inkl. MwSt. · Finanzierung ab <span class="ph">~XX €/Monat — Rate bestätigen</span></p>
+            <a class="offer-trust" href="https://www.trustami.com/erfahrung/active-sound-eu-bewertung" target="_blank" rel="noopener"><span class="ot-stars">★★★★★</span> <b>4,89/5</b> · 312 Bewertungen ↗</a>
+            <div class="price-anchor">
+              <b>Warum ASC die sichere Wahl ist:</b>
+              <span class="anchor-row"><span class="ar-price">~3.000 €</span> neues Luftfederbein — so teuer wird ein Bastel-Schaden am Luftfahrwerk</span>
+              <span class="anchor-row ar-win"><span class="ar-price">ab 999 €</span> ASC — vom Erfinder, per App, 100 % rückrüstbar, ohne dieses Risiko</span>
+            </div>
+            <p class="price-note" style="margin:0"><b style="color:var(--text)">Jetzt sichern:</b> Nach deinem
+              Fitment-Check reservieren wir deinen Preis <b style="color:var(--accent)">7 Tage für dein Fahrzeug</b>
+              — mit <b style="color:var(--accent)">5&nbsp;% Aktionsrabatt</b>, wenn du in dieser Zeit bestellst.</p>
+          </div>
+        </div>
+
+        <div class="guarantee">
+          <span class="guar-ico" aria-hidden="true">🛡️</span>
+          <div>
+            <b>Das Rückrüst-Versprechen</b>
+            <p>ASC ist zu 100 % rückrüstbar — rückstandslos. Modul raus, Fahrwerk wie ab Werk,
+              auch für Verkauf oder Leasing.</p>
+          </div>
+        </div>
+
+        <!-- Eleganter Übergang vom Angebot direkt in den Fitment-Check -->
+        <div class="offer-bridge">
+          <span class="bridge-arrow" aria-hidden="true">↓</span>
+          <h3 class="bridge-title">Prüf <b>dein</b> Fahrzeug — und hol dir <b>dein persönliches Angebot</b>.</h3>
+          <p class="bridge-sub">Kostenloser Fitment-Check: Marke, Modell, Baujahr eingeben — in 15 Sekunden
+            siehst du, ob dein Auto passt, und bekommst dein <b>persönliches Angebot</b> (dein exaktes Modul,
+            dein Fahrzeugpreis, dein Einbaupartner) per Mail. Kostenlos &amp; unverbindlich.</p>
+        </div>
+
+        <div class="fitment-embed" id="fitment">
+      <form id="fit-form">
+        <div class="fit-fields">
+          <div class="field">
+            <label for="f-marke">Marke</label>
+            <select id="f-marke" required><option value="">wählen ▾</option></select>
+          </div>
+          <div class="field">
+            <label for="f-modell">Modell</label>
+            <select id="f-modell" required><option value="">wählen ▾</option></select>
+          </div>
+          <div class="field">
+            <label for="f-baujahr">Baujahr</label>
+            <select id="f-baujahr" required><option value="">wählen ▾</option></select>
+          </div>
+          <div class="field">
+            <label for="f-luft">Luftfahrwerk?</label>
+            <select id="f-luft" required>
+              <option value="">wählen ▾</option>
+              <option value="ja">Ja, serienmäßig</option>
+              <option value="unklar">Weiß ich nicht</option>
+              <option value="nein">Nein / Stahlfahrwerk</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-block fit-submit">Prüfen &amp; mein persönliches Angebot holen <span class="fs-arrow" aria-hidden="true">→</span></button>
+      </form>
+
+      <div class="fit-result match" id="res-match">
+        <div class="match-celebrate">
+          <span class="match-check" aria-hidden="true">✓</span>
+          <h3 id="res-match-head">Passt an dein Auto!</h3>
+          <p id="res-match-txt">ASC ist für dein Fahrzeug verfügbar.</p>
+        </div>
+        <div class="match-paths">
+          <div class="offer-flag offer-excl">
+            <div class="excl-top">
+              <span class="flag-gift" aria-hidden="true">🎁</span>
+              <div><b><span id="disc-line">5 % auf dein ASC-Modul</span></b>
+                <small>Dein persönlicher Vorteil — <b>nur über diesen Link</b> erhältlich, nicht im Shop.</small></div>
+            </div>
+            <p class="excl-note">Sichere dir deinen Vorteil, solange dein Teil noch auf Lager ist.</p>
+          </div>
+          <form class="lead-form" data-leadtype="match">
+            <p class="lead-hook">Trag deine E-Mail ein — wir melden uns mit dem passenden Angebot für dein
+              Fahrzeug, dein <b>5 %-Vorteil</b> ist dabei gesichert.</p>
+            <input type="email" placeholder="deine@email.de" required>
+            <input type="tel" placeholder="Telefon (optional)">
+            <label class="consent"><input type="checkbox" required><span>Ich akzeptiere den <a href="#datenschutz">Datenschutz</a> und möchte mein Angebot per Mail.</span></label>
+            <button type="submit" class="btn btn-primary btn-block">Meinen Vorteil jetzt sichern →</button>
+          </form>
+          <div class="lead-done" id="match-done">✓ Danke! Wir melden uns mit deinem passenden Angebot — dein 5 %-Vorteil ist gesichert.</div>
+        </div>
+      </div>
+
+      <div class="fit-result manual" id="res-manual">
+        <h3>Wir prüfen das persönlich für dich.</h3>
+        <p id="res-manual-txt">Direkt beim Hersteller, mit klarer Antwort — trag dich ein, wir melden uns.</p>
+        <form class="lead-form" data-leadtype="manual">
+          <input type="email" placeholder="deine@email.de" required>
+          <input type="tel" placeholder="Telefon (optional)">
+          <label class="consent"><input type="checkbox" required><span>Ich bin einverstanden, dass CETE mich zu meiner Anfrage kontaktiert (<a href="#datenschutz">Datenschutz</a>).</span></label>
+          <button type="submit" class="btn btn-primary btn-block">Persönlich prüfen lassen →</button>
+        </form>
+        <div class="lead-done">✓ Danke! Wir prüfen dein Fahrzeug direkt beim Hersteller und melden uns mit klarer Antwort.</div>
+      </div>
+        </div><!-- /.fitment-embed -->
+      </div><!-- /.offer-inner -->
+    </div><!-- /.offer-card -->
+  </div>
+</section>
+
+<!-- ===================== FAQ — am Ende, unter dem Prüfer ===================== -->
+<section id="faq">
+  <div class="wrap">
+    <div class="eyebrow">Fragen &amp; Antworten</div>
+    <h2>Häufige Fragen</h2>
+    <details><summary>Warum ~1.000 €, wenn Codieren nur 200 € kostet?</summary>
+      <div class="ans">Weil du zwei verschiedene Dinge kaufst. Für 200 € bekommst du <b>eine</b> Höhe —
+        fest, dauerhaft tief, Änderung nur per Werkstatt. Für 999 € bekommst du <b>jede</b> Höhe:
+        per App, pro Fahrmodus, automatische Rückkehr — und in 5 Minuten zurück auf 100 % Serie.
+        Statisch gegen dynamisch. Wer nur einmal tief will, ist mit Codieren gut bedient.
+        Wer sein Luftfahrwerk <b>behalten</b> will, nicht.</div></details>
+    <details><summary>Schadet die Tieferlegung meinem Luftfahrwerk?</summary>
+      <div class="ans">ASC arbeitet über dein Original-Steuergerät und dessen Fahrprofile, im moderaten
+        Bereich, mit automatischer Rückkehr auf Serienhöhe — tief ist eine Entscheidung, kein Dauerzustand.
+        <span class="ph">offizielle Luftbalg-Schonungs-Aussage — sonst Satz so lassen</span></div></details>
+    <details><summary>Was ist mit der Herstellergarantie?</summary>
+      <div class="ans"><span class="ph">CETE-Garantie-Aussage — diese FAQ bis Launch füllen oder komplett streichen (nie leer live)</span></div></details>
+    <details><summary>Warum ASC und kein OBD-Stecker?</summary>
+      <div class="ans">Nachrüst-Dongles hängen sich von außen an die Diagnose-Schnittstelle: fest im
+        OBD-Steckplatz, kein Hersteller dahinter, oft keine automatische Rückkehr auf Serienhöhe.
+        ASC ist ein fest verbautes Modul vom Erfinder, arbeitet über die Original-Steuerung
+        (OEM-Direktsteuerung), fährt ab eingestelltem Tempo automatisch hoch und ist voll rückrüstbar —
+        mit Support direkt vom Hersteller.</div></details>
+    <details><summary>Mehr Reifenverschleiß?</summary>
+      <div class="ans">Bei Dauer-Tiefstand ja — das gilt für jede Methode. Mit ASC musst du nicht dauerhaft
+        tief fahren: per App jederzeit höher, ab eingestelltem Tempo automatisch auf Serie.</div></details>
+    <details><summary>Verliere ich Bodenfreiheit / Komfort?</summary>
+      <div class="ans">Nein — ab eingestelltem Tempo automatisch hoch, plus manuell +30 mm für Bordstein und Rampe.</div></details>
+    <details><summary>Hat ASC ein TÜV-Gutachten?</summary>
+      <div class="ans">Nein. ASC wird ohne TÜV-Gutachten geliefert und ist im Bereich der StVZO nicht
+        zugelassen — gedacht für Show, Events &amp; Privatgelände. Per App abschaltbar, automatische
+        Rückkehr, 100 % rückrüstbar. Alle Details oben unter „Recht &amp; Sicherheit".</div></details>
+    <details><summary>Welche Fahrzeuge?</summary>
+      <div class="ans">Nur mit serienmäßigem Luftfahrwerk (Airmatic, Adaptive Air Suspension …). Fitment-Check oben.</div></details>
+    <details><summary>Gibt es Probleme mit den Assistenzsystemen?</summary>
+      <div class="ans">In der Praxis nein: Im moderaten Bereich laufen Spurhalte-, Abstands- &amp; weitere
+        Assistenten normal weiter, und eine Kalibrierung ist nicht nötig. Erfahrungsberichte von
+        Fahrern bestätigen das auch bei deutlicher Tieferlegung.</div></details>
+    <details><summary>Beim Verkauf ausbaubar?</summary>
+      <div class="ans">Ja, vollständig rückrüstbar.</div></details>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site">
+  <div class="wrap">
+    <div class="brand">CETE.AUTOMOTIVE</div>
+    <p style="margin-top:8px">CETE Automotive GmbH · Henstedt-Ulzburg · Das Original</p>
+    <p class="ph ph-block">Betreiber-/Impressumsdaten der Landingpage prüfen: läuft die LP unter
+      CETE Automotive GmbH oder unter Singh/Muric GbR? → korrekte Operatordaten einsetzen.</p>
+    <div class="foot-links">
+      <a href="#impressum">Impressum</a>
+      <a href="#datenschutz">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== STICKY-CTA (nur mobil, sichtbar von #desire bis #angebot) ===================== -->
+<div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+  <a href="#fitment" class="sc-btn" id="sticky-cta-btn">
+    <span class="sc-ico" aria-hidden="true">
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 8.5l3.2 3L13 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+    <span class="sc-txt">
+      <strong>Passt ASC an dein Auto?</strong>
+      <small>Kostenlos in 15 Sek. prüfen · unverbindlich</small>
+    </span>
+    <span class="sc-arrow" aria-hidden="true">→</span>
+  </a>
+  <button class="sc-close" id="sticky-close" aria-label="Leiste ausblenden">✕</button>
+</div>
+
+<!-- ===================== CONSENT ===================== -->
+<div class="cookie" id="cookie" hidden>
+  <p>Wir nutzen Cookies &amp; Marketing-Pixel, um die Seite zu verbessern und Werbung zu messen.</p>
+  <button class="btn btn-ghost" id="cookie-no">Nur notwendige</button>
+  <button class="btn btn-primary" id="cookie-yes">Akzeptieren</button>
+</div>
+
+<script>
+/* ============================================================
+   CETE_CONFIG — einzige Stelle, die man pro Produkt / Deployment anfasst.
+   ============================================================ */
+window.CETE_CONFIG = {
+  product: "asc",
+  metaPixelId: "1765163127144487",     // TODO CETE/MC: Meta-Pixel-ID
+  ga4Id: "",
+  leadEndpoint: "/api/lead",  // Vercel-Function → leitet an n8n weiter + feuert Meta-CAPI-Lead serverseitig. Leer = Demo-Modus.
+  // Reservierungs-Story (ersetzt die alte Rabatt-Code-Logik komplett):
+  // Aktionspreis 999 € statt UVP, nach Fitment-Check X Tage fürs Fahrzeug reserviert.
+  reservation: { days: 7 },
+  brands: {
+    "Mercedes-Benz": ["E-Klasse (Airmatic)","S-Klasse (Airmatic)","GLE (Airmatic)","CLS (Airmatic)"],
+    "Audi":          ["A6 (Adaptive Air)","A7 (Adaptive Air)","A8 (Adaptive Air)","Q7 (Adaptive Air)"],
+    "Porsche":       ["Cayenne (PASM Air)","Panamera (PASM Air)"],
+    "BMW":           ["7er (Luftfederung)","X5 (Luftfederung)","X7 (Luftfederung)"],
+    "VW":            ["Touareg (Luftfederung)"],
+    "Andere / unsicher": ["Modell unbekannt"]
+  },
+  yearsFrom: 2010, yearsTo: 2026
+};
+
+(function(){
+  "use strict";
+  var CFG = window.CETE_CONFIG;
+
+  // src-Param (Routen-/Retargeting-Messung: presell, adA/adB, rt1a…rt3c) — in jedes Event + Lead
+  var SRC=''; try{ SRC=(new URLSearchParams(location.search)).get('src')||''; }catch(e){}
+
+  window.ceteTrack = function(event, params, opts){
+    params = params || {};
+    if(SRC && !params.src){ params.src = SRC; }
+    try{ if(window.fbq && CFG.metaPixelId){ opts ? fbq('track', event, params, opts) : fbq('track', event, params); } }catch(e){}
+    try{ (window.dataLayer = window.dataLayer || []).push(Object.assign({event:'cete_'+event}, params)); }catch(e){}
+    console.log('[CETE track]', event, params);
+  };
+
+  // ViewContent darf nur EINMAL feuern (Bugfix: feuerte vorher doppelt — in initPixel + global)
+  var vcFired=false;
+  function trackViewContentOnce(){
+    if(vcFired) return; vcFired=true;
+    window.ceteTrack('ViewContent', {content_name:'ASC Landingpage', content_category:'tieferlegung'});
+  }
+
+  function initPixel(){
+    if(!CFG.metaPixelId) return;
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', CFG.metaPixelId); fbq('track','PageView');
+    trackViewContentOnce();
+  }
+  var cookie=document.getElementById('cookie');
+  var consent=null; try{consent=localStorage.getItem('cete_consent');}catch(e){}
+  if(consent==='yes'){ initPixel(); }
+  else if(consent!=='no'){ cookie.hidden=false; }
+  document.getElementById('cookie-yes').onclick=function(){try{localStorage.setItem('cete_consent','yes')}catch(e){}cookie.hidden=true;initPixel();};
+  document.getElementById('cookie-no').onclick=function(){try{localStorage.setItem('cete_consent','no')}catch(e){}cookie.hidden=true;};
+  trackViewContentOnce();
+
+  // Count-up der Autoritäts-Zahlen beim ersten Reinscrollen
+  (function(){
+    var els=document.querySelectorAll('.count');
+    if(!els.length) return;
+    var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    function fmt(n){ return n.toLocaleString('de-DE'); }
+    function run(el){
+      var to=parseInt(el.getAttribute('data-to'),10)||0, suf=el.getAttribute('data-suffix')||'';
+      if(reduce){ el.textContent=fmt(to)+suf; return; }
+      var dur=1400, start=null;
+      requestAnimationFrame(function step(ts){
+        if(!start) start=ts;
+        var p=Math.min((ts-start)/dur,1), eased=1-Math.pow(1-p,3);
+        el.textContent=fmt(Math.round(to*eased))+suf;
+        if(p<1) requestAnimationFrame(step); else el.textContent=fmt(to)+suf;
+      });
+    }
+    if(!reduce){ Array.prototype.forEach.call(els,function(el){ el.textContent='0'; }); }
+    if('IntersectionObserver' in window && !reduce){
+      var io=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ run(e.target); io.unobserve(e.target); } });
+      }, {threshold:0.5});
+      Array.prototype.forEach.call(els,function(el){ io.observe(el); });
+    } else { Array.prototype.forEach.call(els, run); }
+  })();
+
+  // Demo-Video (Facade-Klick)
+  var hv=document.getElementById('hero-video');
+  if(hv){ hv.addEventListener('click', function(){ window.ceteTrack('VideoPlay',{name:'asc-demo'}); }); }
+
+  // Weiche-Tracking (Prüfen vs. Mechanismus)
+  Array.prototype.forEach.call(document.querySelectorAll('.fork-btn'), function(c){
+    c.addEventListener('click', function(){ window.ceteTrack('ForkChoice',{path:c.dataset.fork}); });
+  });
+
+  // CTA-Klicks (Hero / Desire / Sticky) als Micro-Conversions
+  Array.prototype.forEach.call(document.querySelectorAll('[data-cta]'), function(c){
+    c.addEventListener('click', function(){ window.ceteTrack('CTAClick',{placement:c.dataset.cta}); });
+  });
+
+  // Checkpoint-Tracking (Lesetiefe je Abschnitt) — feuert je Checkpoint genau EINMAL.
+  // Namen 1:1 aus CETE_Landingpage_Checkpoint-Karte.pdf.
+  // Hinweis: CP10 (angebot) = bestehendes Event 'ReachedAngebot', CP11 (fitment) = 'Lead' →
+  // hier bewusst NICHT dupliziert. Neu: CP1–CP9 + CP12.
+  (function(){
+    if(!('IntersectionObserver' in window)) return;
+    var CPS=[
+      {cp:1, name:'hero',           sel:'section.hero'},
+      {cp:2, name:'demo-video',     sel:'#video'},
+      {cp:3, name:'mechanismus',    sel:'#mechanismus'},
+      {cp:4, name:'fahrwerk-angst', sel:'#fahrwerk'},
+      {cp:5, name:'preis-vergleich',sel:'#vergleich'},
+      {cp:6, name:'erfinder-beweis',sel:'#warum'},
+      {cp:7, name:'stimmen',        sel:'#stimmen'},
+      {cp:8, name:'tuev',           sel:'#tuev'},
+      {cp:9, name:'ablauf-einbau',  sel:'#einbau'},
+      {cp:12,name:'faq',            sel:'#faq'}
+    ];
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var d=e.target.__cete;
+          window.ceteTrack('SectionView', {cp:d.cp, name:d.name, page:'lp-asc'});
+          io.unobserve(e.target);
+        }
+      });
+    }, {threshold:0.35});
+    CPS.forEach(function(c){
+      var el=document.querySelector(c.sel);
+      if(el){ el.__cete={cp:c.cp, name:c.name}; io.observe(el); }
+    });
+  })();
+
+  // Scroll-Reveals (dezent, performance-schonend) + die EINE große Animation (Desire-Karte senkt sich)
+  (function(){
+    var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var hasIO=('IntersectionObserver' in window);
+
+    // Desire: interaktiver Höhen-Slider (Karosserie bewegt sich, Räder fix)
+    (function(){
+      var box=document.getElementById('lower'); if(!box) return;
+      var body=(document.querySelector('#lower-body img')||document.getElementById('lower-body')), range=document.getElementById('lower-range');
+      var mmEl=document.getElementById('lower-mm'), stEl=document.getElementById('lower-state');
+      if(!body||!range) return;
+      // Foto steht fast slammed. v=0: +DROP% (Radlauf tuckt auf den Reifen), v=100: −RAISE% (moderat, kein SUV).
+      // In % der Bildhoehe (560px-Rahmen): DROP=8px, RAISE=13px — realistischer Luftfahrwerk-Hub.
+      var DROP=1.43, RAISE=2.32;
+      // mm-Mapping (stückweise linear, Serienhöhe = Slider-Mitte): v=0 → −55 mm, v=50 → 0 mm, v=100 → +30 mm
+      function mmOf(v){ return v<50 ? Math.round(-55*(1-v/50)) : Math.round(30*((v-50)/50)); }
+      function fmtMM(mm){ return mm>0 ? '+'+mm+' mm' : (mm<0 ? '−'+Math.abs(mm)+' mm' : 'Serienhöhe'); }
+      // Nutzungs-Status nach Zone: Tief (v≤33) / Mitte (34–66) / Hoch (v≥67)
+      var ZONES=[
+        {t:'Show-Modus', s:'für Treffen & Fotos'},
+        {t:'Alltag', s:'komfortabel & unauffällig'},
+        {t:'Mehr Bodenfreiheit', s:'Rampe, Bordstein, Tiefgarage'}
+      ];
+      function zoneOf(v){ return v<=33 ? 0 : (v<67 ? 1 : 2); }
+      var txt=stEl?stEl.querySelector('.lower-state-txt'):null;
+      var zMain=txt?txt.querySelector('b'):null, zSub=txt?txt.querySelector('small'):null;
+      var lastZone=-1, zoneTimer=null;
+      function setZone(z){
+        if(z===lastZone||!stEl) return;
+        var first=(lastZone<0); lastZone=z;
+        var zd=ZONES[z];
+        var swap=function(){
+          if(zMain&&zSub){ zMain.textContent=zd.t; zSub.textContent=zd.s; if(txt) txt.style.opacity='1'; }
+          else stEl.textContent=zd.t+' — '+zd.s;
+        };
+        if(first||reduce||!txt){ swap(); return; }
+        txt.style.opacity='0'; clearTimeout(zoneTimer); zoneTimer=setTimeout(swap,150);
+      }
+      function apply(v){
+        body.style.transform='translateY('+(DROP-(v/100)*(DROP+RAISE)).toFixed(3)+'%)';
+        if(mmEl) mmEl.textContent=fmtMM(mmOf(v));
+        setZone(zoneOf(v));
+      }
+      range.addEventListener('input',function(){ apply(+range.value); });
+      apply(+range.value);
+      if(hasIO && !reduce){
+        var done=false;
+        var ioL=new IntersectionObserver(function(es){ es.forEach(function(e){
+          if(e.isIntersecting && !done){ done=true; ioL.disconnect();
+            var start=null, dur=2200;
+            requestAnimationFrame(function sweep(ts){ if(!start)start=ts;
+              var p=Math.min((ts-start)/dur,1);
+              var v=p<0.5?(p/0.5)*100:100-((p-0.5)/0.5)*50;
+              range.value=v; apply(v);
+              if(p<1) requestAnimationFrame(sweep); else { range.value=50; apply(50); }
+            });
+          }
+        }); },{threshold:0.5});
+        ioL.observe(box);
+      }
+    })();
+
+    // (veraltet, no-op: #stance existiert nicht mehr) Desire: interaktive Höhen-Karte
+    (function(){
+      var st=document.getElementById('stance'); if(!st) return;
+      var imgs=st.querySelectorAll('.stance-img'), pills=st.querySelectorAll('.stance-pill');
+      var cap=st.querySelector('.stance-cap');
+      var tagEl=st.querySelector('[data-cap-tag]'), titEl=st.querySelector('[data-cap-title]'), txtEl=st.querySelector('[data-cap-text]');
+      var data=[
+        {tag:'Treffen',title:'−55 mm. Radhaus voll.',text:'Show-Mode: Er legt sich, während andere am Gewinde kurbeln.'},
+        {tag:'Alltag',title:'Serienhöhe. Voller Komfort.',text:'Montag merkt niemand etwas — außer dir.'},
+        {tag:'Tiefgarage',title:'+30 mm auf Knopfdruck.',text:'Bordstein, Rampe, Schneematsch: ein Tap, er steht drüber.'}
+      ];
+      var idx=0, timer=null, auto=!reduce;
+      function show(n){
+        idx=n;
+        for(var k=0;k<imgs.length;k++){ imgs[k].classList.toggle('is-active',k===n); pills[k].classList.toggle('is-active',k===n); pills[k].setAttribute('aria-selected',k===n?'true':'false'); }
+        var d=data[n]; if(tagEl)tagEl.textContent=d.tag; if(titEl)titEl.textContent=d.title; if(txtEl)txtEl.textContent=d.text;
+        if(cap){ cap.classList.remove('swap'); void cap.offsetWidth; cap.classList.add('swap'); }
+      }
+      function startAuto(){ if(!auto) return; clearInterval(timer); timer=setInterval(function(){ show((idx+1)%imgs.length); },5000); }
+      for(var k=0;k<pills.length;k++){ (function(n){ pills[n].addEventListener('click',function(){ auto=false; clearInterval(timer); show(n); }); })(k); }
+      if(hasIO){
+        var ioSt=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ startAuto(); } else { clearInterval(timer); } }); },{threshold:0.4});
+        ioSt.observe(st);
+      } else { startAuto(); }
+      show(0);
+    })();
+
+    // Mechanismus-Signalkette: Stagger-Reveal von oben nach unten
+    // (.mech-armed = Startzustand vorbereiten, .in = abspielen; Loops laufen rein per CSS)
+    var ms=document.querySelector('.mech-fig');
+    if(ms && hasIO && !reduce){
+      ms.classList.add('mech-armed');
+      var ioM=new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ ms.classList.add('in'); ioM.disconnect(); } });
+      },{threshold:0.25});
+      ioM.observe(ms);
+    }
+
+    // Vergleichs-Duelle (#vergleich): Reveal mit 70-ms-Stagger pro Zeile
+    if(hasIO && !reduce){
+      Array.prototype.forEach.call(document.querySelectorAll('.vsx'), function(t){
+        t.classList.add('will-reveal');
+        Array.prototype.forEach.call(t.querySelectorAll('.vsx-head,.vsx-row,.vsx-foot'), function(r,i){
+          r.style.transitionDelay=(i*70)+'ms';
+        });
+        var ioT=new IntersectionObserver(function(es){
+          es.forEach(function(e){ if(e.isIntersecting){ t.classList.add('in'); ioT.disconnect(); } });
+        },{threshold:0.15});
+        ioT.observe(t);
+      });
+    }
+
+    // Timeline: Linie füllt sich beim Reveal
+    var tl=document.getElementById('timeline');
+    if(tl && hasIO){
+      var ioL=new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ tl.classList.add('in'); ioL.disconnect(); } });
+      },{threshold:0.3});
+      ioL.observe(tl);
+    } else if(tl){ tl.classList.add('in'); }
+  })();
+
+  // ReachedAngebot (einmalig) — Basis für Retargeting-Audience RT-3
+  (function(){
+    var ang=document.getElementById('angebot');
+    if(ang && 'IntersectionObserver' in window){
+      var fired=false;
+      var ioA=new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(e.isIntersecting && !fired){ fired=true; window.ceteTrack('ReachedAngebot'); ioA.disconnect(); }
+        });
+      },{threshold:0.25});
+      ioA.observe(ang);
+    }
+  })();
+
+  // Sticky-CTA (mobil): positionsabhaengig — erscheint erst wenn man die Desire-Section ("So steht deiner")
+  // tatsaechlich erreicht (per Button ODER manuellem Scrollen), verschwindet wieder oberhalb davon
+  // und sobald die Angebots-Section erreicht ist. Dynamisch, rastet nicht ein.
+  (function(){
+    var bar=document.getElementById('sticky-cta');
+    if(!bar) return;
+    var desire=document.getElementById('desire'), offer=document.getElementById('angebot');
+    if(!desire) return;
+    var dismissed=false, tracked=false, ticking=false;
+    function compute(){
+      ticking=false;
+      var vh=window.innerHeight||document.documentElement.clientHeight;
+      // Erst wenn die Desire-Section ("So steht deiner") ganz oben im Frame ist —
+      // dann ist der Fork mit dem eigenen Fitment-Button schon rausgescrollt (keine Doppelung).
+      var reached=desire.getBoundingClientRect().top <= vh*0.1;
+      // Angebots-Section in Sicht -> wieder ausblenden
+      var atOffer=offer ? (offer.getBoundingClientRect().top <= vh*0.85) : false;
+      var show=reached && !atOffer && !dismissed;
+      bar.classList.toggle('show', show);
+      bar.setAttribute('aria-hidden', show?'false':'true');
+    }
+    function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(compute); } }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', onScroll);
+    compute();
+    var btn=document.getElementById('sticky-cta-btn');
+    if(btn){ btn.addEventListener('click', function(){
+      if(!tracked){ tracked=true; window.ceteTrack('CTAClick',{placement:'sticky'}); }
+    }); }
+    var x=document.getElementById('sticky-close');
+    if(x){ x.addEventListener('click', function(){ dismissed=true; compute(); }); }
+  })();
+
+  // Fitment
+  var selMarke=document.getElementById('f-marke'),
+      selModell=document.getElementById('f-modell'),
+      selJahr=document.getElementById('f-baujahr'),
+      selLuft=document.getElementById('f-luft');
+  Object.keys(CFG.brands).forEach(function(b){
+    var o=document.createElement('option');o.value=b;o.textContent=b;selMarke.appendChild(o);
+  });
+  for(var y=CFG.yearsTo; y>=CFG.yearsFrom; y--){
+    var o=document.createElement('option');o.value=y;o.textContent=y;selJahr.appendChild(o);
+  }
+  selMarke.addEventListener('change', function(){
+    selModell.innerHTML='<option value="">wählen ▾</option>';
+    (CFG.brands[selMarke.value]||[]).forEach(function(m){
+      var o=document.createElement('option');o.value=m;o.textContent=m;selModell.appendChild(o);
+    });
+  });
+
+  // Reservierungs-Tage aus CONFIG befüllen (eine Quelle — keine Rabatt-Code-Logik mehr)
+  var RESV=(CFG.reservation&&CFG.reservation.days)||7;
+  Array.prototype.forEach.call(document.querySelectorAll('.resv-days'), function(e){ e.textContent=RESV; });
+
+  var resMatch=document.getElementById('res-match'), resManual=document.getElementById('res-manual');
+  document.getElementById('fit-form').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var marke=selMarke.value, modell=selModell.value, jahr=selJahr.value, luft=selLuft.value;
+    window.ceteTrack('FitmentCheck', {brand:marke, model:modell, year:jahr, air:luft});
+    var bekannt = marke && marke!=='Andere / unsicher' && modell && modell!=='Modell unbekannt';
+    var treffer = (luft==='ja') && bekannt;
+    resMatch.classList.remove('show'); resManual.classList.remove('show');
+    if(treffer){
+      document.getElementById('res-match-head').textContent='Passt an deinen '+marke+'!';
+      document.getElementById('res-match-txt').textContent=
+        'ASC ist für deinen '+modell+' ('+jahr+') verfügbar.';
+      resMatch.classList.add('show'); resMatch.scrollIntoView({behavior:'smooth', block:'center'});
+    } else {
+      var hinweis = (luft==='nein')
+        ? 'ASC braucht ein serienmäßiges Luftfahrwerk. Wir prüfen, ob es für dein Fahrzeug eine Lösung gibt.'
+        : 'Trag dich ein — unser Team prüft dein Fahrzeug ('+(marke||'')+' '+(modell||'')+') und meldet sich mit der passenden Lösung.';
+      document.getElementById('res-manual-txt').textContent=hinweis;
+      resManual.classList.add('show'); resManual.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  });
+
+  function ceteCookie(n){ try{ var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)'); return m?decodeURIComponent(m[1]):''; }catch(e){ return ''; } }
+  function ceteEventId(){ try{ if(window.crypto && crypto.randomUUID) return crypto.randomUUID(); }catch(e){} return 'lead-'+Date.now()+'-'+Math.random().toString(16).slice(2); }
+  function submitLead(form, type){
+    var email=form.querySelector('input[type=email]').value;
+    var phoneEl=form.querySelector('input[type=tel]');
+    var phone=phoneEl?phoneEl.value:'';
+    var eid=ceteEventId();
+    var payload={ product:CFG.product, type:type, email:email, phone:phone,
+      brand:selMarke.value, model:selModell.value, year:selJahr.value, air:selLuft.value,
+      source:'landingpage-asc', src:SRC, ts:new Date().toISOString(),
+      event_id:eid, page_url:location.href, fbp:ceteCookie('_fbp'), fbc:ceteCookie('_fbc') };
+    // Browser-Pixel-Lead trägt dieselbe eventID → serverseitiges CAPI-Lead dedupt darüber
+    window.ceteTrack('Lead', {content_name:'ASC Fitment-Lead', lead_type:type}, {eventID:eid});
+    var done=form.parentElement.querySelector('.lead-done');
+    function ok(){ form.style.display='none'; if(done) done.style.display='block'; }
+    if(CFG.leadEndpoint){
+      fetch(CFG.leadEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+        .then(ok).catch(function(err){ console.error('Lead-Fehler',err); alert('Es gab ein Problem. Bitte später erneut versuchen.'); });
+    } else { console.log('[CETE lead · Demo-Modus]', payload); ok(); }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.lead-form'), function(f){
+    f.addEventListener('submit', function(ev){ ev.preventDefault(); submitLead(f, f.dataset.leadtype); });
+  });
+
+  // #fahrwerk: dezenter Stagger-Reveal der Reassure-Karten (rein optisch, respektiert reduced-motion)
+  (function(){
+    var list=document.querySelector('#fahrwerk .rlist');
+    if(!list) return;
+    var reduce=window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if(reduce || !('IntersectionObserver' in window)) return;
+    list.classList.add('rl-armed');
+    Array.prototype.forEach.call(list.children, function(li,i){ li.style.transitionDelay=(i*90)+'ms'; });
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          list.classList.add('in'); io.disconnect();
+          // Delays nach dem Einblenden entfernen, damit Hover-Übergänge sofort reagieren
+          setTimeout(function(){ Array.prototype.forEach.call(list.children, function(li){ li.style.transitionDelay=''; }); }, 1100);
+        }
+      });
+    },{threshold:0.15});
+    io.observe(list);
+  })();
+})();
+</script>
+</body>
+</html>
