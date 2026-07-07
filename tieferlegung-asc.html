@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="assets/cete-logo.png">
 <title>CETE Active Suspension Control (ASC) — Tieferlegen per App</title>
-<meta name="description" content="Tieferlegen per App für Fahrzeuge mit serienmäßigem Luftfahrwerk (Airmatic & Co.) — bis 55 mm tiefer, ab eingestelltem Tempo automatisch zurück auf Serienhöhe. ECE-geprüft. Vom Erfinder.">
+<meta name="description" content="Tieferlegen per App für Fahrzeuge mit serienmäßigem Luftfahrwerk (Airmatic & Co.) — je nach Fahrzeug tiefer, ab eingestelltem Tempo automatisch zurück auf Serienhöhe. ECE-geprüft. Vom Erfinder.">
 <link rel="preload" as="image" href="assets/hero-car.png" fetchpriority="high">
 
 <!-- ============================================================
@@ -1160,7 +1160,7 @@
     <span class="eyebrow">Active Suspension Control · Das Original vom Erfinder</span>
     <h1>Tief, wenn du willst.<br><span class="kw">Hoch, wenn du musst.</span></h1>
     <p class="lead">
-      Dein Luftfahrwerk kann bis zu <b>55&nbsp;mm tiefer</b> — ab Werk. ASC schaltet es frei:
+      Dein Luftfahrwerk kann <b>tiefer, als du denkst</b> — ab Werk. ASC schaltet es frei:
       absenken per App, ab eingestelltem Tempo <b>automatisch zurück auf Serienhöhe</b>.
       Kein Umbau. Jederzeit rückrüstbar.
     </p>
@@ -1188,7 +1188,7 @@
   <div class="wrap video-block">
     <div class="video" id="hero-video" role="button" tabindex="0" aria-label="Video abspielen">
       <div class="play-disc">►</div>
-      <span class="vcap">Serienhöhe → 55 mm tief · kein Schnitt, kein Trick</span>
+      <span class="vcap">Serienhöhe → ganz tief · kein Schnitt, kein Trick</span>
     </div>
 
     <!-- Weiche: direkt prüfen ODER erst den Mechanismus (löst Angst an der Wurzel) -->
@@ -1223,7 +1223,7 @@
           <span class="lower-dot" aria-hidden="true"></span>
           <span class="lower-state-txt"><b>Show-Modus</b><small>für Treffen &amp; Fotos</small></span>
         </div>
-        <div class="lower-badge" id="lower-mm" aria-live="polite">−55 mm</div>
+        <div class="lower-badge" id="lower-mm" aria-live="polite">Tiefer</div>
         <div class="lower-scene" aria-hidden="true"><img src="assets/bmw-stage.webp" alt="" loading="lazy" decoding="async"></div>
         <div class="lower-body" id="lower-body"><img src="assets/bmw-body2.webp" alt="Weisser BMW 5er in Seitenansicht" loading="lazy" decoding="async"></div>
       </div>
@@ -1262,7 +1262,7 @@
     <figure class="mech-fig">
       <div class="mech-panel">
         <svg class="mech-diagram" viewBox="0 0 400 560" xmlns="http://www.w3.org/2000/svg" role="img"
-             aria-label="Diagramm der Signalkette: Deine App sendet Höhen-Profile per Bluetooth an das ASC-Modul. Das ASC-Modul spricht über die Original-Fahrprofile mit deinem Original-Steuergerät — kein OBD-Dongle, kein Roheingriff. Das Steuergerät hebt und senkt die Luftfedern: bis 55 mm tiefer, bis 30 mm höher, ab eingestelltem Tempo automatisch zurück auf Serienhöhe.">
+             aria-label="Diagramm der Signalkette: Deine App sendet Höhen-Profile per Bluetooth an das ASC-Modul. Das ASC-Modul spricht über die Original-Fahrprofile mit deinem Original-Steuergerät — kein OBD-Dongle, kein Roheingriff. Das Steuergerät hebt und senkt die Luftfedern: je nach Fahrzeug tiefer und höher, ab eingestelltem Tempo automatisch zurück auf Serienhöhe.">
           <defs>
             <linearGradient id="mechBody" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#1c2b3d"/>
@@ -1348,9 +1348,9 @@
             <rect x="16" y="356" width="368" height="196" rx="12" fill="rgba(255,255,255,.015)" stroke="var(--border)"/>
             <!-- Status-Zeile: mm-Wert + Modus (überblendet im Takt der Karosserie) -->
             <rect x="28" y="368" width="80" height="26" rx="13" fill="rgba(33,199,214,.08)" stroke="var(--accent)" stroke-opacity=".5"/>
-            <text class="mech-t-low" x="68" y="385" text-anchor="middle" font-size="12.5" font-weight="800" fill="var(--accent)">−55 mm</text>
-            <text class="mech-t-serie" x="68" y="385" text-anchor="middle" font-size="12.5" font-weight="800" fill="var(--text)">0 mm</text>
-            <text class="mech-t-high" x="68" y="385" text-anchor="middle" font-size="12.5" font-weight="800" fill="var(--text)">+30 mm</text>
+            <text class="mech-t-low" x="68" y="385" text-anchor="middle" font-size="12.5" font-weight="800" fill="var(--accent)">Tief</text>
+            <text class="mech-t-serie" x="68" y="385" text-anchor="middle" font-size="12.5" font-weight="800" fill="var(--text)">Serie</text>
+            <text class="mech-t-high" x="68" y="385" text-anchor="middle" font-size="12.5" font-weight="800" fill="var(--text)">Höher</text>
             <text class="mech-t-low" x="118" y="384" font-size="9.5" fill="#cdd8e6">Show-Mode — tief, wenn du willst</text>
             <text class="mech-t-serie" x="118" y="384" font-size="9.5" fill="#cdd8e6">ab eingestelltem Tempo: automatisch zurück</text>
             <text class="mech-t-high" x="118" y="384" font-size="9.5" fill="#cdd8e6">Bordstein &amp; Rampe: kurz anheben</text>
@@ -1383,9 +1383,9 @@
             <line x1="342" y1="454" x2="350" y2="454" stroke="var(--border)" stroke-width="1.5"/>
             <line x1="342" y1="478" x2="350" y2="478" stroke="var(--border)" stroke-width="1.5"/>
             <line x1="342" y1="522" x2="350" y2="522" stroke="var(--border)" stroke-width="1.5"/>
-            <text x="338" y="457" text-anchor="end" font-size="9" fill="var(--muted)">+30 mm</text>
+            <text x="338" y="457" text-anchor="end" font-size="9" fill="var(--muted)">Hoch</text>
             <text x="338" y="481" text-anchor="end" font-size="9" fill="var(--muted)">Serie</text>
-            <text x="338" y="525" text-anchor="end" font-size="9" font-weight="700" fill="var(--accent)">−55 mm</text>
+            <text x="338" y="525" text-anchor="end" font-size="9" font-weight="700" fill="var(--accent)">Tief</text>
             <path class="mech-marker" d="M350 478l10 -6v12z" fill="var(--accent)"/>
           </g>
         </svg>
@@ -2075,7 +2075,7 @@
       <div class="ans">Bei Dauer-Tiefstand ja — das gilt für jede Methode. Mit ASC musst du nicht dauerhaft
         tief fahren: per App jederzeit höher, ab eingestelltem Tempo automatisch auf Serie.</div></details>
     <details><summary>Verliere ich Bodenfreiheit / Komfort?</summary>
-      <div class="ans">Nein — ab eingestelltem Tempo automatisch hoch, plus manuell +30 mm für Bordstein und Rampe.</div></details>
+      <div class="ans">Nein — ab eingestelltem Tempo automatisch hoch, plus manuell höher für Bordstein und Rampe.</div></details>
     <details><summary>Hat ASC ein TÜV-Gutachten?</summary>
       <div class="ans">Nein. ASC wird ohne TÜV-Gutachten geliefert und ist im Bereich der StVZO nicht
         zugelassen — gedacht für Show, Events &amp; Privatgelände. Per App abschaltbar, automatische
@@ -2288,7 +2288,7 @@ window.CETE_CONFIG = {
       var DROP=1.43, RAISE=2.32;
       // mm-Mapping (stückweise linear, Serienhöhe = Slider-Mitte): v=0 → −55 mm, v=50 → 0 mm, v=100 → +30 mm
       function mmOf(v){ return v<50 ? Math.round(-55*(1-v/50)) : Math.round(30*((v-50)/50)); }
-      function fmtMM(mm){ return mm>0 ? '+'+mm+' mm' : (mm<0 ? '−'+Math.abs(mm)+' mm' : 'Serienhöhe'); }
+      function fmtMM(mm){ return mm>0 ? 'Höher' : (mm<0 ? 'Tiefer' : 'Serienhöhe'); }
       // Nutzungs-Status nach Zone: Tief (v≤33) / Mitte (34–66) / Hoch (v≥67)
       var ZONES=[
         {t:'Show-Modus', s:'für Treffen & Fotos'},
