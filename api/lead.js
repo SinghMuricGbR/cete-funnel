@@ -3,7 +3,7 @@
 //
 // Benötigte Env-Variablen (im Vercel-Projekt unter Settings → Environment Variables setzen):
 //   N8N_WEBHOOK_URL  = die Webhook-URL aus eurem n8n-Workflow (Production-URL)
-//   META_PIXEL_ID    = 1765163127144487
+//   META_PIXEL_ID    = 28119741824299108
 //   META_CAPI_TOKEN  = Conversions-API-Token aus dem Meta Events Manager
 //
 // Ohne META_PIXEL_ID/META_CAPI_TOKEN wird KEIN CAPI gefeuert (nur n8n-Weiterleitung).
